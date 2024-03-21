@@ -1,15 +1,23 @@
-import { useState } from 'react'
+
 
 import './App.css'
+import Navbar from './Navbar.jsx'
+import Hero from './Hero.jsx'
+import Sectionii from './Sectionii.jsx'
 
 function App() {
-  const [count, setCount] = useState(0)
+  
 
   return (
-    <> 
-      
-    </>
-  )
+    <section>
+      <Navbar />
+      <Hero />
+      <Sectionii/>
+      </section>
+    
+    
+    
+  );
 }
 
-export default App
+export default App;
