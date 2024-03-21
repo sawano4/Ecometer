@@ -5,9 +5,8 @@ function Navbar() {
 	
 
     return (
-        <header>
-		<div className="header">
-			    
+       <header className="main">
+		<div className="header">   
             <h3 className="logo">Ecometer</h3>
 			
 			<a href="/#" className="nvbr"  >Accueil</a>
@@ -25,12 +24,13 @@ function Navbar() {
                
            
             </div>
+            
+			
             </header> 
 		
-			
-		
+
 	
 	);
 }
 
-export default Navbar;
+export default Navbar; 

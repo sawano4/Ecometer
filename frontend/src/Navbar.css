@@ -4,7 +4,7 @@
     font-family:Inter;
     font-family: sans-serif;
 }
-header {
+.main {
     margin : 0;
     padding : 0;
     background-color:#0F172A;
@@ -32,7 +32,7 @@ header {
     font-size:15px;
 }
 .nvbr:visited {
-    color: white;
+    color: rgba(242, 243, 239, 0.315);
 }
 
 .header2 {
@@ -45,7 +45,7 @@ header {
 
 
 .space {
-    width: 30%;
+    width: 40%;
 
 }
 .logo {
