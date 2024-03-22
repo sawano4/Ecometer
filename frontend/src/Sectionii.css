@@ -1,0 +1,27 @@
+* {
+  @apply m-0 p-0;
+  font-family: Inter;
+  font-family: sans-serif;
+}
+.sectionii {
+  @apply bg-[#f2f4f8] w-full h-[450px];
+  /* background-color:#F2F4F8 ; */
+}
+.title3 {
+  @apply text-3xl font-semibold w-full text-[Black] text-center max-w-full mb-5 pt-[55px];
+}
+.container {
+  @apply flex w-[90%] mx-auto my-10;
+}
+.container2 {
+  @apply w-3/12 items-center;
+}
+.imgsec {
+  @apply block m-auto;
+}
+.text2 {
+  @apply text-xl text-[Black] text-center max-w-full mb-5 pt-5;
+}
+.btn222 {
+  @apply text-center block justify-center items-center w-[12%] no-underline bg-[#d62828] text-[white] text-[15px] cursor-pointer transition-all duration-[0.3s] ease-[ease] delay-[0s] font-normal m-auto px-[35px] py-4 rounded-[15px] border-[none];
+}
