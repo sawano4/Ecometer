@@ -32,7 +32,7 @@ const login = () => {
               <div className=" w-[10%] float-right h-[100%] flex justify-center ">
                 <img
                   className="w-[70%] my-[auto] h-[70%]"
-                  src="../public/Hide.svg"
+                  src="/Hide.svg"
                   alt="SVG Image"
                 ></img>
               </div>
@@ -72,6 +72,14 @@ const login = () => {
             </div>
           </div>
         </form>
+        <div className="flex justify-center mt-2">
+          <span className="text-neutral-800 text-base font-normal font-['Inter'] leading-7">
+            Vous n’avez pas encore de compte ?{" "}
+          </span>
+          <span className="text-sky-600 text-base font-normal font-['Inter'] leading-7">
+            S’inscrire
+          </span>
+        </div>
       </div>
     </div>
   );
