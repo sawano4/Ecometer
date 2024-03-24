@@ -1,6 +1,20 @@
+import { useState, useEffect } from "react";
+import React from "react";
+
 function Navbar() {
+  /* const [fix, setFix] = useState(false);
+  useEffect(() => {
+    const handScroll = () => {
+      setFix(window.scrollY > 500);
+      console.log(window.scrollY);
+    };
+    window.addEventListener("scroll", handScroll);
+
+    return () => window.removeEventListener("scroll", handScroll);
+  });*/
   return (
-    <header className="bg-slate-900 text-[white] w-full h-[10vh] flex m-0 p-0">
+    // <nav className="{ /*`${fix ? " sticky top-0 " : ""}`"} */ ">
+    <header className=" bg-slate-900 text-[white] w-full h-[10vh] flex m-0 p-0">
       <div className="flex justify-between w-[40%] items-center ml-10">
         <h3 className="font-bold text-[4vh]">Ecometer</h3>
 
@@ -46,6 +60,7 @@ function Navbar() {
         </a>
       </div>
     </header>
+    // </nav>
   );
 }
 
