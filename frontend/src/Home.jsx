@@ -3,6 +3,7 @@ import Hero from "./Hero.jsx";
 import Sectionii from "./Sectionii.jsx";
 import Video from "./Video.jsx";
 import Info from "./Info.jsx";
+import Stat from "./Stat.jsx";
 
 function Landing() {
   return (
@@ -12,6 +13,7 @@ function Landing() {
       <Sectionii />
       <Video />
       <Info />
+      <Stat />
     </section>
   );
 }

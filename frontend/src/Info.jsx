@@ -7,19 +7,20 @@ function Info() {
             Pourquoi Ecometer?
           </div>
 
-          <div className=" w-[48%] h-[8vh] rounded-[2vh]  border border-[0.1vh] border-black flex items-center">
-            <div className="w-[5%]"></div>
-            <div className=" w-[70%] h-[40%] text-center text-[2vh] ">
-              Commencer le bilan Carbone
+          <a className="w-[100%]" href="/#">
+            <div className=" mx-auto border-[#000000] border-solid border-[0.5vh] py-[2vh] rounded-[2vh]  w-[50%] justify-center flex items-center">
+              <div className=" w-[80%] pl-[1vh] text-center text-[#000000] text-[3.1vh]   ">
+                Commencer le bilan Carbone
+              </div>
+              <div className=" w-[20%]  pl-[2vh] ">
+                <img
+                  className="h-[4vh] w-[4vh]"
+                  src="/arrow-right.svg"
+                  alt="SVG"
+                ></img>
+              </div>
             </div>
-            <div className="mx-auto ">
-              <img
-                className="h-[3vh] w-[3vh]"
-                src="/arrow-right.svg"
-                alt="SVG"
-              ></img>
-            </div>
-          </div>
+          </a>
         </div>
 
         <div className="w-[50%]  float-right h-[100%]">

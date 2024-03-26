@@ -7,7 +7,7 @@ function Hero() {
         alt="SVG Image"
       ></img>
       <img
-        className="absolute max-w-full h-4/5 right-[5%] top-[8%]"
+        className="absolute max-w-full h-[85%] right-[5%] top-[8%]"
         src="/Illustrations.svg"
         alt="SVG Image"
       ></img>
