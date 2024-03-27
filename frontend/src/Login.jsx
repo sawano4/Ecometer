@@ -2,7 +2,7 @@ const login = () => {
   return (
     <div>
       <img src="/Vector2.svg" className="w-100%" alt="SVG Image"></img>
-      <div className="absolute   right-[30%] top-[15%] w-[40%] h-[75%]  bg-white rounded-[15px] shadow">
+      <div className="absolute  shadow-[0px_0px_80px_-30px] right-[30%] top-[15%] w-[40%] h-[75%]  bg-white rounded-[15px] shadow">
         <h1 className="text-center text-neutral-800 text-[31px] font-bold font-['Eudoxus Sans'] leading-[130px]">
           Se connecter
         </h1>

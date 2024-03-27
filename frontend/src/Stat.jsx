@@ -4,16 +4,16 @@ import Chart from "react-apexcharts";
 function Stat() {
   return (
     <React.Fragment>
-      <div className="w-[100%] h-[80vh]">
+      <div className="w-[100%] h-[100vh]">
         <div className="text-[6vh] font-semibold w-full text-[Black]  text-center max-w-full pb-[3vh]  pt-[7vh]">
           Les Émissions Des GES en Nombres
         </div>
 
-        <div id="kbir" className="w-[100%] flex h-full">
+        <div id="kbir" className="w-[100%] flex ">
           <div id="chart" className="w-[50%] flex pt-[5vh] justify-center">
             <Chart
               type="line"
-              className=" bg-[#F1F1F1] h-[80%] border-[#D8D8D8] border-solid border-[0.4vh] rounded-[2vh] w-[70%] "
+              className=" bg-[#F1F1F1] h-[65%] border-[#D8D8D8] border-solid border-[0.4vh] rounded-[2vh] w-[70%] "
               series={[
                 {
                   name: "Quelque chose",
