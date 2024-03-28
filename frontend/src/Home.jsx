@@ -6,6 +6,7 @@ import Info from "./Info.jsx";
 import Stat from "./Stat.jsx";
 import Questions from "./Questions.jsx";
 import Last from "./Last.jsx";
+import Foot from "./Foot.jsx";
 
 function Landing() {
   return (
@@ -18,6 +19,7 @@ function Landing() {
       <Stat />
       <Questions />
       <Last />
+      <Foot/>
     </section>
   );
 }

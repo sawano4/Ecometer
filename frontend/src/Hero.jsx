@@ -41,13 +41,13 @@ function Hero() {
         <div className="  text-[white] text-base w-[100%] mt-[5vh] ">
           <a
             href="https://www.facebook.com/"
-            className="no-underline bg-[#D62828] text-[white] text-[2.2vh] cursor-pointer transition-all duration-[0.3s] ease-[ease] delay-[0s] font-normal   px-[4vh] py-[2vh] rounded-[2vh] border-[none] "
+            className="no-underline bg-[#D62828] text-[white] text-[2.8vh] cursor-pointer transition-all duration-[0.3s] ease-[ease] delay-[0s] font-normal   px-[4vh] py-[2vh] rounded-[2vh] border-[none] "
           >
             S’inscrire
           </a>
           <a
             href="/login"
-            className=" no-underline bg-slate-900 text-[white] text-[2.2vh] cursor-pointer transition-all duration-[0.3s] ease-[ease] delay-[0s] font-normal border ml-[2vh] px-[4vh] py-[2vh] rounded-[2vh] border-[none] border-solid border-white "
+            className=" no-underline bg-slate-900 text-[white] text-[2.8vh] cursor-pointer transition-all duration-[0.3s] ease-[ease] delay-[0s] font-normal border ml-[2vh] px-[4vh] py-[2vh] rounded-[2vh] border-[none] border-solid border-white "
           >
             Se connecter
           </a>

@@ -19,7 +19,7 @@ function Questions() {
           onClick={() => setShow(!show)}
           className="border-solid border-[#E2E8F0]  border-y-[0.3vh]     mx-auto  h-[13vh] flex justify-center items-center w-[90%]"
         >
-          <div className=" w-[100%] text-left">
+          <div className=" text-[2.7vh] w-[100%] text-left">
             Enim sodales consequat adipiscing facilisis massa venenatis, non
             lorem lobortis?{" "}
           </div>
@@ -32,12 +32,12 @@ function Questions() {
           </div>
         </button>
         {show && (
-          <div className="border-solid border-[#E2E8F0]  border-b-[0.3vh] flex items-center    mx-auto  h-[8vh]  w-[90%]">
+          <div className="text-[2.4vh] border-solid border-[#E2E8F0]  border-b-[0.3vh] flex items-center    mx-auto  h-[8vh]  w-[90%]">
             aaaa aaaa aaaaaaa aaaaa aaaa aaaaa aaa
           </div>
         )}
         {show && (
-          <div className="border-solid border-[#E2E8F0]  border-b-[0.3vh] flex items-center    mx-auto  h-[8vh]  w-[90%]">
+          <div className="text-[2.4vh] border-solid border-[#E2E8F0]  border-b-[0.3vh] flex items-center    mx-auto  h-[8vh]  w-[90%]">
             aaaa aaaa aaaaaaaaaa aaaaaa aaaaaaa aaaaaaa aaaa
           </div>
         )}
@@ -47,7 +47,7 @@ function Questions() {
           onClick={() => setShow2(!show2)}
           className="border-solid border-[#E2E8F0]  border-b-[0.3vh]     mx-auto  h-[13vh] flex justify-center items-center w-[90%]"
         >
-          <div className=" w-[100%] text-left">
+          <div className=" text-[2.7vh] w-[100%] text-left">
             Enim sodales consequat adipiscing facilisis massa venenatis, non
             lorem lobortis?{" "}
           </div>
@@ -60,12 +60,12 @@ function Questions() {
           </div>
         </button>
         {show2 && (
-          <div className="border-solid border-[#E2E8F0]  border-b-[0.3vh] flex items-center    mx-auto  h-[8vh]  w-[90%]">
+          <div className="text-[2.4vh] border-solid border-[#E2E8F0]  border-b-[0.3vh] flex items-center    mx-auto  h-[8vh]  w-[90%]">
             aaaa aaaa aaaaaaa aaaaa aaaa aaaaa aaa
           </div>
         )}
         {show2 && (
-          <div className="border-solid border-[#E2E8F0]  border-b-[0.3vh] flex items-center    mx-auto  h-[8vh]  w-[90%]">
+          <div className="text-[2.4vh] border-solid border-[#E2E8F0]  border-b-[0.3vh] flex items-center    mx-auto  h-[8vh]  w-[90%]">
             aaaa aaaa aaaaaaaaaa aaaaaa aaaaaaa aaaaaaa aaaa
           </div>
         )}
@@ -74,7 +74,7 @@ function Questions() {
           onClick={() => setShow3(!show3)}
           className="border-solid border-[#E2E8F0]  border-b-[0.3vh]     mx-auto  h-[13vh] flex justify-center items-center w-[90%]"
         >
-          <div className=" w-[100%] text-left">
+          <div className=" text-[2.7vh] w-[100%] text-left">
             Enim sodales consequat adipiscing facilisis massa venenatis, non
             lorem lobortis?{" "}
           </div>
@@ -87,12 +87,12 @@ function Questions() {
           </div>
         </button>
         {show3 && (
-          <div className="border-solid border-[#E2E8F0]  border-b-[0.3vh] flex items-center    mx-auto  h-[8vh]  w-[90%]">
+          <div className="text-[2.4vh] border-solid border-[#E2E8F0]  border-b-[0.3vh] flex items-center    mx-auto  h-[8vh]  w-[90%]">
             aaaa aaaa aaaaaaa aaaaa aaaa aaaaa aaa
           </div>
         )}
         {show3 && (
-          <div className="border-solid border-[#E2E8F0]  border-b-[0.3vh] flex items-center    mx-auto  h-[8vh]  w-[90%]">
+          <div className="text-[2.4vh] border-solid border-[#E2E8F0]  border-b-[0.3vh] flex items-center    mx-auto  h-[8vh]  w-[90%]">
             aaaa aaaa aaaaaaaaaa aaaaaa aaaaaaa aaaaaaa aaaa
           </div>
         )}
@@ -102,7 +102,7 @@ function Questions() {
           onClick={() => setShow4(!show4)}
           className="border-solid border-[#E2E8F0]  border-b-[0.3vh]     mx-auto  h-[13vh] flex justify-center items-center w-[90%]"
         >
-          <div className=" w-[100%] text-left">
+          <div className=" text-[2.7vh] w-[100%] text-left">
             Enim sodales consequat adipiscing facilisis massa venenatis, non
             lorem lobortis?{" "}
           </div>
@@ -115,12 +115,12 @@ function Questions() {
           </div>
         </button>
         {show4 && (
-          <div className="border-solid border-[#E2E8F0]  border-b-[0.3vh] flex items-center    mx-auto  h-[8vh]  w-[90%]">
+          <div className="text-[2.4vh] border-solid border-[#E2E8F0]  border-b-[0.3vh] flex items-center    mx-auto  h-[8vh]  w-[90%]">
             aaaa aaaa aaaaaaa aaaaa aaaa aaaaa aaa
           </div>
         )}
         {show4 && (
-          <div className="border-solid border-[#E2E8F0]  border-b-[0.3vh] flex items-center    mx-auto  h-[8vh]  w-[90%]">
+          <div className="text-[2.4vh] border-solid border-[#E2E8F0]  border-b-[0.3vh] flex items-center    mx-auto  h-[8vh]  w-[90%]">
             aaaa aaaa aaaaaaaaaa aaaaaa aaaaaaa aaaaaaa aaaa
           </div>
         )}
@@ -130,7 +130,7 @@ function Questions() {
           onClick={() => setShow5(!show5)}
           className="border-solid border-[#E2E8F0]  border-b-[0.3vh]     mx-auto  h-[13vh] flex justify-center items-center w-[90%]"
         >
-          <div className=" w-[100%] text-left">
+          <div className=" text-[2.7vh] w-[100%] text-left">
             Enim sodales consequat adipiscing facilisis massa venenatis, non
             lorem lobortis?{" "}
           </div>
@@ -143,12 +143,12 @@ function Questions() {
           </div>
         </button>
         {show5 && (
-          <div className="border-solid border-[#E2E8F0]  border-b-[0.3vh] flex items-center    mx-auto  h-[8vh]  w-[90%]">
+          <div className="text-[2.4vh] border-solid border-[#E2E8F0]  border-b-[0.3vh] flex items-center    mx-auto  h-[8vh]  w-[90%]">
             aaaa aaaa aaaaaaa aaaaa aaaa aaaaa aaa
           </div>
         )}
         {show5 && (
-          <div className="border-solid border-[#E2E8F0]  border-b-[0.3vh] flex items-center    mx-auto  h-[8vh]  w-[90%]">
+          <div className="text-[2.4vh] border-solid border-[#E2E8F0]  border-b-[0.3vh] flex items-center    mx-auto  h-[8vh]  w-[90%]">
             aaaa aaaa aaaaaaaaaa aaaaaa aaaaaaa aaaaaaa aaaa
           </div>
         )}

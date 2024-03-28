@@ -1,8 +1,8 @@
 function Video() {
   return (
     <div>
-      <div className="relative bg-white-100 h-[98vh]  w-[100%]">
-        <h1 className="text-center text-neutral-800 text-[3.5vh] font-bold font-['Eudoxus Sans'] my-[2%] ">
+      <div className="relative bg-white-100 h-[100vh]  w-[100%]">
+        <h1 className="text-center text-neutral-800 text-[6vh] font-bold font-['Eudoxus Sans'] my-[2%] ">
           Comment fonctionne le calculateur ?
         </h1>
         <img
@@ -11,7 +11,7 @@ function Video() {
           alt="SVG Image"
         ></img>
         <img
-          className="absolute right-[3%] bottom-[1%] h-[50vh] "
+          className="absolute right-[3%] bottom-[1%] h-[50vh]"
           src="/Red-ff.svg"
           alt="SVG Image"
         ></img>
@@ -20,7 +20,7 @@ function Video() {
           src="/Red-fff.svg"
           alt="SVG Image"
         ></img>
-        <div className=" absolute w-[100%] h-[80%]">
+        <div className=" absolute w-[100%] h-[78%]">
           <div className=" bg-white  shadow-[0px_0px_80px_-30px] rounded-[10px] rounded-b-lg h-[100%] w-[80%] mx-auto ">
             <div className="  h-[6%] w-[%] flex ">
               <div className="w-[0.5%]"></div>

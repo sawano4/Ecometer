@@ -39,7 +39,7 @@ function Stat() {
             <div className="flex">
               <div className="  h-[20vh] w-[50%] flex justify-center items-center ">
                 <div className=" border-[#EDEDED] border-solid border-[0.1vh] bg-[#F1F1F1] rounded-[2vh] w-[90%] ">
-                  <div className="px-[1vh] font-bold text-[5vh] text-red-600">
+                  <div className="px-[1vh] font-medium text-[5vh] text-red-600">
                     40+
                   </div>
                   <div className="px-[1vh] font- text-[3.5vh] ">
@@ -49,7 +49,7 @@ function Stat() {
               </div>
               <div className=" h-[20vh] w-[50%] flex justify-center items-center ">
                 <div className="border-[#EDEDED] border-solid border-[0.1vh]   bg-[#F1F1F1] rounded-[2vh] w-[90%] ">
-                  <div className="px-[1vh] font-bold text-[5vh] text-red-600">
+                  <div className="px-[1vh] font-medium text-[5vh] text-red-600">
                     21K+
                   </div>
                   <div className="px-[1vh] font- text-[3.5vh] ">
@@ -61,7 +61,7 @@ function Stat() {
             <div className="flex">
               <div className=" h-[20vh] w-[50%] flex justify-center items-center ">
                 <div className=" border-[#EDEDED] border-solid border-[0.1vh]  bg-[#F1F1F1] rounded-[2vh] w-[90%] ">
-                  <div className="px-[1vh] font-bold text-[5vh] text-red-600">
+                  <div className="px-[1vh] font-medium text-[5vh] text-red-600">
                     60M
                   </div>
                   <div className="px-[1vh] font- text-[3.5vh] ">
@@ -71,7 +71,7 @@ function Stat() {
               </div>
               <div className=" h-[20vh] w-[50%] flex justify-center items-center ">
                 <div className=" border-[#EDEDED] border-solid border-[0.1vh]   bg-[#F1F1F1] rounded-[2vh] w-[90%] ">
-                  <div className="px-[1vh] font-bold text-[5vh] text-red-600">
+                  <div className="px-[1vh] font-medium text-[5vh] text-red-600">
                     45K+
                   </div>
                   <div className="font- px-[1vh] text-[3.5vh] ">
@@ -83,7 +83,7 @@ function Stat() {
             <div className="flex">
               <div className=" h-[20vh] w-[100%] flex justify-center items-center ">
                 <div className=" border-[#EDEDED] border-solid border-[0.1vh]  bg-[#F1F1F1] rounded-[2vh] w-[95%] ">
-                  <div className=" px-[1vh] font-bold text-[5vh] text-red-600">
+                  <div className=" px-[1vh] font-medium text-[5vh] text-red-600">
                     3M
                   </div>
                   <div className=" px-[1vh] font- text-[3.5vh] ">
@@ -95,11 +95,11 @@ function Stat() {
             </div>
             <div className="h-[12vh] w-full flex justify-center items-center">
               <a className="w-[100%]" href="/#">
-                <div className=" mx-auto py-[2vh] rounded-[2vh] bg-[#003049] w-[55%] justify-center flex items-center">
-                  <div className=" w-[80%]  text-center text-[3.1vh] text-white  ">
+                <div className=" mx-auto py-[2vh]  rounded-[2vh] bg-[#003049] w-[55%] justify-center flex items-center">
+                  <div className=" w-[80%]  text-right text-[3.1vh] text-white  ">
                     Determiner Votre Bilan Carbone
                   </div>
-                  <div className=" w-[20%]  pl-[2vh] ">
+                  <div className=" w-[20%]  pl-[3vh] ">
                     <img
                       className="h-[4vh] w-[4vh]"
                       src="/arrow-right-white.svg"

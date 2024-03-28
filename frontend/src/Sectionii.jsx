@@ -59,7 +59,7 @@ function Sectionii() {
         {" "}
         <a
           href=""
-          className="text-center mt-[3vh] block justify-center items-center  no-underline bg-[#d62828] text-[white] text-[2.4vh] cursor-pointer transition-all duration-[0.3s] ease-[ease] delay-[0s] font-normal mx-auto px-[4vh] py-[2vh] rounded-[2vh] border-[none]"
+          className="text-center mt-[3vh] block justify-center items-center  no-underline bg-[#d62828] text-[white] text-[2.7vh] cursor-pointer transition-all duration-[0.3s] ease-[ease] delay-[0s] font-normal mx-auto px-[4vh] py-[2vh] rounded-[2vh] border-[none]"
         >
           En savoir plus
         </a>
