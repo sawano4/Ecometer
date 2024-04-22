@@ -2,7 +2,7 @@ function Info() {
   return (
     <div>
       <div className=" bg-[#F2F4F8] w-[100%] h-[220vh] flex ">
-        <div className="sticky top-[25vh] w-[50%]  h-[25%] flex flex-col items-center ">
+        <div className="sticky top-[0vh] w-[50%]  h-[25%] flex flex-col items-center ">
           <div className="  text-[6vh] text-neutral-800 mb-[4vh]  mt-[8vh] ">
             Pourquoi Ecometer?
           </div>

@@ -1,4 +1,11 @@
-const login = () => {
+import { useState } from "react";
+
+function Login() {
+  const [show, setShow] = useState(false);
+
+  const toggle = () => {
+    setShow(!show);
+  };
   return (
     <div>
       <img
@@ -35,9 +42,10 @@ const login = () => {
             <div className=" w-[60%]  h-[10vh] h-14 px-5 py-2 rounded-[2vh] border border-slate-900 ">
               <div className=" w-[10%] float-right h-[100%] flex justify-center ">
                 <img
-                  className="w-[70%] my-[auto] h-[70%]"
-                  src="/Hide.svg"
-                  alt="SVG Image"
+                  className="w-[70%] my-[auto] h-[70%] cursor-pointer"
+                  src={show ? 'public/Eye.svg' : 'eye-off.svg'}
+                  alt="toggle"
+                  onClick={toggle}
                 ></img>
               </div>
               <div className=" w-[90%] h-[100%] flex-col justify-center items-start flex">
@@ -49,7 +57,7 @@ const login = () => {
                   <div className="text-neutral-500 w-full text-sm font-normal font-['Inter'] ">
                     <input
                       className="text-[2.6vh] w-[100%]  focus:outline-none  "
-                      type="password"
+                      type={show ? "text" : "password"}
                       name="password"
                       placeholder="Doit contenir au moins 8 caractères"
                     />
@@ -90,6 +98,6 @@ const login = () => {
       </div>
     </div>
   );
-};
+}
 
-export default login;
+export default Login;

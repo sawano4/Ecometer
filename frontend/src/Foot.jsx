@@ -13,7 +13,7 @@ function Foot() {
         <div className="absolute flex flex-col  items-center w-full h-full ">
           <div className=" absolute w-[90%] bottom-[12%] h-[60%] flex flex-col  items-center">
             <div className="  flex w-[90%] h-[70%]">
-              {/* ------------------------------------------------------*/}
+              {/* ------------------------------------------------------*/} 
               {/* ------------------------------------------------------*/}
               {/* ------------------------------------------------------*/}
               <div className=" w-1/6 h-full">
