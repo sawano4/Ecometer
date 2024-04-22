@@ -90,7 +90,7 @@ const categoriesConnection = mongoose.createConnection(process.env.CATEGORIES_UR
 // Add error handling
 categoriesConnection.on('error', console.error.bind(console, 'connection error:'));
 categoriesConnection.once('open', function() {
-  console.log("Database connection successful");
+  console.log("Connected to Categories database");
 });
 
 //create models
@@ -128,5 +128,6 @@ module.exports = {
     TraitementDesDechets,
     TransportDeMarchandises,
     TransportDePersonnes,
-    UTCF
+    UTCF,
+    categoriesConnection
 };

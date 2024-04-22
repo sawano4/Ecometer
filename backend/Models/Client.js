@@ -131,7 +131,7 @@ const usersConnection = mongoose.createConnection(process.env.USERS_URL);
 // Add error handling
 usersConnection.on('error', console.error.bind(console, 'connection error:'));
 usersConnection.once('open', function() {
-  console.log("Database connection successful");
+  console.log("Connected to users database");
 });
 
 const Client = usersConnection.model('Client', ClientSchema,'clients');

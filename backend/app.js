@@ -6,6 +6,20 @@ const serverConfig = require('./config/server');
 const connectToDb = require('./db/index');
 const clientRouter = require('./routes/client');
 const mongoose = require('mongoose');
+const {  AchatsDeBiens,
+    AchatsDeServices,
+    Combustibles,
+    ProcessEtEmissionFugitives,
+    Electricite,
+    ReseauxDeChaleurEtFroid,
+    StatistiquesTerritoriales,
+    TraitementDesDechets,
+    TransportDeMarchandises,
+    TransportDePersonnes,
+    UTCF } = require('./Models/Category');
+const categoryRoutes = require('./routes/categoryRoutes');
+const bodyParser = require('body-parser');
+const cors = require('cors');
 
 const app = express();
 
@@ -16,8 +30,12 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 
+
+
+
 // Routes and other middleware...
 
+app.use('/api/categories/', categoryRoutes);
 app.use('/api/clients',clientRouter);
 
 

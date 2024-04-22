@@ -1,4 +1,7 @@
 const mongoose = require('mongoose');
+const express = require('express');
+const dotenv = require('dotenv');
+dotenv.config();
 
 // Define schema for emission posts
 const emissionPostSchema = new mongoose.Schema({
@@ -21,11 +24,11 @@ const bilansConnection = mongoose.createConnection(process.env.BILANS_URL);
 // Add error handling
 bilansConnection.on('error', console.error.bind(console, 'connection error:'));
 bilansConnection.once('open', function() {
-  console.log("Database connection successful");
+  console.log("Connected to Bilans database");
 });
 
 
 // Create model for carbon footprint
-const CarbonFootprint = mongoose.model('CarbonFootprint', carbonFootprintSchema,'carbonFootprints');
+const CarbonFootprint = bilansConnection.model('CarbonFootprint', carbonFootprintSchema,'carbonFootprints');
 
 module.exports = CarbonFootprint;
