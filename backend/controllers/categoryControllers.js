@@ -37,8 +37,6 @@ const {  AchatsDeBiens,
                 if (existingCategory === false) {
                     return res.status(404).json({ msg : " Invalid Categories " });
                 }
-        
-                console.log(nextLevelCategories.length , matchingDocuments.length);
                 res.json({ nextCategories: nextLevelCategories , matchingDocuments: matchingDocuments });
             } catch (error) {
                 console.error('Error:', error);

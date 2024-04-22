@@ -1,0 +1,1 @@
+const CarbonFootprint = require('./Models/Bilan'); // Import the CarbonFootprint model
