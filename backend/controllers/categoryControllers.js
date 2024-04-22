@@ -33,7 +33,7 @@ const {  AchatsDeBiens,
                 // Query MongoDB to get the next level categories
                 const { nextLevelCategories, matchingDocuments , existingCategory } = await getNextLevelCategories(userSelectedCategories);
                  
-                // if the selected wrong category names
+                // if selectedcategories are not valid return 404 invalid categories
                 if (existingCategory === false) {
                     return res.status(404).json({ msg : " Invalid Categories " });
                 }
