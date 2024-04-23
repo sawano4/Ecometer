@@ -1,34 +1,36 @@
 function Info() {
   return (
     <div>
-      <div className=" bg-[#F2F4F8] w-[100%] h-[220vh] flex ">
-        <div className="sticky top-[0vh] w-[50%]  h-[25%] flex flex-col items-center ">
-          <div className="  text-[6vh] text-neutral-800 mb-[4vh]  mt-[8vh] ">
-            Pourquoi Ecometer?
-          </div>
-
-          <a className="w-[100%]" href="/#">
-            <div className=" mx-auto border-[#000000] border-solid border-[0.5vh] py-[2vh] rounded-[2vh]  w-[50%] justify-center flex items-center">
-              <div className=" w-[80%] pl-[1vh] text-center text-[#000000] text-[3.1vh]   ">
-                Commencer le bilan Carbone
-              </div>
-              <div className=" w-[20%]  pl-[2vh] ">
-                <img
-                  className="h-[4vh] w-[4vh]"
-                  src="/arrow-right.svg"
-                  alt="SVG"
-                ></img>
-              </div>
+      <div className="  bg-[#F2F4F8] w-[100%]  flex ">
+        <div className="sticky top-[0vh] w-[50%]  h-[25%] flex justify-center  ">
+          <div className="w-[80%]">
+            <div className="  text-[7vh] font-bold text-[black] mb-[2vh]  mt-[8vh] ">
+              Pourquoi Ecometer?
             </div>
-          </a>
+
+            <a className="w-[80%]" href="/#">
+              <div className="  border-[#000000] border-solid border-[0.3vh] py-[2.1vh] rounded-[2vh]  w-[65%] justify-center flex items-center">
+                <div className=" w-[80%] pl-[1vh] text-center  text-[#000000] text-[2.5vh]   ">
+                  Commencer le bilan Carbone
+                </div>
+                <div className=" w-[20%]  pl-[2vh] ">
+                  <img
+                    className="h-[4 vh] w-[4vh]"
+                    src="/arrow-right.svg"
+                    alt="SVG"
+                  ></img>
+                </div>
+              </div>
+            </a>
+          </div>
         </div>
 
         <div className="w-[50%]  float-right h-[100%]">
-          <div className=" h-[25%]">
+          <div className="pt-[3vh]">
             <div className="pl-[3vh] pt-[5vh] pb-[1vh]">
               <div className="bg-orange-200 rounded-[100vh] w-[10vh]  h-[10vh] flex items-center justify-center ">
                 <img
-                  className=" w-[7vh]"
+                  className=" w-[5.5vh]"
                   src="/clipboard-check.svg"
                   alt="svg"
                 ></img>{" "}
@@ -46,11 +48,11 @@ function Info() {
             </div>
           </div>
 
-          <div className="  h-[25%]">
-            <div className="pl-[3vh] pt-[5vh] pb-[1vh]">
+          <div className=" pt-[5vh]">
+            <div className="pl-[3vh]  ">
               <div className="bg-orange-200 rounded-[100vh] w-[10vh]  h-[10vh] flex items-center justify-center ">
                 <img
-                  className=" w-[7vh]"
+                  className=" w-[5.5vh]"
                   src="/cursor-click.svg"
                   alt="svg"
                 ></img>{" "}
@@ -71,11 +73,11 @@ function Info() {
             </div>
           </div>
 
-          <div className="  h-[25%]">
-            <div className="pl-[3vh] pt-[5vh] pb-[1vh]">
+          <div className=" pt-[5vh]">
+            <div className="pl-[3vh] ">
               <div className="bg-orange-200 rounded-[100vh] w-[10vh]  h-[10vh] flex items-center justify-center ">
                 <img
-                  className=" w-[7vh]"
+                  className=" w-[5.5vh]"
                   src="/lock-closed.svg"
                   alt="svg"
                 ></img>{" "}
@@ -97,11 +99,11 @@ function Info() {
             </div>
           </div>
 
-          <div className="  h-[25%]">
-            <div className="pl-[3vh] pt-[5vh] pb-[1vh]">
+          <div className="pt-[5vh] ">
+            <div className="pl-[3vh] ">
               <div className="bg-orange-200 rounded-[100vh] w-[10vh]  h-[10vh] flex items-center justify-center ">
                 <img
-                  className=" w-[7vh]"
+                  className=" w-[5.5vh]"
                   src="/document-report.svg"
                   alt="svg"
                 ></img>{" "}
@@ -123,6 +125,7 @@ function Info() {
           </div>
         </div>
       </div>
+      <div className="  bg-[#F2F4F8] w-full h-[8vh]"></div>
     </div>
   );
 }

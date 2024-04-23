@@ -11,21 +11,21 @@ function Foot() {
         <div className=" absolute bg-[#0F172A] w-full h-[55%] bottom-[0%] "></div>
 
         <div className="absolute flex flex-col  items-center w-full h-full ">
-          <div className=" absolute w-[90%] bottom-[12%] h-[60%] flex flex-col  items-center">
+          <div className=" absolute w-[95%] bottom-[12%] h-[60%] flex flex-col  items-center">
             <div className="  flex w-[90%] h-[70%]">
               {/* ------------------------------------------------------*/} 
               {/* ------------------------------------------------------*/}
               {/* ------------------------------------------------------*/}
               <div className=" w-1/6 h-full">
                 <div className="relative  h-1/5 w-full text-c">
-                  <p className=" absolute bottom-0 text-[3vh] font-bold text-white">
+                  <p className=" absolute bottom-0 text-[2.5vh] font-bold text-white">
                     Categories
                   </p>
                 </div>
                 <div className="relative  h-1/5 w-full text-c">
                   <a
                     href=""
-                    className=" absolute font bottom-0 text-[2.8vh]  text-white"
+                    className=" absolute font bottom-0 text-[2.3vh]  text-white"
                   >
                     User Interface
                   </a>
@@ -33,7 +33,7 @@ function Foot() {
                 <div className="relative  h-1/5 w-full text-c">
                   <a
                     href=""
-                    className=" absolute font bottom-0 text-[2.8vh]  text-white"
+                    className=" absolute font bottom-0 text-[2.3vh]  text-white"
                   >
                     User Experience
                   </a>
@@ -41,7 +41,7 @@ function Foot() {
                 <div className="relative  h-1/5 w-full text-c">
                   <a
                     href=""
-                    className=" absolute font bottom-0 text-[2.8vh]  text-white"
+                    className=" absolute font bottom-0 text-[2.3vh]  text-white"
                   >
                     Digital Media
                   </a>
@@ -49,7 +49,7 @@ function Foot() {
                 <div className="relative  h-1/5 w-full text-c">
                   <a
                     href=""
-                    className=" absolute font bottom-0 text-[2.8vh]  text-white"
+                    className=" absolute font bottom-0 text-[2.3vh]  text-white"
                   >
                     Lifestyle
                   </a>
@@ -60,14 +60,14 @@ function Foot() {
               {/* ------------------------------------------------------*/}
               <div className=" w-1/6 h-full">
                 <div className="relative  h-1/5 w-full text-c">
-                  <p className=" absolute bottom-0 text-[3vh] font-bold text-white">
+                  <p className=" absolute bottom-0 text-[2.5vh] font-bold text-white">
                     Product
                   </p>
                 </div>
                 <div className="relative  h-1/5 w-full text-c">
                   <a
                     href=""
-                    className=" absolute font bottom-0 text-[2.8vh]  text-white"
+                    className=" absolute font bottom-0 text-[2.3vh]  text-white"
                   >
                     Pricing
                   </a>
@@ -75,7 +75,7 @@ function Foot() {
                 <div className="relative  h-1/5 w-full text-c">
                   <a
                     href=""
-                    className=" absolute font bottom-0 text-[2.8vh]  text-white"
+                    className=" absolute font bottom-0 text-[2.3vh]  text-white"
                   >
                     Overview
                   </a>
@@ -83,7 +83,7 @@ function Foot() {
                 <div className="relative  h-1/5 w-full text-c">
                   <a
                     href=""
-                    className=" absolute font bottom-0 text-[2.8vh]  text-white"
+                    className=" absolute font bottom-0 text-[2.3vh]  text-white"
                   >
                     Browse
                   </a>
@@ -91,7 +91,7 @@ function Foot() {
                 <div className="relative  h-1/5 w-full text-c">
                   <a
                     href=""
-                    className=" absolute font bottom-0 text-[2.8vh]  text-white"
+                    className=" absolute font bottom-0 text-[2.3vh]  text-white"
                   >
                     Accessibility
                   </a>
@@ -103,14 +103,14 @@ function Foot() {
               {/* ------------------------------------------------------*/}
               <div className=" w-1/6 h-full">
                 <div className="relative  h-1/5 w-full text-c">
-                  <p className=" absolute bottom-0 text-[3vh] font-bold text-white">
+                  <p className=" absolute bottom-0 text-[2.5vh] font-bold text-white">
                     Solutions
                   </p>
                 </div>
                 <div className="relative  h-1/5 w-full text-c">
                   <a
                     href=""
-                    className=" absolute font bottom-0 text-[2.8vh]  text-white"
+                    className=" absolute font bottom-0 text-[2.3vh]  text-white"
                   >
                     Brainstorming
                   </a>
@@ -118,7 +118,7 @@ function Foot() {
                 <div className="relative  h-1/5 w-full text-c">
                   <a
                     href=""
-                    className=" absolute font bottom-0 text-[2.8vh]  text-white"
+                    className=" absolute font bottom-0 text-[2.3vh]  text-white"
                   >
                     Ideation
                   </a>
@@ -126,7 +126,7 @@ function Foot() {
                 <div className="relative  h-1/5 w-full text-c">
                   <a
                     href=""
-                    className=" absolute font bottom-0 text-[2.8vh]  text-white"
+                    className=" absolute font bottom-0 text-[2.3vh]  text-white"
                   >
                     Wireframing
                   </a>
@@ -134,7 +134,7 @@ function Foot() {
                 <div className="relative  h-1/5 w-full text-c">
                   <a
                     href=""
-                    className=" absolute font bottom-0 text-[2.8vh]  text-white"
+                    className=" absolute font bottom-0 text-[2.3vh]  text-white"
                   >
                     Research
                   </a>
@@ -145,14 +145,14 @@ function Foot() {
               {/* ------------------------------------------------------*/}
               <div className=" w-1/6 h-full">
                 <div className="relative  h-1/5 w-full text-c">
-                  <p className=" absolute bottom-0 text-[3vh] font-bold text-white">
+                  <p className=" absolute bottom-0 text-[2.5vh] font-bold text-white">
                     Resources
                   </p>
                 </div>
                 <div className="relative  h-1/5 w-full text-c">
                   <a
                     href=""
-                    className=" absolute font bottom-0 text-[2.8vh]  text-white"
+                    className=" absolute font bottom-0 text-[2.3vh]  text-white"
                   >
                     Help Center
                   </a>
@@ -160,7 +160,7 @@ function Foot() {
                 <div className="relative  h-1/5 w-full text-c">
                   <a
                     href=""
-                    className=" absolute font bottom-0 text-[2.8vh]  text-white"
+                    className=" absolute font bottom-0 text-[2.3vh]  text-white"
                   >
                     Blog
                   </a>
@@ -168,7 +168,7 @@ function Foot() {
                 <div className="relative  h-1/5 w-full text-c">
                   <a
                     href=""
-                    className=" absolute font bottom-0 text-[2.8vh]  text-white"
+                    className=" absolute font bottom-0 text-[2.3vh]  text-white"
                   >
                     Tutorials
                   </a>
@@ -176,7 +176,7 @@ function Foot() {
                 <div className="relative  h-1/5 w-full text-c">
                   <a
                     href=""
-                    className=" absolute font bottom-0 text-[2.8vh]  text-white"
+                    className=" absolute font bottom-0 text-[2.3vh]  text-white"
                   >
                     FAQs
                   </a>
@@ -187,14 +187,14 @@ function Foot() {
               {/* ------------------------------------------------------*/}
               <div className=" w-1/6 h-full">
                 <div className="relative  h-1/5 w-full text-c">
-                  <p className=" absolute bottom-0 text-[3vh] font-bold text-white">
+                  <p className=" absolute bottom-0 text-[2.5vh] font-bold text-white">
                     Support
                   </p>
                 </div>
                 <div className="relative  h-1/5 w-full text-c">
                   <a
                     href=""
-                    className=" absolute font bottom-0 text-[2.8vh]  text-white"
+                    className=" absolute font bottom-0 text-[2.3vh]  text-white"
                   >
                     Contact Us
                   </a>
@@ -202,7 +202,7 @@ function Foot() {
                 <div className="relative  h-1/5 w-full text-c">
                   <a
                     href=""
-                    className=" absolute font bottom-0 text-[2.8vh]  text-white"
+                    className=" absolute font bottom-0 text-[2.3vh]  text-white"
                   >
                     Developers
                   </a>
@@ -210,7 +210,7 @@ function Foot() {
                 <div className="relative  h-1/5 w-full text-c">
                   <a
                     href=""
-                    className=" absolute font bottom-0 text-[2.8vh]  text-white"
+                    className=" absolute font bottom-0 text-[2.3vh]  text-white"
                   >
                     Documentation
                   </a>
@@ -218,7 +218,7 @@ function Foot() {
                 <div className="relative  h-1/5 w-full text-c">
                   <a
                     href=""
-                    className=" absolute font bottom-0 text-[2.8vh]  text-white"
+                    className=" absolute font bottom-0 text-[2.3vh]  text-white"
                   >
                     Integrations
                   </a>
@@ -230,14 +230,14 @@ function Foot() {
               {/* ------------------------------------------------------*/}
               <div className=" w-1/6 h-full">
                 <div className="relative  h-1/5 w-full text-c">
-                  <p className=" absolute bottom-0 text-[3vh] font-bold text-white">
+                  <p className=" absolute bottom-0 text-[2.5vh] font-bold text-white">
                     Company
                   </p>
                 </div>
                 <div className="relative  h-1/5 w-full text-c">
                   <a
                     href=""
-                    className=" absolute font bottom-0 text-[2.8vh]  text-white"
+                    className=" absolute font bottom-0 text-[2.3vh]  text-white"
                   >
                     About
                   </a>
@@ -245,7 +245,7 @@ function Foot() {
                 <div className="relative  h-1/5 w-full text-c">
                   <a
                     href=""
-                    className=" absolute font bottom-0 text-[2.8vh]  text-white"
+                    className=" absolute font bottom-0 text-[2.3vh]  text-white"
                   >
                     Press
                   </a>
@@ -253,7 +253,7 @@ function Foot() {
                 <div className="relative  h-1/5 w-full text-c">
                   <a
                     href=""
-                    className=" absolute font bottom-0 text-[2.8vh]  text-white"
+                    className=" absolute font bottom-0 text-[2.3vh]  text-white"
                   >
                     Events
                   </a>
@@ -261,7 +261,7 @@ function Foot() {
                 <div className="relative  h-1/5 w-full text-c">
                   <a
                     href=""
-                    className=" absolute font bottom-0 text-[2.8vh]  text-white"
+                    className=" absolute font bottom-0 text-[2.3vh]  text-white"
                   >
                     Request Demo
                   </a>

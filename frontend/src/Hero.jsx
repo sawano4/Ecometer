@@ -10,44 +10,51 @@ function Hero() {
       {/** --------------------------- */}
       <div className=" absolute flex  w-full h-full">
         {/** --------------------------- */}
-        <div id="div" className="w-1/2 flex justify-center items-center ">
-          <div className="  ">
-            <div className=" h-[10vh] text-[white] text-[9vh] font-bold w-[100%] ">
+        <div className="w-[8%]"></div>
+        <div id="div" className="flex w-[45%]  ">
+          <div className=" pt-[8vh]  ">
+            <div className=" h-[12vh]  font-['Eudoxus Sans'] py-[10] text-[white]  text-[10vh] font-bold w-[100%] ">
               Calculer le
             </div>
 
-            <div className=" h-[10vh]  text-[white] text-[9vh] font-bold w-[100%] ">
+            <div
+              className=" h-[12vh]  font-['Eudoxus
+Sans'] text-[white] text-[9.5vh] font-bold w-[100%] "
+            >
               Bilan Carbone de
             </div>
 
             <div className="flex  w-[100%] ">
-              <div className="  text-[white] text-[9vh] font-bold  ">
+              <div className="  text-[white] text-[9.5vh] font-bold  ">
                 Votre&nbsp;
               </div>
 
-              <div className=" relative  text-[white] text-[9vh] font-bold  ">
+              <div
+                className=" relative font-['Eudoxus
+Sans']  text-[white] text-[9.5vh] font-bold  "
+              >
                 <p className="absolute">Entreprise.</p>
                 <img
-                  className=" h-[4.7vh] mt-[7vh] "
+                  className=" h-[5.2vh] mt-[7vh] "
                   src="/Rectangle.svg"
                   alt="SVG Image"
                 ></img>
               </div>
             </div>
-            <div className="  text-[white] text-[2vh] w-[100%] mt-[3vh] ">
+            <div className="  text-[white] text-[2.8vh] w-[100%] mt-[2vh] ">
               Bilan vert, avenir brillant,
               <br /> l’outil essentiel pour des choix éco-responsables.
             </div>
             <div className="  text-[white] text-base w-[100%] mt-[5vh] ">
               <a
-                href="https://www.facebook.com/"
-                className="no-underline bg-[#D62828] text-[white] text-[2.8vh] cursor-pointer transition-all duration-[0.3s] ease-[ease] delay-[0s] font-normal   px-[4vh] py-[2vh] rounded-[2vh] border-[none] "
+                href=""
+                className="no-underline bg-[#D62828] text-[white] text-[2.8vh] cursor-pointer transition-all duration-[0.3s] ease-[ease] delay-[0s]    px-[5vh] py-[2.5vh] rounded-[2vh] border-[none] "
               >
                 S’inscrire
               </a>
               <a
                 href="/login"
-                className=" no-underline bg-slate-900 text-[white] text-[2.8vh] cursor-pointer transition-all duration-[0.3s] ease-[ease] delay-[0s] font-normal border ml-[2vh] px-[4vh] py-[2vh] rounded-[2vh] border-[none] border-solid border-white "
+                className=" no-underline bg-slate-900 text-[white] text-[2.8vh] cursor-pointer transition-all duration-[0.3s] ease-[ease] delay-[0s]  border ml-[2vh] px-[5vh] py-[2.5vh] rounded-[2vh] border-[none] border-solid border-white "
               >
                 Se connecter
               </a>
@@ -55,9 +62,9 @@ function Hero() {
           </div>
         </div>
         {/** --------------------------- */}
-        <div className=" w-1/2 flex justify-center items-center">
+        <div className=" w-[42%] pt-[4vh] ">
           <img
-            className=" max-w-full w-[80%] "
+            className=" max-w-full w-[95%] "
             src="/Illustrations.svg"
             alt="SVG Image"
           ></img>

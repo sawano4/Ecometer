@@ -4,11 +4,11 @@ function Last() {
   return (
     <React.Fragment>
       <div className=" w-[100%] h-[80vh] flex justify-center items-center">
-        <div className=" bg-gradient-to-br from-[#003049] to-[#2080F3] w-[80%] h-[80%] rounded-[3vh] flex flex-col   items-center ">
-          <div className="text-white font-bold pt-[7vh] pb-[4vh] text-[5.5vh]">
+        <div className=" bg-gradient-to-br from-[#02314A] to-[#0b5080] w-[84%] h-[70%] rounded-[3vh] flex flex-col   items-center ">
+          <div className="text-white font-bold pt-[10vh] pb-[4vh]  text-[7vh]">
             Rejoignez-nous pour Faire une Différence
           </div>
-          <div className="text-white w-[75%] text-center text-[2.8vh]">
+          <div className="text-white w-[85%] text-center text-[2.8vh]">
             Chez Ecometer, nous nous engageons à promouvoir la durabilité sans
             aucune barrière financière. En offrant gratuitement notre
             Calculateur de Bilan Carbone pour les Entreprises, nous avons pour
@@ -16,7 +16,7 @@ function Last() {
             des mesures significatives vers un avenir plus respectueux de
             l'environnement.
           </div>
-          <div className="bg-[#EEFEFC] flex items-center bg-opacity-30 rounded-[2vh]  rgba(238, 245, 252, 0.30)  w-1/3 mt-[7vh] h-[7vh]">
+          <div className="bg-[#EEFEFC] flex items-center bg-opacity-30 rounded-[2vh]  rgba(238, 245, 252, 0.30)  w-1/3 mt-[5vh] h-[7vh]">
             <input
               placeholder="Entrez votre email professionnel"
               type="email "
