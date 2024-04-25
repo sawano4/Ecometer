@@ -11,13 +11,12 @@ const generateOTP = () => {
 };
 
 const mailTransport = ()=> 
- nodemailer.createTransport({
-    host: "sandbox.smtp.mailtrap.io",
-    port: 2525 ,
-    auth: {
-      user: "db22c0b06656db",
-      pass: "3c731e1db22cb3"
-    }
+nodemailer.createTransport({
+  service: 'gmail',
+  auth: {
+      user: 'mb_moussous@esi.dz', // Your Gmail email address
+      pass: 'qxil mkiq gslx pqne' // Your Gmail app password
+  }
   });
 
   const emailVerificationTemplate = (otp) => `

@@ -128,4 +128,6 @@ async function getNextLevelCategories(userSelectedCategories) {
   return { nextLevelCategories, matchingDocuments, existingCategory };
 }
 
+
+
 module.exports = { getCategoryElements };

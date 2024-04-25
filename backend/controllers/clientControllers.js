@@ -1,5 +1,7 @@
 const Client = require("../Models/Client");
 const VerificationToken = require("../Models/verificationToken");
+const ResetToken = require("../Models/resetToken");
+const crypto = require('crypto');
 const {
   generateOTP,
   mailTransport,
@@ -53,7 +55,7 @@ const registerClient = async (req, res) => {
 
     // Send verification email
     mailTransport().sendMail({
-      from: "ggez@gmail.com",
+      from: '"Ecometer" <ecometer.team@gmail.com>',
       to: newClient.email,
       subject: "Verify your email account",
       html: emailVerificationTemplate(OTP),
@@ -142,7 +144,7 @@ const verifyEmail = async (req, res) => {
     await VerificationToken.findByIdAndDelete(verificationToken._id);
 
     mailTransport().sendMail({
-      from: "ggez@gmail.com",
+      from: '"Ecometer" <ecometer.team@gmail.com>',
       to: client.email,
       subject: "Verification completed successfully",
       html: emailVerifiedTemplate(),
@@ -154,5 +156,32 @@ const verifyEmail = async (req, res) => {
     return res.status(500).json({ msg: "Internal server error" });
   }
 };
+
+
+// Forgot Password
+const forgotPassword = async (req, res) => {
+  const { email } = req.body;
+  if (!email.trim()) {
+    return res.status(400).json({ msg: "Email is required" });
+  }
+
+  const client = await Client.findOne({ email: email });
+  if (!client) {
+    return res.status(404).json({ msg: "User not found" });
+  }
+  const resetToken = await ResetToken.findOne({owner: client._id});
+
+  if (resetToken) {
+    res.status(400).json({ msg: "A Password reset email has already been sent. Please check ur email " });
+  }
+
+
+
+}
+
+
+
+
+
 
 module.exports = { registerClient, loginClient, verifyEmail };
