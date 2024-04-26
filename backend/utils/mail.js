@@ -14,8 +14,8 @@ const mailTransport = ()=>
 nodemailer.createTransport({
   service: 'gmail',
   auth: {
-      user: 'mb_moussous@esi.dz', // Your Gmail email address
-      pass: 'qxil mkiq gslx pqne' // Your Gmail app password
+      user: process.env.GMAIL_ADRESS,
+      pass: process.env.GMAIL_PASS,
   }
   });
 
@@ -89,7 +89,123 @@ const emailVerifiedTemplate = () =>
   </div>
 </body>
 </html>
+`;
+
+const passwordResetTemplate = (username,link) =>
+`<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reset Your Password</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 600px;
+            margin: 20px auto;
+            background-color: #fff;
+            border-radius: 5px;
+            padding: 20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            color: #333333;
+        }
+        p {
+            color: #666666;
+            line-height: 1.5;
+        }
+        .button {
+            display: inline-block;
+            background-color: #007bff;
+            color: #ffffff;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            margin-top: 15px;
+        }
+        .button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Reset Your Password</h2>
+        <p>Dear ${username},</p>
+        <p>We received a request to reset the password for your account. If you didn't make this request, you can ignore this email. Otherwise, you can reset your password using the button below:</p>
+        <a href="${link}" class="button">Reset Password</a>
+        <p>This link will expire in 1 hour, so please reset your password as soon as possible.</p>
+        <p>If you have any questions or need further assistance, feel free to contact our support team at <a href="mailto:support@example.com" style="color: #007bff;">ecometer.team@gmail.com</a>.</p>
+        <p>Best regards,<br>Ecometer Team</p>
+    </div>
+</body>
+</html>
+`;
+
+const passwordResetSuccessTemplate = (username) =>`<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Password Reset Successfully</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 600px;
+            margin: 20px auto;
+            background-color: #fff;
+            border-radius: 5px;
+            padding: 20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            color: #333333;
+        }
+        p {
+            color: #666666;
+            line-height: 1.5;
+        }
+        .button {
+            display: inline-block;
+            background-color: #007bff;
+            color: #ffffff;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            margin-top: 15px;
+        }
+        .button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Password Reset Successful</h2>
+        <p>Dear ${username},</p>
+        <p>Your password has been successfully reset.</p>
+        <p>If you did not make this change, please contact us immediately.</p>
+        <p>If you have any questions or need further assistance, feel free to contact our support team at <a href="mailto:support@example.com" style="color: #007bff;">ecometer.team@gmail.com</a>.</p>
+        <p>Best regards,<br>Ecometer Team</p>
+    </div>
+</body>
+</html>
 `
+
+
 
 
 
@@ -97,5 +213,7 @@ module.exports = {
     generateOTP ,
     mailTransport,
     emailVerificationTemplate,
-    emailVerifiedTemplate
+    emailVerifiedTemplate,
+    passwordResetTemplate,
+    passwordResetSuccessTemplate
 };

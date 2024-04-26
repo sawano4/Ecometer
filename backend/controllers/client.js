@@ -2,11 +2,14 @@ const Client = require("../Models/Client");
 const VerificationToken = require("../Models/verificationToken");
 const ResetToken = require("../Models/resetToken");
 const crypto = require('crypto');
+const { createRandomBytes } = require('../utils/helper')
 const {
   generateOTP,
   mailTransport,
   emailVerificationTemplate,
   emailVerifiedTemplate,
+  passwordResetTemplate,
+  passwordResetSuccessTemplate,
 } = require("../utils/mail");
 const jwt = require("jsonwebtoken");
 const dotenv = require("dotenv");
@@ -169,12 +172,78 @@ const forgotPassword = async (req, res) => {
   if (!client) {
     return res.status(404).json({ msg: "User not found" });
   }
-  const resetToken = await ResetToken.findOne({owner: client._id});
 
-  if (resetToken) {
-    res.status(400).json({ msg: "A Password reset email has already been sent. Please check ur email " });
+  // look if the user has already sent a reset password request
+  const token = await ResetToken.findOne({owner: client._id});
+  if (token) {
+    return res.status(400).json({ msg: "A Password reset email has already been sent. Please check ur email " });
   }
 
+  const newToken = await createRandomBytes();
+  console.log(newToken);
+  const resetToken = new ResetToken({
+    owner: client._id,
+    token: newToken,
+  });
+
+  await resetToken.save();
+
+  // Send reset password email
+  mailTransport().sendMail({
+    from: '"Ecometer" <ecometer.team@gmail.com>',
+    to: client.email,
+    subject: "Password Reset link",
+    html: passwordResetTemplate(client.name,process.env.PWD_RESET_LINK),
+  });
+  res.status(200).json({msg: 'reset Email sent successfully'});
+
+
+
+}
+
+
+const resetPassword = async (req,res)=> {
+
+  const { clientId , newPassword } = req.body;
+
+try{
+  if (!clientId || !newPassword.trim()) {
+    return res.status(400).json({ msg: "Client ID and new Password are missing" });
+  }
+
+  if (!isValidObjectId(clientId))
+    return res.status(400).json({ msg: "Invalid client ID" });
+
+  const client = await Client.findById(clientId);
+  if (!client) {
+    return res.status(404).json({ msg: "User not found" });
+  }
+
+  const token = await ResetToken.findOne({ owner: client._id });
+
+  if (!token) {
+    return res.status(404).json({ msg: "Token not found" });
+  }
+
+  client.password = newPassword;
+  await client.save();
+
+  await ResetToken.findByIdAndDelete(token._id);
+
+   // Send reset password email
+   mailTransport().sendMail({
+    from: '"Ecometer" <ecometer.team@gmail.com>',
+    to: client.email,
+    subject: "Password Reset successful",
+    html: passwordResetSuccessTemplate(client.name),
+  });
+
+  return res.status(200).json({ msg: "Password reset successfully" });
+
+}
+catch(e){
+  return res.status(500).json({msg: e.message})
+}
 
 
 }
@@ -184,4 +253,9 @@ const forgotPassword = async (req, res) => {
 
 
 
-module.exports = { registerClient, loginClient, verifyEmail };
+module.exports = { 
+  registerClient,
+  loginClient,
+  verifyEmail,
+  forgotPassword,
+  resetPassword};

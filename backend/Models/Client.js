@@ -16,12 +16,19 @@ const ClientSchema = new mongoose.Schema({
     validate: [
       {
         validator: async function(value) {
+          // If the document is being newly created, perform the uniqueness check
+          if (!this.isNew) {
+            return true; // Skip uniqueness check for updates
+          }
+          
+          // Perform uniqueness check for new documents
           const existingClient = await this.constructor.findOne({ name: value });
           return !existingClient;
         },
         message: props => `The name "${props.value}" is already in use.`
       }
     ]
+    
   },
   numberOfEmployees: {
     type: Number,
@@ -58,10 +65,16 @@ const ClientSchema = new mongoose.Schema({
       },
       {
         validator: async function(value) {
+          // If the document is being newly created, perform the uniqueness check
+          if (!this.isNew) {
+            return true; // Skip uniqueness check for updates
+          }
+          
+          // Perform uniqueness check for new documents
           const existingClient = await this.constructor.findOne({ email: value });
           return !existingClient;
         },
-        message: props => `The email "${props.value}" is already in use.`
+        message: props => `The name "${props.value}" is already in use.`
       }
     ]
   },

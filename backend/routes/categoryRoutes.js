@@ -1,6 +1,6 @@
 const express = require("express");
-const { getCategoryElements } = require("../controllers/categoryControllers");
-const { createBilan } = require("../controllers/bilanControllers");
+const { getCategoryElements } = require("../controllers/category");
+const { createBilan } = require("../controllers/bilan");
 const mongoose = require("mongoose");
 
 const router = express.Router();
