@@ -69,17 +69,19 @@ async function getNextLevelCategories(userSelectedCategories) {
   let existingCategory = true;
   const mainCategory = userSelectedCategories[0];
   let Model;
+
   switch (mainCategory) {
+
     case "Combustibles":
       Model = categoriesConnection.model("Combustibles");
       break;
-    case "Achats de biens":
+    case "Achatsdebiens":
       Model = categoriesConnection.model("AchatsDeBiens");
       break;
-    case "Achats de services":
+    case "AchatsDeServices":
       Model = categoriesConnection.model("AchatsDeServices");
       break;
-    case "Electricité":
+    case "Electricite":
       Model = categoriesConnection.model("Electricite");
       break;
     case "Process et émissions fugitives":
@@ -97,7 +99,7 @@ async function getNextLevelCategories(userSelectedCategories) {
     case "Transport de marchandises":
       Model = categoriesConnection.model("TransportDeMarchandises");
       break;
-    case "transport de personne routier, taxi":
+    case "transport de personnes":
       Model = categoriesConnection.model("TransportDePersonnes");
       break;
     case "UTCF":
@@ -111,10 +113,9 @@ async function getNextLevelCategories(userSelectedCategories) {
         existingCategory,
       };
   }
+  
   // Query MongoDB using Mongoose to find next level categories
-  const matchingDocuments = await Model.find({
-    categories: { $all: userSelectedCategories },
-  });
+  const matchingDocuments = await Model.find({});
 
   // Extract next level categories from matching documents
   matchingDocuments.forEach((doc) => {
@@ -124,7 +125,6 @@ async function getNextLevelCategories(userSelectedCategories) {
     }
   });
   nextLevelCategories = Array.from(nextLevelCategories);
-
   return { nextLevelCategories, matchingDocuments, existingCategory };
 }
 

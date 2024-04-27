@@ -35,7 +35,7 @@ const carbonFootprintSchema = new mongoose.Schema({
   clientId: { type: mongoose.Schema.Types.ObjectId, ref: "Client" },
   emissionPosts: [emissionPostSchema],
   year: { type: Number, default: currentYear },
-  totalemissions: { type: Number, default: 0 }, // Default value is 0 for total emissions
+  totalEmissions: { type: Number, default: 0 }, // Default value is 0 for total emissions
   createdAt: { type: Date, default: Date.now }, // Default value is the current date and time
 });
 

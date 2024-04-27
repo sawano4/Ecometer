@@ -1,0 +1,16 @@
+const express = require("express");
+const { createBilan, updateAndCalculateBilan } = require("../controllers/bilan");
+const mongoose = require("mongoose");
+
+const router = express.Router();
+
+
+
+
+router.post("/calculate-bilan", updateAndCalculateBilan);
+router.post("/create-bilan", createBilan);
+
+
+
+
+module.exports = router

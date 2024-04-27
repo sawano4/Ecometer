@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 
+
 const dotenv = require('dotenv');
 dotenv.config();
 
@@ -85,7 +86,7 @@ CategoryElementSchema.pre('save', function(next) {
 });
 
   
-const categoriesConnection = mongoose.createConnection(process.env.CATEGORIES_URL);
+const categoriesConnection = mongoose.createConnection('mongodb+srv://moussoubillel:billel2004@sawanus.xw7ivfh.mongodb.net/Emission-Factors?retryWrites=true&w=majority&appName=Sawanus');
 
 // Add error handling
 categoriesConnection.on('error', console.error.bind(console, 'connection error:'));
@@ -97,7 +98,8 @@ categoriesConnection.once('open', function() {
 
 const AchatsDeBiens = categoriesConnection.model('AchatsDeBiens', CategoryElementSchema, 'achatsdebiens');
 
-const AchatsDeServices = categoriesConnection.model('AchatsDeService', CategoryElementSchema, 'achatsdeservices');
+const AchatsDeServices = categoriesConnection.model('AchatsDeServices', CategoryElementSchema, 'achatsdeservices');
+
 const Combustibles = categoriesConnection.model('Combustibles', CategoryElementSchema, 'combustibles');
 
 const ProcessEtEmissionFugitives = categoriesConnection.model('ProcessEtEmissionFugitives', CategoryElementSchema, 'processemissionsfugitives');
