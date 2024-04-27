@@ -99,7 +99,7 @@ const FixedPosteAttributs = [
   {
     index: "4.5",
     postName: "Achats de services",
-    category: "AchatsDeServices ",
+    category: "AchatsDeServices",
     Scope: "3",
   },
   {

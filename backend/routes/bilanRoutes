@@ -6,7 +6,6 @@ const router = express.Router();
 
 
 
-
 router.post("/calculate-bilan", updateAndCalculateBilan);
 router.post("/create-bilan", createBilan);
 

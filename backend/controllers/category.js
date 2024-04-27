@@ -26,7 +26,7 @@ const mainCategories = [
   "Statistiques territoriales",
   "Traitement des déchets",
   "Transport de marchandises",
-  "transport de personne routier, taxi",
+  "Transport de personnes",
   "UTCF",
 ];
 
@@ -67,7 +67,7 @@ const getCategoryElements = async (req, res) => {
 async function getNextLevelCategories(userSelectedCategories) {
   let nextLevelCategories = new Set();
   let existingCategory = true;
-  const mainCategory = userSelectedCategories[0];
+  const mainCategory = userSelectedCategories[0].replace(/\s+/g, '');
   let Model;
 
   switch (mainCategory) {
@@ -78,28 +78,28 @@ async function getNextLevelCategories(userSelectedCategories) {
     case "Achatsdebiens":
       Model = categoriesConnection.model("AchatsDeBiens");
       break;
-    case "AchatsDeServices":
+    case "Achatsdeservices":
       Model = categoriesConnection.model("AchatsDeServices");
       break;
-    case "Electricite":
+    case "Electricité":
       Model = categoriesConnection.model("Electricite");
       break;
-    case "Process et émissions fugitives":
+    case "Processetémissionsfugitives":
       Model = categoriesConnection.model("ProcessEtEmissionFugitives");
       break;
-    case "Réseaux de chaleur / froid":
+    case "Réseauxdechaleur/froid":
       Model = categoriesConnection.model("ReseauxDeChaleurEtFroid");
       break;
-    case "Statistiques territoriales":
+    case "Statistiquesterritoriales":
       Model = categoriesConnection.model("StatistiquesTerritoriales");
       break;
-    case "Traitement des déchets":
+    case "Traitementdesdéchets":
       Model = categoriesConnection.model("TraitementDesDechets");
       break;
-    case "Transport de marchandises":
+    case "Transportdemarchandises":
       Model = categoriesConnection.model("TransportDeMarchandises");
       break;
-    case "transport de personnes":
+    case "Transportdepersonnes":
       Model = categoriesConnection.model("TransportDePersonnes");
       break;
     case "UTCF":
@@ -115,7 +115,9 @@ async function getNextLevelCategories(userSelectedCategories) {
   }
   
   // Query MongoDB using Mongoose to find next level categories
-  const matchingDocuments = await Model.find({});
+  const matchingDocuments = await Model.find({
+    categories: { $all: userSelectedCategories },
+  });
 
   // Extract next level categories from matching documents
   matchingDocuments.forEach((doc) => {

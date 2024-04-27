@@ -46,47 +46,60 @@ const createBilan = async (req, res) => {
 
 // update and calculate bilan
 const updateAndCalculateBilan = async (req, res) => {
-  const { clientId ,year, selectedCategoryElements } = req.body;
-  if(!isValidObjectId(clientId)){
+  const { clientId, year, selectedCategoryElements } = req.body;
+  
+  if (!isValidObjectId(clientId)) {
     return res.status(400).json({ msg: "Invalid client ID" });
   }
+  
   try {
-    const carbonFootprint = await CarbonFootprint.findOne({ clientId ,year });
+    let carbonFootprint = await CarbonFootprint.findOne({ clientId, year });
+    
     if (!carbonFootprint) {
       return res.status(404).json({ msg: "Bilan not found" });
     }
+    
     for (let i = 0; i < selectedCategoryElements.length; i++) {
       const categoryElements = selectedCategoryElements[i];
+      
       if (categoryElements.length > 0) {
-          const emissions = await calculateEmissionsPost(carbonFootprint.emissionPosts[i].category, categoryElements);
-          carbonFootprint.emissionPosts[i].emissions = emissions;
-          carbonFootprint.emissionPosts[i].categoryElements = categoryElements;
+        const emissions = await calculateEmissionsPost(carbonFootprint.emissionPosts[i].category, categoryElements);
+        
+        // Update emissionPosts array with categoryElements and emissions
+        carbonFootprint.emissionPosts[i].emissions = emissions;
+        carbonFootprint.emissionPosts[i].categoryElements = categoryElements;
       }
-  }
+    }
     
+    // Calculate total emissions
     const totalEmissions = await calculateTotalBilan(carbonFootprint.emissionPosts);
     carbonFootprint.totalEmissions = totalEmissions;
+    
+    // Save the updated CarbonFootprint document
     await carbonFootprint.save();
+    
     return res.status(200).json(carbonFootprint);
-
   } catch (error) {
     console.error("Error:", error);
     return res.status(500).json({ error: "Internal error" });
   }
 };
 
+
 //calculate the emissions for a single post Emission
 const calculateEmissionsPost = async (category , categoryElements) => {
- 
+
   let emissions = 0;
   let i = 0;
-  const Model = categoriesConnection.model(category);
+  
+  
+  const  Model = categoriesConnection.model(category.trim());
+  
   for (const element of categoryElements) {
       const categoryElement = await Model.findById(element.categoryElement);
       emissions += categoryElement.totalPostValue * element.quantity;
       i++;
   }
-  
   return emissions;
 }
 

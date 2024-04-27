@@ -86,7 +86,7 @@ CategoryElementSchema.pre('save', function(next) {
 });
 
   
-const categoriesConnection = mongoose.createConnection('mongodb+srv://moussoubillel:billel2004@sawanus.xw7ivfh.mongodb.net/Emission-Factors?retryWrites=true&w=majority&appName=Sawanus');
+const categoriesConnection = mongoose.createConnection(process.env.CATEGORIES_URL);
 
 // Add error handling
 categoriesConnection.on('error', console.error.bind(console, 'connection error:'));
