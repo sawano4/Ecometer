@@ -19,8 +19,8 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use("/api/categories/", categoryRoutes);
 app.use("/api/Emission/", categoryRoutes);
-app.use("/api/clients", clientRouter);
-app.use("/api/bilans", bilanRoutes);
+app.use("/api/clients/", clientRouter);
+app.use("/api/bilans/", bilanRoutes);
 
 // Start the server
 app.listen(serverConfig.port, () => {

@@ -44,6 +44,8 @@ const createBilan = async (req, res) => {
   }
 };
 
+// related to the update of the bilan
+
 // update and calculate bilan
 const updateAndCalculateBilan = async (req, res) => {
   const { clientId, year, selectedCategoryElements } = req.body;
@@ -112,4 +114,79 @@ const calculateTotalBilan = async (emissionPosts) => {
   return totalEmissions;
 };
 
-module.exports = { createBilan , updateAndCalculateBilan};
+///////////////////////////
+
+const getBilan = async (req, res) => {
+  const { clientId, year } = req.params; // Access clientId and year from request parameters
+  
+  if (!isValidObjectId(clientId)) {
+    return res.status(400).json({ msg: "Invalid client ID" });
+  }
+  
+  try {
+    const carbonFootprint = await CarbonFootprint.findOne({ clientId, year });
+    
+    if (!carbonFootprint) {
+      return res.status(404).json({ msg: "Bilan not found" });
+    }
+    
+    return res.status(200).json(carbonFootprint);
+  } catch (error) {
+    console.error("Error:", error);
+    return res.status(500).json({ error: "Internal error" });
+  }
+};
+
+
+// GET all bilans
+
+const getAllBilans = async (req, res) => {
+  const { clientId } = req.params;
+  
+  if (!isValidObjectId(clientId)) {
+    return res.status(400).json({ msg: "Invalid client ID" });
+  }
+  
+  try {
+    const carbonFootprints = await CarbonFootprint.find({ clientId });
+    
+    if (!carbonFootprints) {
+      return res.status(404).json({ msg: "Bilans not found" });
+    }
+    
+    return res.status(200).json(carbonFootprints);
+  } catch (error) {
+    console.error("Error:", error);
+    return res.status(500).json({ error: "Internal error" });
+  }
+};
+
+// DELETE a single bilan
+
+const deleteBilan = async (req, res) => {
+  const { clientId, year } = req.params;
+  
+  if (!isValidObjectId(clientId)) {
+    return res.status(400).json({ msg: "Invalid client ID" });
+  }
+  
+  try {
+    const carbonFootprint = await CarbonFootprint.findOneAndDelete({ clientId, year });
+    
+    if (!carbonFootprint) {
+      return res.status(404).json({ msg: "Bilan not found" });
+    }
+    
+    return res.status(200).json({ msg: "Bilan deleted" });
+  } catch (error) {
+    console.error("Error:", error);
+    return res.status(500).json({ error: "Internal error" });
+  }
+};
+
+module.exports = { createBilan ,
+   updateAndCalculateBilan,
+    getBilan,
+    getAllBilans,
+    deleteBilan
+  };

@@ -248,6 +248,86 @@ catch(e){
 
 }
 
+// get a clients profile
+
+const getClientProfile = async (req,res) => {
+  const { clientId } = req.params;
+
+  if (!isValidObjectId(clientId)) {
+    return res.status(400).json({ msg: "Invalid client ID" });
+  }
+
+  try {
+    const client = await Client.findById(clientId);
+    if (!client) {
+      return res.status(404).json({ msg: "Client not found" });
+    }
+    return res.status(200).json(client);
+  }
+  catch (error) {
+    console.error("Error:", error);
+    return res.status(500).json({ error: "Internal error" });
+  }
+}
+
+// update a clients profile
+
+const updateClientProfile = async (req,res) => {
+  const { clientId, name, email, numberOfEmployees, industry, address, numberOfLocations, structure } = req.body;
+
+  if (!isValidObjectId(clientId)) {
+    return res.status(400).json({ msg: "Invalid client ID" });
+  }
+
+  try {
+    const client = await Client.findById(clientId);
+    if (!client) {
+      return res.status(404).json({ msg: "Client not found" });
+    }
+
+    client.name = name;
+    client.email = email;
+    client.numberOfEmployees = numberOfEmployees;
+    client.industry = industry;
+    client.address = address;
+    client.numberOfLocations = numberOfLocations;
+    client.structure = structure;
+
+    await client.save();
+    return res.status(200).json(client);
+  }
+  catch (error) {
+    console.error("Error:", error);
+    return res.status(500).json({ error: "Internal error" });
+  }
+}
+
+// delete a client
+
+const deleteClient = async (req,res) => {
+  const { clientId } = req.params;
+
+  if (!isValidObjectId(clientId)) {
+    return res.status(400).json({ msg: "Invalid client ID" });
+  }
+
+  try {
+    const client = await
+    Client.findByIdAndDelete(clientId);
+    if (!client) {
+      return res.status(404).json({ msg: "Client not found" });
+    }
+    return res.status(200).json({ msg: "Client deleted successfully" });
+  }
+  catch (error) {
+    console.error("Error:", error);
+    return res.status(500).json({ error: "Internal error" });
+  }
+}
+
+
+
+
 
 
 
@@ -258,4 +338,7 @@ module.exports = {
   loginClient,
   verifyEmail,
   forgotPassword,
-  resetPassword};
+  resetPassword,
+  getClientProfile,
+  updateClientProfile,
+  deleteClient,};
