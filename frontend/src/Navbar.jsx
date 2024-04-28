@@ -49,14 +49,14 @@ function Navbar() {
       <div className="w-[20.5%]"> </div>
       <div className="flex w-[30%] items-center justify-center">
         <a
-          href="/#"
+          href="/login"
           className="no-underline bg-[#003049] text-[white] text-[2.4vh] cursor-pointer transition-all duration-[0.3s] ease-[ease] delay-[0s] font-normal ml-5 px-[5vh] py-[1.8vh] rounded-[2vh] border-[none]"
         >
           Se connecter
         </a>
 
         <a
-          href=""
+          href="/signup"
           className="no-underline bg-[#D62828] text-[white] text-[2.4vh] cursor-pointer transition-all duration-[0.3s] ease-[ease] delay-[0s] font-normal ml-[1.5vh] px-[5vh] py-[1.8vh] rounded-[2vh] border-[none]"
         >
           S’inscrire

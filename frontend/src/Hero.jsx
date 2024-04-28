@@ -47,7 +47,7 @@ Sans']  text-[white] text-[9.5vh] font-bold  "
             </div>
             <div className="  text-[white] text-base w-[100%] mt-[5vh] ">
               <a
-                href=""
+                href="/signup"
                 className="no-underline bg-[#D62828] text-[white] text-[2.8vh] cursor-pointer transition-all duration-[0.3s] ease-[ease] delay-[0s]    px-[5vh] py-[2.5vh] rounded-[2vh] border-[none] "
               >
                 S’inscrire

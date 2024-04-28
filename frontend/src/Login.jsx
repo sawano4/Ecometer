@@ -18,7 +18,7 @@ function Login() {
           <div className="text-center text-neutral-800 h-[10vh] text-[4.8vh] font-bold font-['Eudoxus Sans'] pt-[4vh]">
             Se connecter
           </div>
-          <div className="text-center text-neutral-700 text-[1.9vh] font-medium font-['Eudoxus Sans']   pb-[7vh]">
+          <div className="text-center text-neutral-700 text-[2vh] font-medium font-['Eudoxus Sans']   pb-[7vh]">
             Bon retour, ravi de vous revoir
           </div>
           {/* formulaire  */}
