@@ -13,6 +13,7 @@ const {
   UTCF,
   categoriesConnection,
 } = require("../Models/Category");
+const { unsubscribe } = require("../routes/categoryRoutes");
 const { FixedPosteAttributs } = require("../utils/data");
 const { isValidObjectId } = require('mongoose');
 
@@ -44,92 +45,113 @@ const createBilan = async (req, res) => {
   }
 };
 
-// related to the update of the bilan
-
 // update and calculate bilan
 const updateAndCalculateBilan = async (req, res) => {
-  const { clientId, year, selectedCategoryElements } = req.body;
-  
-  if (!isValidObjectId(clientId)) {
+  const { clientId ,year, selectedCategoryElements } = req.body;
+  if(!isValidObjectId(clientId)){
     return res.status(400).json({ msg: "Invalid client ID" });
   }
-  
   try {
-    let carbonFootprint = await CarbonFootprint.findOne({ clientId, year });
-    
+    const carbonFootprint = await CarbonFootprint.findOne({ clientId ,year });
     if (!carbonFootprint) {
       return res.status(404).json({ msg: "Bilan not found" });
     }
-    
     for (let i = 0; i < selectedCategoryElements.length; i++) {
       const categoryElements = selectedCategoryElements[i];
-      
       if (categoryElements.length > 0) {
-        const emissions = await calculateEmissionsPost(carbonFootprint.emissionPosts[i].category, categoryElements);
-        
-        // Update emissionPosts array with categoryElements and emissions
-        carbonFootprint.emissionPosts[i].emissions = emissions;
-        carbonFootprint.emissionPosts[i].categoryElements = categoryElements;
+          const { emissions, weightedAverageUncertainty} = await calculateEmissionsPost(carbonFootprint.emissionPosts[i].category, categoryElements);
+          carbonFootprint.emissionPosts[i].emissions = emissions;
+          carbonFootprint.emissionPosts[i].uncertainty = weightedAverageUncertainty;
+          carbonFootprint.emissionPosts[i].categoryElements = categoryElements;
       }
-    }
+  }
     
-    // Calculate total emissions
-    const totalEmissions = await calculateTotalBilan(carbonFootprint.emissionPosts);
+    const { totalEmissions, totalWeightedAverageUncertainty} = await calculateTotalBilan(carbonFootprint.emissionPosts);
     carbonFootprint.totalEmissions = totalEmissions;
-    
-    // Save the updated CarbonFootprint document
+    carbonFootprint.totalUncertainty = totalWeightedAverageUncertainty;
     await carbonFootprint.save();
-    
     return res.status(200).json(carbonFootprint);
+
   } catch (error) {
     console.error("Error:", error);
     return res.status(500).json({ error: "Internal error" });
   }
 };
-
 
 //calculate the emissions for a single post Emission
 const calculateEmissionsPost = async (category , categoryElements) => {
-
+ 
   let emissions = 0;
+  let totalValueTimesUncertainty = 0;
+  let totalValue = 0;
   let i = 0;
-  
-  
-  const  Model = categoriesConnection.model(category.trim());
-  
+  const Model = categoriesConnection.model(category);
   for (const element of categoryElements) {
       const categoryElement = await Model.findById(element.categoryElement);
       emissions += categoryElement.totalPostValue * element.quantity;
+      const uncertaintyPercentage =categoryElement.uncertainty !== null 
+      ? parseFloat(categoryElement.uncertainty) / 100
+      : 0;
+      const uncertainty = categoryElement.totalPostValue * uncertaintyPercentage*element.quantity;
+      totalValueTimesUncertainty += uncertainty;
+      totalValue += categoryElement.totalPostValue * element.quantity;
       i++;
   }
-  return emissions;
+  if(totalValueTimesUncertainty !== 0 ){
+      const weightedAverageUncertainty = totalValueTimesUncertainty / totalValue;
+      return { emissions, weightedAverageUncertainty};
+  }
+  return { emissions, weightedAverageUncertainty: 0};
+  
 }
+
+const calculateWeightedAverageUncertainty = (elements) => {
+  let totalValueTimesUncertainty = 0;
+  let totalValue = 0;
+
+  for (const element of elements) {
+    const value = element.value;
+    const uncertainty = element.uncertainty * value;
+    totalValueTimesUncertainty += uncertainty;
+    totalValue += value;
+  }
+
+  const weightedAverageUncertainty = totalValueTimesUncertainty / totalValue;
+  return weightedAverageUncertainty;
+};
 
 // calculate total Bilan emissions
 const calculateTotalBilan = async (emissionPosts) => {
+  let totalEmissionsAbs = 0;
   let totalEmissions = 0;
+  let totalValueTimesUncertainty = 0;
   for(const post of emissionPosts) {
     totalEmissions += post.emissions;
+    totalEmissionsAbs += Math.abs(post.emissions);
+    const uncertainty = Math.abs(post.emissions)* post.uncertainty;
+    totalValueTimesUncertainty += uncertainty;
   }
-  return totalEmissions;
+
+
+  if(totalValueTimesUncertainty !== 0 ){
+    const totalWeightedAverageUncertainty = totalValueTimesUncertainty / totalEmissionsAbs;
+    return { totalEmissions, totalWeightedAverageUncertainty};
+  }
+  return { totalEmissions , totalWeightedAverageUncertainty: 0};
 };
 
-///////////////////////////
+// get a single bilan
 
 const getBilan = async (req, res) => {
-  const { clientId, year } = req.params; // Access clientId and year from request parameters
-  
-  if (!isValidObjectId(clientId)) {
+  const { clientId, year } = req.params;
+  if(!isValidObjectId(clientId)){
     return res.status(400).json({ msg: "Invalid client ID" });
   }
-  
   try {
-    const carbonFootprint = await CarbonFootprint.findOne({ clientId, year });
-    
+    const carbonFootprint = await CarbonFootprint.findOne({ clientId , year });
     if (!carbonFootprint) {
       return res.status(404).json({ msg: "Bilan not found" });
     }
-    
     return res.status(200).json(carbonFootprint);
   } catch (error) {
     console.error("Error:", error);
@@ -137,23 +159,12 @@ const getBilan = async (req, res) => {
   }
 };
 
-
-// GET all bilans
+// get all bilans
 
 const getAllBilans = async (req, res) => {
-  const { clientId } = req.params;
-  
-  if (!isValidObjectId(clientId)) {
-    return res.status(400).json({ msg: "Invalid client ID" });
-  }
-  
   try {
-    const carbonFootprints = await CarbonFootprint.find({ clientId });
-    
-    if (!carbonFootprints) {
-      return res.status(404).json({ msg: "Bilans not found" });
-    }
-    
+    const { clientId } = req.params;
+    const carbonFootprints = await CarbonFootprint.find(clientId);
     return res.status(200).json(carbonFootprints);
   } catch (error) {
     console.error("Error:", error);
@@ -161,22 +172,19 @@ const getAllBilans = async (req, res) => {
   }
 };
 
-// DELETE a single bilan
+
+// delete a bilan
 
 const deleteBilan = async (req, res) => {
   const { clientId, year } = req.params;
-  
-  if (!isValidObjectId(clientId)) {
+  if(!isValidObjectId(clientId)){
     return res.status(400).json({ msg: "Invalid client ID" });
   }
-  
   try {
-    const carbonFootprint = await CarbonFootprint.findOneAndDelete({ clientId, year });
-    
+    const carbonFootprint = await CarbonFootprint.findOneAndDelete({ clientId , year });
     if (!carbonFootprint) {
       return res.status(404).json({ msg: "Bilan not found" });
     }
-    
     return res.status(200).json({ msg: "Bilan deleted" });
   } catch (error) {
     console.error("Error:", error);
@@ -184,9 +192,8 @@ const deleteBilan = async (req, res) => {
   }
 };
 
-module.exports = { createBilan ,
-   updateAndCalculateBilan,
-    getBilan,
-    getAllBilans,
-    deleteBilan
-  };
+
+module.exports = { createBilan , updateAndCalculateBilan,
+  getBilan,
+  getAllBilans,
+  deleteBilan};

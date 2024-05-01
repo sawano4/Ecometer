@@ -323,7 +323,8 @@ const deleteClient = async (req,res) => {
     console.error("Error:", error);
     return res.status(500).json({ error: "Internal error" });
   }
-}
+};
+
 
 
 
@@ -341,4 +342,6 @@ module.exports = {
   resetPassword,
   getClientProfile,
   updateClientProfile,
-  deleteClient,};
+  deleteClient,
+  
+};

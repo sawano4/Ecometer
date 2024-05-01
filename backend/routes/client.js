@@ -8,6 +8,7 @@ const {
   getClientProfile,
   updateClientProfile,
   deleteClient,
+  
 } = require("../controllers/client");
 
 const router = express.Router();

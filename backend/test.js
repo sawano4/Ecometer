@@ -1,17 +1,11 @@
-const mongoose = require('mongoose');
-const {AchatsDeServices} = require('./Models/Category'); // Import the model
+const elements = [
+    { value: 1000, uncertainty: 0.99},   // uncertainty: 10%
+    { value: 10, uncertainty: 0.05 },     // uncertainty: 5%
+    { value: 500, uncertainty: 0.03 },    // uncertainty: 3%
+    { value: 50, uncertainty: 0.08 },     // uncertainty: 8%
+  ];
+  
+  
+  
 
-
-// Connect to MongoDB
-const test = async ()=> {
-try{
-    await mongoose.connect('mongodb+srv://moussoubillel:billel2004@sawanus.xw7ivfh.mongodb.net/?retryWrites=true&w=majority&appName=Sawanus');
-    console.log('Database connected');
-    const matchingDocs = await AchatsDeServices.find({});
-    console.log(matchingDocs);
-}catch(error){
-    console.error('Error connecting to MongoDb', error);
-}
-}
-
-test();
+  
