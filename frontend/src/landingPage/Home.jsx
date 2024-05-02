@@ -19,7 +19,7 @@ function Landing() {
       <Stat />
       <Questions />
       <Last />
-      <Foot/>
+      <Foot />
     </section>
   );
 }

@@ -8,9 +8,9 @@ const queryClient = new QueryClient({
     },
   },
 });
-import Home from "./Home";
-import Login from "./Login";
-import Signup from "./Signup";
+import Home from "./landingPage/Home";
+import Login from "./logIn/Login";
+import Signup from "./signUp/Signup";
 import "./App.css";
 
 function App() {
