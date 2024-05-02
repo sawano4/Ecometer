@@ -35,7 +35,6 @@ function Questions() {
             aaaa aaaa aaaaaaa aaaaa aaaa aaaaa aaa
           </div>
         )}
-       
 
         {/* ----------------------------- */}
         <button
@@ -44,7 +43,7 @@ function Questions() {
         >
           <div className=" text-[4vh] w-[100%] text-left">
             La calculatrice est-elle conviviale pour les entreprises de
-            différentes tailles ?{" "}
+            différentes tailles ?{" "}
           </div>
           <div className="   ">
             <img
@@ -59,14 +58,14 @@ function Questions() {
             aaaa aaaa aaaaaaa aaaaa aaaa aaaaa aaa
           </div>
         )}
-       
+
         {/* ----------------------------- */}
         <button
           onClick={() => setShow3(!show3)}
           className="border-solid border-[#E2E8F0]  border-b-[0.3vh]     mx-auto  h-[13vh] flex justify-center items-center w-[82%]"
         >
           <div className=" text-[3.8vh] w-[100%] text-left">
-            Les résultats du calcul de l'empreinte carbone sont-ils
+            Les résultats du calcul de l&apos;empreinte carbone sont-ils
             confidentiels et sécurisés ?{" "}
           </div>
           <div className="   ">
@@ -82,7 +81,6 @@ function Questions() {
             aaaa aaaa aaaaaaa aaaaa aaaa aaaaa aaa
           </div>
         )}
-      
 
         {/* ----------------------------- */}
         <button
@@ -90,7 +88,8 @@ function Questions() {
           className="border-solid border-[#E2E8F0]  border-b-[0.3vh]     mx-auto  h-[13vh] flex justify-center items-center w-[82%]"
         >
           <div className=" text-[4vh] w-[100%] text-left">
-            Y a-t-il des frais associés à l'utilisation de la calculatrice ?{" "}
+            Y a-t-il des frais associés à l&apos;utilisation de la
+            calculatrice ?{" "}
           </div>
           <div className="   ">
             <img
@@ -105,7 +104,6 @@ function Questions() {
             aaaa aaaa aaaaaaa aaaaa aaaa aaaaa aaa
           </div>
         )}
-       
 
         {/* ----------------------------- */}
         <button
@@ -124,7 +122,7 @@ function Questions() {
             ></img>
           </div>
         </button>
-       
+
         {show5 && (
           <div className="text-[3.2vh] border-solid border-[#E2E8F0]  border-b-[0.3vh] flex items-center    mx-auto  h-[8vh]  w-[82%]">
             aaaa aaaa aaaaaaaaaa aaaaaa aaaaaaa aaaaaaa aaaa

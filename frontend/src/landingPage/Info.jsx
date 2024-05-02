@@ -41,9 +41,9 @@ function Info() {
               <div className="  w-[85%] text-[3vh] font-lg">
                 Notre calculatrice effectue une analyse approfondie en prenant
                 en compte une vaste gamme de facteurs. Elle offre une vue
-                holistique de l'empreinte carbone de votre entreprise,
+                holistique de l&apos;empreinte carbone de votre entreprise,
                 permettant une compréhension détaillée et précise des
-                différentes sources d'émissions.
+                différentes sources d&apos;émissions.
               </div>
             </div>
           </div>
@@ -115,11 +115,12 @@ function Info() {
                 Rapports Personnalisés :{" "}
               </div>
               <div className="  w-[85%] text-[3vh] font-lg">
-                En plus de l'analyse exhaustive, notre calculatrice vous permet
-                de générer des rapports personnalisés. Obtenez des informations
-                détaillées sur les principaux contributeurs à votre empreinte
-                carbone et recevez des recommandations spécifiques pour
-                améliorer la durabilité de votre entreprise de manière ciblée.
+                En plus de l&apos;analyse exhaustive, notre calculatrice vous
+                permet de générer des rapports personnalisés. Obtenez des
+                informations détaillées sur les principaux contributeurs à votre
+                empreinte carbone et recevez des recommandations spécifiques
+                pour améliorer la durabilité de votre entreprise de manière
+                ciblée.
               </div>
             </div>
           </div>

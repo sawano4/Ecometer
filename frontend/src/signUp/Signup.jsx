@@ -14,7 +14,7 @@ function Signup() {
     "Entreprise"
   ];
   return (
-    <div className="realtive">
+    <div className="realtive font-['Inter']">
       <img
         src="/Vector2.svg"
         className="absolute max-w-full w-[100%]"
@@ -29,7 +29,7 @@ function Signup() {
             <div className="pt-[2vh] text-[4.8vh] text-neutral-800 font-bold font-['Eudoxus Sans'] leading-9  ">
               S’inscrire
             </div>
-            <div className="text-[2.4vh] font-['Inter'] font-sans ">
+            <div className="text-[2.4vh]  font-sans ">
               Commençons, Créez votre compte
             </div>
           </div>
@@ -43,14 +43,14 @@ function Signup() {
                 >
                   <div className="w-[84%] h-[64%] rounded-[2vh] border border-slate-900 flex-col justify-center items-start flex">
                     <div className="  flex-col w-full  justify-center  items-start flex">
-                      <div className="pl-[2vh] mb-[0.3vh] w-full text-neutral-800   font-['Inter'] font-['Inter'] leading-none font-sans   text-[1.9vh] font-normal font-['Inter'] ">
+                      <div className="pl-[2vh] mb-[0.3vh] w-full text-neutral-800     leading-none font-sans   text-[1.9vh] font-normal  ">
                         Nom de l’organisation
                       </div>
 
-                      <div className=" pl-[2vh] w-[60vh] w-full  justify-start items-center inline-flex">
-                        <div className="text-neutral-500 w-full  font-normal font-['Inter'] ">
+                      <div className=" pl-[2vh]  w-full  justify-start items-center inline-flex">
+                        <div className="text-neutral-500 w-full  font-normal  ">
                           <input
-                            className=" w-[97%] text-[2.2vh] font-['Inter'] font-sans  focus:border-none focus:outline-none "
+                            className=" w-[97%] text-[2.2vh]  font-sans  focus:border-none focus:outline-none "
                             type="text"
                             name="Nom"
                             placeholder="Exemple: ESI"
@@ -67,14 +67,14 @@ function Signup() {
                 >
                   <div className="w-[84%] h-[64%] rounded-[2vh] border border-slate-900 flex-col justify-center items-start flex">
                     <div className="  flex-col w-full  justify-center  items-start flex">
-                      <div className="pl-[2vh] mb-[0.3vh] w-full text-neutral-800   font-['Inter'] font-['Inter'] leading-none font-sans   text-[1.9vh] font-normal font-['Inter'] ">
+                      <div className="pl-[2vh] mb-[0.3vh] w-full text-neutral-800     leading-none font-sans   text-[1.9vh] font-normal  ">
                         Adresse
                       </div>
 
-                      <div className=" pl-[2vh] w-[60vh] w-full  justify-start items-center inline-flex">
-                        <div className="text-neutral-500 w-full  font-normal font-['Inter'] ">
+                      <div className=" pl-[2vh]  w-full  justify-start items-center inline-flex">
+                        <div className="text-neutral-500 w-full  font-normal  ">
                           <input
-                            className=" w-[97%] text-[2.2vh] font-['Inter'] font-sans  focus:border-none focus:outline-none "
+                            className=" w-[97%] text-[2.2vh]  font-sans  focus:border-none focus:outline-none "
                             type="text"
                             name="Nom"
                             placeholder="Exemple: 16309, Oued-Smar, El-Harrach, Alger"
@@ -91,14 +91,14 @@ function Signup() {
                 >
                   <div className="w-[84%] h-[64%] rounded-[2vh] border border-slate-900 flex-col justify-center items-start flex">
                     <div className="  flex-col w-full justify-center  items-start flex">
-                      <div className="pl-[2vh] mb-[0.3vh] w-full text-neutral-800   font-['Inter'] font-['Inter'] leading-none font-sans   text-[1.9vh] font-normal font-['Inter'] ">
+                      <div className="pl-[2vh] mb-[0.3vh] w-full text-neutral-800     leading-none font-sans   text-[1.9vh] font-normal  ">
                         Email
                       </div>
 
                       <div className=" pl-[2vh] w-full justify-start items-center inline-flex">
-                        <div className="  w-full   text-neutral-500  font-normal font-['Inter'] ">
+                        <div className="  w-full   text-neutral-500  font-normal  ">
                           <input
-                            className=" w-[97%]   text-[2.2vh] font-['Inter'] font-sans  focus:border-none focus:outline-none "
+                            className=" w-[97%]   text-[2.2vh]  font-sans  focus:border-none focus:outline-none "
                             type="email"
                             name="Nom"
                             placeholder="exemple@domain.com"
@@ -115,14 +115,14 @@ function Signup() {
                 >
                   <div className="w-[84%] h-[64%] rounded-[2vh] border border-slate-900 flex-col justify-center items-start flex">
                     <div className="  flex-col w-full  justify-center  items-start flex">
-                      <div className="pl-[2vh] mb-[0.3vh] w-full text-neutral-800   font-['Inter'] font-['Inter'] leading-none font-sans   text-[1.9vh] font-normal font-['Inter'] ">
+                      <div className="pl-[2vh] mb-[0.3vh] w-full text-neutral-800     leading-none font-sans   text-[1.9vh] font-normal  ">
                         Mot de passe
                       </div>
 
                       <div className=" pl-[2vh] w-full  justify-start items-center inline-flex">
-                        <div className="  w-full  text-neutral-500  font-normal font-['Inter'] ">
+                        <div className="  w-full  text-neutral-500  font-normal  ">
                           <input
-                            className=" w-[97%]    text-[2.2vh] font-['Inter'] font-sans  focus:border-none focus:outline-none "
+                            className=" w-[97%]    text-[2.2vh]  font-sans  focus:border-none focus:outline-none "
                             type="email"
                             name="Nom"
                             placeholder="Doit contenir au moins 8 caractères"
@@ -140,14 +140,14 @@ function Signup() {
                 >
                   <div className="w-[84%] h-[64%] rounded-[2vh] border border-slate-900 flex-col justify-center items-start flex">
                     <div className="  flex-col w-full justify-center  items-start flex">
-                      <div className="pl-[2vh] mb-[0.3vh] w-full text-neutral-800   font-['Inter'] font-['Inter'] leading-none font-sans   text-[1.9vh] font-normal font-['Inter'] ">
+                      <div className="pl-[2vh] mb-[0.3vh] w-full text-neutral-800     leading-none font-sans   text-[1.9vh] font-normal  ">
                         Confirmer le mot de passe
                       </div>
 
                       <div className=" pl-[2vh] w-full justify-start items-center inline-flex">
-                        <div className="   w-full   text-neutral-500  font-normal font-['Inter'] ">
+                        <div className="   w-full   text-neutral-500  font-normal  ">
                           <input
-                            className="    w-[97%]  text-[2.2vh] font-['Inter'] font-sans  focus:border-none focus:outline-none "
+                            className="    w-[97%]  text-[2.2vh]  font-sans  focus:border-none focus:outline-none "
                             type="email"
                             name="Nom"
                             placeholder="Doit contenir au moins 8 caractères"
@@ -171,14 +171,14 @@ function Signup() {
                 <div className="w-full h-[20%]  flex justify-center items-center">
                   <div className="w-[84%]  h-[64%] flex justify-between ">
                     <div className="h-full w-[48.5%]  rounded-[2vh] border border-slate-900 flex-col justify-center items-start flex">
-                      <div className="pl-[2vh] mb-[0.3vh] w-full text-neutral-800   font-['Inter'] font-['Inter'] leading-none font-sans   text-[1.9vh] font-normal font-['Inter'] ">
+                      <div className="pl-[2vh] mb-[0.3vh] w-full text-neutral-800     leading-none font-sans   text-[1.9vh] font-normal  ">
                         Nombre d’employés
                       </div>
 
-                      <div className=" pl-[2vh] w-[60vh] w-full  justify-start items-center inline-flex">
-                        <div className="text-neutral-500 w-full  font-normal font-['Inter'] ">
+                      <div className=" pl-[2vh]  w-full  justify-start items-center inline-flex">
+                        <div className="text-neutral-500 w-full  font-normal  ">
                           <input
-                            className=" w-[97%] text-[2.2vh] font-['Inter'] font-sans  focus:border-none focus:outline-none "
+                            className=" w-[97%] text-[2.2vh]  font-sans  focus:border-none focus:outline-none "
                             type="text"
                             name="Nom"
                             placeholder="Exemple: 100"
@@ -187,14 +187,14 @@ function Signup() {
                       </div>
                     </div>
                     <div className="h-full w-[48.5%]  rounded-[2vh] border border-slate-900 flex-col justify-center items-start flex">
-                      <div className="pl-[2vh] mb-[0.3vh] w-full text-neutral-800   font-['Inter'] font-['Inter'] leading-none font-sans   text-[1.9vh] font-normal font-['Inter'] ">
+                      <div className="pl-[2vh] mb-[0.3vh] w-full text-neutral-800     leading-none font-sans   text-[1.9vh] font-normal  ">
                         Nombre de locaux
                       </div>
 
-                      <div className=" pl-[2vh] w-[60vh] w-full  justify-start items-center inline-flex">
-                        <div className="text-neutral-500 w-full  font-normal font-['Inter'] ">
+                      <div className=" pl-[2vh]  w-full  justify-start items-center inline-flex">
+                        <div className="text-neutral-500 w-full  font-normal  ">
                           <input
-                            className=" w-[97%] text-[2.2vh] font-['Inter'] font-sans  focus:border-none focus:outline-none "
+                            className=" w-[97%] text-[2.2vh]  font-sans  focus:border-none focus:outline-none "
                             type="text"
                             name="Nom"
                             placeholder="Exemple: 4"
@@ -241,9 +241,7 @@ function Signup() {
                         disabled={!Secteur.length}
                         className="outline-none appearance-none w-[96%]"
                       >
-                        <option  >
-                          Secteur d’activité
-                        </option>
+                        <option>Secteur d’activité</option>
                         {Secteur.map((item) => (
                           <option key={item} value={item}>
                             {item}

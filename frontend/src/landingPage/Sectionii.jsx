@@ -12,9 +12,9 @@ function Sectionii() {
             alt="SVG Image"
           ></img>
           <div className="text-[2.9vh] leading-5 text-[Black] text-center max-w-full  pt-5">
-            Comprenez l'impact de vos
+            Comprenez l&apos;impact de vos
             <br /> activités sur
-            <br /> l'environnement.
+            <br /> l&apos;environnement.
           </div>
         </div>
         <div className="w-3/12 items-center">
@@ -37,7 +37,7 @@ function Sectionii() {
           ></img>
           <div className="text-[2.9vh] leading-5 text-[Black] text-center max-w-full  pt-5">
             Évaluez votre performance
-            <br /> par rapport à l'industrie.
+            <br /> par rapport à l&apos;industrie.
           </div>
         </div>
         <div className="w-3/12 items-center">

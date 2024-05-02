@@ -7,7 +7,7 @@ function Login() {
     setShow(!show);
   };
   return (
-    <div className="realtive">
+    <div className="realtive font-['Inter']">
       <img
         src="/Vector2.svg"
         className="absolute max-w-full w-[100%]"
@@ -24,16 +24,16 @@ function Login() {
           {/* formulaire  */}
           <form className="" action="#" method="POST">
             <div className="flex flex-col  justify-center items-center">
-              <div className="w-[84%] h-[8vh] mb-[3vh] h-14 px-5  rounded-[2vh] border border-slate-900 flex-col justify-center items-start flex">
+              <div className="w-[84%] h-[8vh] mb-[3vh]  px-5  rounded-[2vh] border border-slate-900 flex-col justify-center items-start flex">
                 <div className="  flex-col  justify-center  items-start flex">
-                  <div className=" w-[50%] text-neutral-500 font-['Inter'] leading-none font-sans   text-[1.9vh] font-normal font-['Inter'] ">
+                  <div className=" w-[50%] text-neutral-500  leading-none font-sans   text-[1.9vh] font-normal  ">
                     Email d’utilisateur
                   </div>
 
                   <div className="w-[60vh]  justify-start items-center inline-flex">
-                    <div className="text-neutral-500  font-normal font-['Inter'] ">
+                    <div className="text-neutral-500  font-normal  ">
                       <input
-                        className="text-[2.6vh] font-['Inter'] font-sans  focus:border-none focus:outline-none "
+                        className="text-[2.6vh]  font-sans  focus:border-none focus:outline-none "
                         type="email"
                         name="email"
                         placeholder="exemple@domain.com"
@@ -43,7 +43,7 @@ function Login() {
                 </div>
               </div>
 
-              <div className=" w-[84%] h-[8vh] h-14 px-5  rounded-[2vh] border border-slate-900 ">
+              <div className=" w-[84%] h-[8vh]  px-5  rounded-[2vh] border border-slate-900 ">
                 <div className=" w-[10%] float-right h-[100%] flex justify-center ">
                   <img
                     className="w-[70%] my-[auto] h-[70%] cursor-pointer"
@@ -53,14 +53,14 @@ function Login() {
                   ></img>
                 </div>
                 <div className=" w-[90%] h-[100%] flex-col justify-center items-start flex">
-                  <div className="  w-[50%] font-normal text-neutral-500 font-['Inter'] leading-6 font-sans   text-[1.9vh] font-normal font-['Inter']">
+                  <div className="  w-[50%]  text-neutral-500  leading-6 font-sans   text-[1.9vh] font-normal ">
                     Mot de passe
                   </div>
 
                   <div className="  pb-[1vh] w-full  justify-start items-center flex">
-                    <div className="text-neutral-500 w-full text-sm font-normal font-['Inter'] ">
+                    <div className="text-neutral-500 w-full text-sm font-normal  ">
                       <input
-                        className="text-[2.6vh] font-['Inter'] font-sans w-[100%]  focus:outline-none  "
+                        className="text-[2.6vh]  font-sans w-[100%]  focus:outline-none  "
                         type={show ? "text" : "password"}
                         name="password"
                         placeholder="Doit contenir au moins 8 caractères"
@@ -72,7 +72,7 @@ function Login() {
               <div className="w-[82%] h-[4vh] mb-[3vh] justify-end items-center flex">
                 <a
                   href="/#"
-                  className="text-right  text-sky-600 text-[1.9vh] font-sans font-normal font-['Inter'] "
+                  className="text-right  text-sky-600 text-[1.9vh] font-sans font-normal  "
                 >
                   Mot de passe oublié
                 </a>
@@ -89,12 +89,12 @@ function Login() {
             </div>
           </form>
           <div className="flex justify-center mt-[4vh]">
-            <span className="text-neutral-800 text-[2.8vh]  font-['Inter'] ">
+            <span className="text-neutral-800 text-[2.8vh]   ">
               Vous n’avez pas encore de compte ?{" "}
             </span>
             <a href="/">
               {" "}
-              <span className="text-sky-600  text-neutral-800 text-[2.8vh] font-['Inter'] ">
+              <span className="text-sky-600  text-[2.8vh]  ">
                 &nbsp;S’inscrire
               </span>
             </a>

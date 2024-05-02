@@ -17,7 +17,7 @@ function Navbar() {
     <header className=" bg-slate-900  text-[white] w-full h-[18vh] flex m-0 p-0">
       <div className="w-[8%]"> </div>
       <div className="flex justify-between   w-[40%] items-center ">
-        <h3 className="font-bold font-[Arial] font-sans text-[4vh]">
+        <h3 className="font-bold  font-sans text-[4vh]">
           Ecometer
         </h3>
 

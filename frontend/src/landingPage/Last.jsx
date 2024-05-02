@@ -12,9 +12,9 @@ function Last() {
             Chez Ecometer, nous nous engageons à promouvoir la durabilité sans
             aucune barrière financière. En offrant gratuitement notre
             Calculateur de Bilan Carbone pour les Entreprises, nous avons pour
-            objectif d'autonomiser les entreprises de toutes tailles à prendre
-            des mesures significatives vers un avenir plus respectueux de
-            l'environnement.
+            objectif d&apos;autonomiser les entreprises de toutes tailles à
+            prendre des mesures significatives vers un avenir plus respectueux
+            de l&apos;environnement.
           </div>
           <div className="bg-[#EEFEFC] flex items-center bg-opacity-30 rounded-[2vh]  rgba(238, 245, 252, 0.30)  w-1/3 mt-[5vh] h-[7vh]">
             <input
@@ -25,7 +25,7 @@ function Last() {
             <div className="w-[3%]"></div>
             <a
               href="https://www.facebook.com/"
-              className="block  no-underline bg-[#FFF] w-[25%] flex items-center justify-center text-[#000]  text-[2.7vh] cursor-pointer transition-all duration-[0.3s] ease-[ease] delay-[0s] font-normal h-[100%]   rounded-[2vh] border-[none] "
+              className="  no-underline bg-[#FFF] w-[25%] flex items-center justify-center text-[#000]  text-[2.7vh] cursor-pointer transition-all duration-[0.3s] ease-[ease] delay-[0s] font-normal h-[100%]   rounded-[2vh] border-[none] "
             >
               S’inscrire
             </a>
