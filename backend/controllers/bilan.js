@@ -32,7 +32,6 @@ const createBilan = async (req, res) => {
       postEmissions[i] = newAtt;
       i++;
     });
-    console.log(postEmissions);
     const newCarbonFootprint = new CarbonFootprint({
       clientId,
       emissionPosts: postEmissions,

@@ -133,5 +133,17 @@ const FixedPosteAttributs = [
     Scope: "1",
   },
 ];
-
-module.exports = { FixedPosteAttributs }
+const validCategories = [
+  "AchatsDeBiens",
+  "AchatsDeServices",
+  "Combustibles",
+  "ProcessEtEmissionFugitives",
+  "Electricite",
+  "ReseauxDeChaleurEtFroid",
+  "StatistiquesTerritoriales",
+  "TraitementDesDechets",
+  "TransportDeMarchandises",
+  "TransportDePersonnes",
+  "UTCF",
+];
+module.exports = { FixedPosteAttributs , validCategories}
