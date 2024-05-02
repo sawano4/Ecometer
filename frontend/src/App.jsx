@@ -1,22 +1,29 @@
-
-
-import './App.css'
-import Navbar from './Navbar.jsx'
-import Hero from './Hero.jsx'
-import Sectionii from './Sectionii.jsx'
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      staleTime: Infinity,
+      cacheTime: Infinity,
+    },
+  },
+});
+import Home from "./landingPage/Home";
+import Login from "./logIn/Login";
+import Signup from "./signUp/Signup";
+import "./App.css";
 
 function App() {
-  
-
   return (
-    <section>
-      <Navbar />
-      <Hero />
-      <Sectionii/>
-      </section>
-    
-    
-    
+    <BrowserRouter>
+      <QueryClientProvider client={queryClient}>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<Signup />} />
+        </Routes>
+      </QueryClientProvider>
+    </BrowserRouter>
   );
 }
 

@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 
+
 const dotenv = require('dotenv');
 dotenv.config();
 
@@ -90,14 +91,15 @@ const categoriesConnection = mongoose.createConnection(process.env.CATEGORIES_UR
 // Add error handling
 categoriesConnection.on('error', console.error.bind(console, 'connection error:'));
 categoriesConnection.once('open', function() {
-  console.log("Database connection successful");
+  console.log("Connected to Categories database");
 });
 
 //create models
 
 const AchatsDeBiens = categoriesConnection.model('AchatsDeBiens', CategoryElementSchema, 'achatsdebiens');
 
-const AchatsDeServices = categoriesConnection.model('AchatsDeService', CategoryElementSchema, 'achatsdeservices');
+const AchatsDeServices = categoriesConnection.model('AchatsDeServices', CategoryElementSchema, 'achatsdeservices');
+
 const Combustibles = categoriesConnection.model('Combustibles', CategoryElementSchema, 'combustibles');
 
 const ProcessEtEmissionFugitives = categoriesConnection.model('ProcessEtEmissionFugitives', CategoryElementSchema, 'processemissionsfugitives');
@@ -128,5 +130,6 @@ module.exports = {
     TraitementDesDechets,
     TransportDeMarchandises,
     TransportDePersonnes,
-    UTCF
+    UTCF,
+    categoriesConnection
 };
