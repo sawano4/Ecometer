@@ -8,8 +8,9 @@ const queryClient = new QueryClient({
     },
   },
 });
-import Home from "./Home";
-import Login from "./Login";
+import Home from "./landingPage/Home";
+import Login from "./logIn/Login";
+import Signup from "./signUp/Signup";
 import "./App.css";
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<Signup />} />
         </Routes>
       </QueryClientProvider>
     </BrowserRouter>
