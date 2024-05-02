@@ -9,13 +9,12 @@ const queryClient = new QueryClient({
     },
   },
 });
-import Home from "./landingPage/landingPage/Home";
-import Login from "./logIn/logIn/Login";
+import Home from "./landingPage/Home";
+import Login from "./logIn/Login";
 import Signup from "./signUp/Signup";
 import Calculateur from "./Auth/Pages/Calculateur.jsx";
 import Acceuil from "./Auth/Pages/Accueil.jsx";
 import Rapport from "./Auth/Pages/Rapport.jsx";
-import Signup from "./signUp/Signup";
 import "./App.css";
 
 
