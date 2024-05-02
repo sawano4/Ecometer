@@ -241,7 +241,9 @@ function Signup() {
                         disabled={!Secteur.length}
                         className="outline-none appearance-none w-[96%]"
                       >
-                        <option>Secteur d’activité</option>
+                        <option disabled selected>
+                          Secteur d’activité
+                        </option>
                         {Secteur.map((item) => (
                           <option key={item} value={item}>
                             {item}
