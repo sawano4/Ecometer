@@ -88,13 +88,13 @@ function Stat() {
                   </div>
                   <div className=" px-[2vh] leading-6 font- text-[3vh] ">
                     Une description du nombre correspondant au graphique plus
-                    long que les autres{" "}  
+                    long que les autres{" "}
                   </div>
                 </div>
               </div>
             </div>
             <div className="h-[12vh] w-full flex justify-center items-center">
-              <a className="w-[100%]" href="/#">
+              <a className="w-[100%]" href="/acceuil">
                 <div className=" mx-auto py-[2vh]  rounded-[2vh] bg-[#003049] w-[55%] justify-center flex items-center">
                   <div className=" w-[80%]  text-center text-[2.6vh] text-white  ">
                     Determiner Votre Bilan Carbone

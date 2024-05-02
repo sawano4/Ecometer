@@ -1,0 +1,41 @@
+.sidebar {
+    background-color: #003049;
+    color: #FFF;
+    padding: 20px;
+    height: 100%;
+}
+
+.title {
+    font-size: 25px;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.subtitle {
+    font-size: 20px;
+    font-weight: 500;
+    margin-bottom: 10px;
+}
+
+.icon-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+.icon-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.icon {
+    fill: #FFF;
+    width: 24px;
+    height: 24px;
+    margin-right: 10px;
+}
+
+.icon-text {
+    font-size: 16px;
+}

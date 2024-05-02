@@ -24,7 +24,7 @@ function Last() {
             ></input>
             <div className="w-[3%]"></div>
             <a
-              href="https://www.facebook.com/"
+              href="/signup"
               className="  no-underline bg-[#FFF] w-[25%] flex items-center justify-center text-[#000]  text-[2.7vh] cursor-pointer transition-all duration-[0.3s] ease-[ease] delay-[0s] font-normal h-[100%]   rounded-[2vh] border-[none] "
             >
               S’inscrire
