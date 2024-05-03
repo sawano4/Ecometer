@@ -7,13 +7,13 @@ const categoryRoutes = require("./routes/categoryRoutes");
 const bilanRoutes = require("./routes/bilanRoutes");
 const adminRoutes = require("./routes/admin");
 const app = express();
-
+const cors = require("cors");
 //connect to db
 connectToDb();
 // Middleware to parse JSON bodies
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-
+app.use(cors());
 // Routes and other middleware...
 app.use("/api/admin/", adminRoutes);
 app.use("/api/categories/", categoryRoutes);

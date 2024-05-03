@@ -1,10 +1,33 @@
 import { useState } from "react";
-
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
 function Login() {
+  const [data, setData] = useState({ email: "", password: "" });
+  const [error, setError] = useState("");
+  const handleChange = ({ currentTarget: input }) => {
+    setData({ ...data, [input.name]: input.value });
+  };
+  const navigate = useNavigate();
   const [show, setShow] = useState(false);
-
   const toggle = () => {
     setShow(!show);
+  };
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const url = "http://localhost:3000/api/clients/login";
+      const { data: res } = await axios.post(url, data);
+      localStorage.setItem("token", res.data);
+      navigate("/acceuil");
+    } catch (error) {
+      if (
+        error.response &&
+        error.response.status >= 400 &&
+        error.response.status <= 500
+      ) {
+        setError(error.response.data.message);
+      }
+    }
   };
   return (
     <div className="realtive font-['Inter']">
@@ -22,7 +45,7 @@ function Login() {
             Bon retour, ravi de vous revoir
           </div>
           {/* formulaire  */}
-          <form className="" action="#" method="POST">
+          <form className="" onSubmit={handleSubmit}>
             <div className="flex flex-col  justify-center items-center">
               <div className="w-[84%] h-[8vh] mb-[3vh]  px-5  rounded-[2vh] border border-slate-900 flex-col justify-center items-start flex">
                 <div className="  flex-col  justify-center  items-start flex">
@@ -37,9 +60,17 @@ function Login() {
                         type="email"
                         name="email"
                         placeholder="exemple@domain.com"
+                        onChange={handleChange}
+                        value={data.email}
+                        required
                       />
                     </div>
                   </div>
+                  {error && (
+                    <div className="w-[370px] text-sm bg-[#f34646] text-[white] text-center mx-0 my-[5px] p-[15px] rounded-[5px]">
+                      {error}
+                    </div>
+                  )}
                 </div>
               </div>
 
@@ -64,6 +95,9 @@ function Login() {
                         type={show ? "text" : "password"}
                         name="password"
                         placeholder="Doit contenir au moins 8 caractères"
+                        onChange={handleChange}
+                        value={data.password}
+                        required
                       />
                     </div>
                   </div>

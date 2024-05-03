@@ -1,5 +1,4 @@
-import React from 'react';
-import { Box, Typography, Grid, Button, Paper, useMediaQuery, useTheme } from '@mui/material';
+import {  Typography, Grid, Paper, useMediaQuery, useTheme } from '@mui/material';
 import AppBarComponent from '../Components/AppBarComponent';
 import SideBar from '../Components/SideBar';
 import FirstCard from '../Components/FirstCard';

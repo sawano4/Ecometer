@@ -1,4 +1,3 @@
-import React from 'react';
 import Grid from '@mui/material/Grid';
 import Button from '@mui/material/Button';
 import { Typography } from '@mui/material';
@@ -92,7 +91,7 @@ const FirstCard = () => {
               </Grid>
               <Grid item xs={9} md={4}>
                 <Button variant="outlined" color="primary" sx={{ ...styles.button  , marginBottom : {xs : '10px'}}} fullWidth>
-                  Etalblissement Et Suivi D'objectifs
+                  Etalblissement Et Suivi D&apos;objectifs
                 </Button>
               </Grid>
             </Grid>
