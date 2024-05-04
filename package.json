@@ -1,7 +1,0 @@
-{
-  "dependencies": {
-    "axios": "^1.6.8",
-    "sweetalert2": "^11.10.8",
-    "zustand": "^4.5.2"
-  }
-}

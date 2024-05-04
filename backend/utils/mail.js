@@ -3,23 +3,23 @@ const nodemailer = require("nodemailer");
 const dotenv = require("dotenv");
 dotenv.config();
 const generateOTP = () => {
-  let otp = "";
-  for (let i = 0; i < 6; i++) {
-    otp += Math.floor(Math.random() * 10);
-  }
-  return otp;
+    let otp = '';
+    for (let i = 0; i < 6; i++) {
+        otp += Math.floor(Math.random() * 10);
+    }
+    return otp;
 };
 
-const mailTransport = () =>
-  nodemailer.createTransport({
-    service: "gmail",
-    auth: {
+const mailTransport = ()=> 
+nodemailer.createTransport({
+  service: 'gmail',
+  auth: {
       user: process.env.GMAIL_ADRESS,
       pass: process.env.GMAIL_PASS,
-    },
+  }
   });
 
-const emailVerificationTemplate = (otp) => `
+  const emailVerificationTemplate = (otp) => `
   <html lang="en">
   <head>
       <meta charset="UTF-8">
@@ -44,7 +44,7 @@ const emailVerificationTemplate = (otp) => `
 `;
 
 const emailVerifiedTemplate = () =>
-  `<!DOCTYPE html>
+`<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -91,8 +91,8 @@ const emailVerifiedTemplate = () =>
 </html>
 `;
 
-const passwordResetTemplate = (username, link) =>
-  `<!DOCTYPE html>
+const passwordResetTemplate = (username,link) =>
+`<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -149,7 +149,7 @@ const passwordResetTemplate = (username, link) =>
 </html>
 `;
 
-const passwordResetSuccessTemplate = (username) => `<!DOCTYPE html>
+const passwordResetSuccessTemplate = (username) =>`<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -203,13 +203,17 @@ const passwordResetSuccessTemplate = (username) => `<!DOCTYPE html>
     </div>
 </body>
 </html>
-`;
+`
+
+
+
+
 
 module.exports = {
-  generateOTP,
-  mailTransport,
-  emailVerificationTemplate,
-  emailVerifiedTemplate,
-  passwordResetTemplate,
-  passwordResetSuccessTemplate,
+    generateOTP ,
+    mailTransport,
+    emailVerificationTemplate,
+    emailVerifiedTemplate,
+    passwordResetTemplate,
+    passwordResetSuccessTemplate
 };

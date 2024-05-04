@@ -35,7 +35,9 @@ const mainCategories = [
 const getCategoryElements = async (req, res) => {
   // Define API endpoint to handle user-selected categories
   try {
+    console.log("request send")
     const userSelectedCategories = req.body.userSelectedCategories;
+    console.log(userSelectedCategories)
     // If userSelectedCategories is empty, return the default categories
     if (
       !userSelectedCategories ||
@@ -53,6 +55,7 @@ const getCategoryElements = async (req, res) => {
     if (existingCategory === false) {
       return res.status(404).json({ msg: " Invalid Categories " });
     }
+    console.log(matchingDocuments.length);
     res.json({
       nextCategories: nextLevelCategories,
       matchingDocuments: matchingDocuments,

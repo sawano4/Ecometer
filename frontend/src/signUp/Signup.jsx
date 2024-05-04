@@ -1,9 +1,8 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-// the sign up fonction 
+// the sign up fonction
 function Signup() {
-
   const [data, setData] = useState({
     name: "",
     email: "",
@@ -17,11 +16,11 @@ function Signup() {
 
   const [error, setError] = useState("");
   const [confirmPassword, setConfirmPassword] = useState(true);
-    const handleConfirmPasswordChange = (e) => {
-      setConfirmPassword(e.target.value);
-      // Check if passwords match when confirm password changes
-      setConfirmPassword(e.target.value === data.password);
-    };
+  const handleConfirmPasswordChange = (e) => {
+    setConfirmPassword(e.target.value);
+    // Check if passwords match when confirm password changes
+    setConfirmPassword(e.target.value === data.password);
+  };
 
   const navigate = useNavigate();
 
@@ -83,7 +82,7 @@ function Signup() {
       }
     }
   };
- 
+
   return (
     <div className="realtive font-['Inter']">
       <form onSubmit={handleSubmit}>

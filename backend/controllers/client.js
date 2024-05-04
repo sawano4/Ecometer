@@ -31,7 +31,6 @@ const registerClient = async (req, res) => {
 
   try {
     // Create a new client using Model.create()
-    console.log(req.body);
     const newClient = new Client({
       name,
       email,
@@ -84,7 +83,7 @@ const loginClient = async (req, res) => {
   if (!email.trim() || !password.trim()) {
     return res.status(400).json({ msg: "Email and password are required" });
   }
-  console.log(email);
+
   const client = await Client.findOne({ email });
   if (!client) {
     return res.status(404).json({ msg: "User not found" });

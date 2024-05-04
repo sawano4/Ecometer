@@ -17,7 +17,9 @@ function Login() {
     try {
       const url = "http://localhost:3000/api/clients/login";
       const { data: res } = await axios.post(url, data);
-      localStorage.setItem("token", res.data);
+      localStorage.setItem("token", res.token);
+      console.log(res);
+      localStorage.setItem("isConnected", true);
       navigate("/acceuil");
     } catch (error) {
       if (
@@ -126,7 +128,7 @@ function Login() {
             <span className="text-neutral-800 text-[2.8vh]   ">
               Vous n’avez pas encore de compte ?{" "}
             </span>
-            <a href="/">
+            <a href="/signup">
               {" "}
               <span className="text-sky-600  text-[2.8vh]  ">
                 &nbsp;S’inscrire

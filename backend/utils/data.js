@@ -93,7 +93,7 @@ const FixedPosteAttributs = [
   {
     index: "4.4",
     postName: "Actifs en leasing amont",
-    category: "Combustibles",
+    category: "AchatsDeBiens",
     Scope: "3",
   },
   {
@@ -105,13 +105,13 @@ const FixedPosteAttributs = [
   {
     index: "5.1",
     postName: "Utilisation des produits vendus ",
-    category: "Combustibles",
+    category: "AchatsDeBiens",
     Scope: "3",
   },
   {
     index: "5.2",
     postName: "Actifs en leasing aval ",
-    category: "Combustibles",
+    category: "AchatsDeBiens",
     Scope: "3",
   },
   {
@@ -123,7 +123,7 @@ const FixedPosteAttributs = [
   {
     index: "5.4",
     postName: "Investissements",
-    category: "Combustibles",
+    category: "AchatsDeServices",
     Scope: "3",
   },
   {

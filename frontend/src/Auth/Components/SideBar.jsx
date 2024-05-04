@@ -1,41 +1,48 @@
-import { Grid, Typography, List, ListItem, ListItemIcon, ListItemText } from '@mui/material';
-import AccueilIcon from './AcceuilIcon';
-import CalculateurIcon from './CalculateurIcon';
-import RapportIcon from './RapportIcon';
-import ObjectifIcon from './ObjectifIcon';
-import LogoutIcon from './LogoutIcon';
-import { useNavigate, useLocation } from 'react-router-dom';
+import {
+  Grid,
+  Typography,
+  List,
+  ListItem,
+  ListItemIcon,
+  ListItemText,
+} from "@mui/material";
+import AccueilIcon from "./AcceuilIcon";
+import CalculateurIcon from "./CalculateurIcon";
+import RapportIcon from "./RapportIcon";
+import ObjectifIcon from "./ObjectifIcon";
+import LogoutIcon from "./LogoutIcon";
+import { useNavigate, useLocation } from "react-router-dom";
 
 const ecometerTextStyle = {
-  fontFamily: 'Inter',
-  fontSize: '25px',
+  fontFamily: "Inter",
+  fontSize: "25px",
   fontWeight: 700,
-  lineHeight: '24px',
-  textAlign: 'center',
-  color: '#fff'
+  lineHeight: "24px",
+  textAlign: "center",
+  color: "#fff",
 };
 
 const accessTextStyle = {
-  fontFamily: 'Eudoxus , sans-serif',
-  fontSize: '20px',
+  fontFamily: "Eudoxus , sans-serif",
+  fontSize: "20px",
   fontWeight: 500,
-  lineHeight: '30px',
-  textAlign: 'left',
-  color: '#fff'
+  lineHeight: "30px",
+  textAlign: "left",
+  color: "#fff",
 };
 
 const listItemTextStyle = {
-  fontFamily: 'Inter',
-  fontSize: '16px',
+  fontFamily: "Inter",
+  fontSize: "16px",
   fontWeight: 400,
-  lineHeight: '24px',
-  textAlign: 'left',
-  color: '#fff'
+  lineHeight: "24px",
+  textAlign: "left",
+  color: "#fff",
 };
 
 const listItemStyle = {
-  paddingLeft: '32px',
-  marginBottom: '10px',
+  paddingLeft: "32px",
+  marginBottom: "10px",
 };
 
 const SideBar = () => {
@@ -45,10 +52,10 @@ const SideBar = () => {
   const handleListItemClick = (path) => {
     navigate(path);
   };
-const handleLogout = () => {
-    localStorage.removeItem("token");
-    window.location.reload();
-};
+  const handleLogout = () => {
+    localStorage.clear();
+    navigate("/login");
+  };
   return (
     <Grid container style={{ height: "100%", backgroundColor: "#003049" }}>
       <Grid item xs={12}>

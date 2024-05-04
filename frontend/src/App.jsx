@@ -1,4 +1,4 @@
-import { Routes, Route, Navigate } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 const queryClient = new QueryClient({
@@ -18,19 +18,23 @@ import Rapport from "./Auth/Pages/Rapport.jsx";
 import "./App.css";
 
 function App() {
-  const  user = localStorage.getItem("token"); // Gérer l'état de connexion ici
+  const isConnected = localStorage.getItem('isConnected'); // Gérer l'état de connexion ici
   return (
+    <BrowserRouter>
       <QueryClientProvider client={queryClient}>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
-          {user && <Route path="/acceuil" exact element={<Acceuil />} />}
-          {user && <Route path="/calculateur" element={<Calculateur />} />}
-          {user && <Route path="/rapport" element={<Rapport />} />}
-          <Route path="*" element={<Navigate to="/" />} />
+          <Route
+            path="/acceuil"
+            element={isConnected ? <Acceuil /> : <Navigate to="/login" />}
+          />
+          <Route path="/calculateur" element={<Calculateur />} />
+          <Route path="/rapport" element={<Rapport />} />
         </Routes>
       </QueryClientProvider>
+    </BrowserRouter>
   );
 }
 

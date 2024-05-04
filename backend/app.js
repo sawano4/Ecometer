@@ -25,4 +25,3 @@ app.use("/api/bilans/", bilanRoutes);
 app.listen(serverConfig.port, () => {
   console.log(`Server is running on port ${serverConfig.port}`);
 });
-
