@@ -16,7 +16,7 @@ function Ajouter() {
                 <Input type="password" label="Confirmer le mot de passe" placeholder="Doit contenir au moins 8 caractères"/>
             </div>
             <div className='w-full flex items-center flex-col gap-5 '>
-                <img src="../../../public/insertPicture.svg" alt="Photo" className='w-[152px] h-[152px] '/>
+                <img src="../../../public/insertPicture.svg" alt="Photo" className='w-[152px] h-[152px] cursor-pointer'/>
                 <div className='flex justify-between gap-3'>
                     <Input type="number" label="Nombre d'employés"/>
                     <Input type="number" label="Nombre de locaux"/>
@@ -26,8 +26,8 @@ function Ajouter() {
             </div>
         </div>
         <div className='flex gap-6 mx-4 mt-20'>
-            <Button text="Annuler"/>
-            <Button text="Valider"/>
+            <Button text="Annuler" background="#ffffff" color="#003049"/>
+            <Button text="Valider" background="#003049" color="#ffffff"/>
         </div>
     </div>
   )

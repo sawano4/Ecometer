@@ -1,8 +1,9 @@
 import React from 'react'
 
 function Button(props) {
+  console.log(props.color);
   return (
-    <div className='w-full rounded-xl border border-solid border-[#0F172A] border-[2px] px-[25px] py-[10px] text-center'>
+    <div className={`w-full rounded-xl border border-solid border-[${props.color}] border-[2px] px-[25px] py-[10px] text-center cursor-pointer bg-[${props.background}] text-[${props.color}]`}>
         <p>{props.text}</p>
     </div>
   )
