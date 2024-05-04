@@ -176,6 +176,7 @@ function ProduitsAchetes() {
         userSelectedCategories: [event.target.value],
       });
       setnextLevelCategories(res.nextCategories);
+      setFe(res.matchingDocuments);
       setData([category1]);
     } catch (error) {
       if (

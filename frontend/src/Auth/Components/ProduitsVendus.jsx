@@ -194,6 +194,7 @@ function ProduitsVendus() {
         userSelectedCategories: [category1, event.target.value],
       });
       setnextLevelCategories2(res.nextCategories);
+      setFe(res.matchingDocuments);
       setData([category1, category2]);
     } catch (error) {
       if (

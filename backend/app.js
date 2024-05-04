@@ -6,6 +6,8 @@ const clientRouter = require("./routes/client");
 const categoryRoutes = require("./routes/categoryRoutes");
 const bilanRoutes = require("./routes/bilanRoutes");
 const adminRoutes = require("./routes/admin");
+const objectifRoutes = require("./routes/objectifs");
+
 const app = express();
 const cors = require("cors");
 //connect to db
@@ -20,6 +22,7 @@ app.use("/api/categories/", categoryRoutes);
 app.use("/api/Emission/", categoryRoutes);
 app.use("/api/clients/", clientRouter);
 app.use("/api/bilans/", bilanRoutes);
+app.use("/api/objectifs/", objectifRoutes);
 
 // Start the server
 app.listen(serverConfig.port, () => {

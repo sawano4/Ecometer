@@ -183,6 +183,7 @@ function Energie() {
         userSelectedCategories: [category1, event.target.value],
       });
       setnextLevelCategories2(res.nextCategories);
+      setFe(res.matchingDocuments);
     } catch (error) {
       if (
         error.response &&

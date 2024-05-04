@@ -8,7 +8,7 @@ const {
   getClientProfile,
   updateClientProfile,
   deleteClient,
-  
+  updateClientPassword,
 } = require("../controllers/client");
 
 const router = express.Router();
@@ -18,8 +18,8 @@ const router = express.Router();
 router.post("/register", registerClient);
 router.post("/login", loginClient);
 router.post("/verify-email", verifyEmail);
-router.post("/forgot-password",forgotPassword);
-router.post("/reset-password",resetPassword);
+router.post("/forgot-password", forgotPassword);
+router.post("/reset-password", resetPassword);
 
 // GET Routes
 
@@ -28,6 +28,7 @@ router.get("/:clientId", getClientProfile);
 // UPDATE Routes
 
 router.put("/update-profile/", updateClientProfile);
+router.put("/update-password/", updateClientPassword);
 
 // DELETE Routes
 

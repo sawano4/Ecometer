@@ -23,8 +23,12 @@ const emissionPostSchema = new mongoose.Schema({
   category: String,
   postName: String,
   scope: String,
-  uncertainty: { type: Number , default: 0},
+  uncertainty: { type: Number, default: 0 },
   emissions: { type: Number, default: 0 }, // Default value is 0 for emissions
+  // other gasses (CH4, N2O, CO2) default is "NC/0" (non calculé)
+  CO2: { type: Number, default: 0 },
+  CH4: { type: Number, default: 0 },
+  N2O: { type: Number, default: 0 },
   categoryElements: {
     type: [usedElements],
     default: [], // default value is an empty array , the model depends on the category
