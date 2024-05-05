@@ -7,6 +7,8 @@ const categoryRoutes = require("./routes/categoryRoutes");
 const bilanRoutes = require("./routes/bilanRoutes");
 const adminRoutes = require("./routes/admin");
 const objectifRoutes = require("./routes/objectifs");
+const logging = require("./middleware/logging");
+const errorHandler = require("./middleware/errorHandler");
 
 const app = express();
 const cors = require("cors");
@@ -16,6 +18,8 @@ connectToDb();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors());
+app.use(logging);
+app.use(errorHandler);
 // Routes and other middleware...
 app.use("/api/admin/", adminRoutes);
 app.use("/api/categories/", categoryRoutes);

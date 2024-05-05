@@ -3,6 +3,7 @@ const VerificationToken = require("../Models/verificationToken");
 const ResetToken = require("../Models/resetToken");
 const crypto = require("crypto");
 const { createRandomBytes } = require("../utils/helper");
+const { jwt } = require('jsonwebtoken');
 const {
   generateOTP,
   mailTransport,
@@ -11,7 +12,6 @@ const {
   passwordResetTemplate,
   passwordResetSuccessTemplate,
 } = require("../utils/mail");
-const jwt = require("jsonwebtoken");
 const dotenv = require("dotenv");
 dotenv.config();
 const { isValidObjectId } = require("mongoose");
@@ -81,6 +81,8 @@ const registerClient = async (req, res) => {
 // login the client
 const loginClient = async (req, res) => {
   const { email, password } = req.body;
+  try{
+
   if (!email.trim() || !password.trim()) {
     return res.status(400).json({ msg: "Email and password are required" });
   }
@@ -92,26 +94,24 @@ const loginClient = async (req, res) => {
 
   const isMatched = await client.comparePassword(password);
   if (!isMatched) {
-    return res.status(400).json({ msg: "Invalid password" });
+    return res.status(401).json({ msg: "Invalid password" });
   }
 
-  jwt.sign(
-    { clientId: client._id },
-    process.env.JWT_SECRET,
-    { expiresIn: "1d" },
-    (err, token) => {
-      if (err) {
-        console.error("Error generating token:", err);
-        return res.status(500).json({ msg: "Server error" });
-      }
-      res.status(200).json({ msg: "Login successful", token });
-    }
-  );
+  res.status(200).json({
+    msg: "Login successful",
+  });
+
+}catch(error){
+  console.error("Error:", error);
+  return res.status(500).json({ error: "Internal error" });
+}
 };
+
 
 const verifyEmail = async (req, res) => {
   const { clientId, otp } = req.body;
-
+  
+  //otp should be a string
   if (!clientId || !otp.trim()) {
     return res.status(400).json({ msg: "Client ID and OTP are missing" });
   }
