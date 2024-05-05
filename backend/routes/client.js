@@ -10,6 +10,7 @@ const {
   deleteClient,
   updateClientPassword,
 } = require("../controllers/client");
+const { verifyClientToken } = require("../middleware/auth");
 
 const router = express.Router();
 
@@ -23,15 +24,15 @@ router.post("/reset-password", resetPassword);
 
 // GET Routes
 
-router.get("/:clientId", getClientProfile);
+router.get("/:clientId",verifyClientToken, getClientProfile);
 
 // UPDATE Routes
 
-router.put("/update-profile/", updateClientProfile);
-router.put("/update-password/", updateClientPassword);
+router.put("/update-profile/",verifyClientToken, updateClientProfile);
+router.put("/update-password/",verifyClientToken, updateClientPassword);
 
 // DELETE Routes
 
-router.delete("/delete/:clientId", deleteClient);
+router.delete("/delete/:clientId",verifyClientToken, deleteClient);
 
 module.exports = router;

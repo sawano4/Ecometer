@@ -3,7 +3,7 @@ const VerificationToken = require("../Models/verificationToken");
 const ResetToken = require("../Models/resetToken");
 const crypto = require("crypto");
 const { createRandomBytes } = require("../utils/helper");
-const { jwt } = require('jsonwebtoken');
+const jwt = require('jsonwebtoken');
 const {
   generateOTP,
   mailTransport,
@@ -94,11 +94,16 @@ const loginClient = async (req, res) => {
 
   const isMatched = await client.comparePassword(password);
   if (!isMatched) {
-    return res.status(401).json({ msg: "Invalid password" });
+    return res.status(401).json({ msg: "Invalid Credentials" });
   }
 
+  const token = jwt.sign({ clientId: client._id, username: client.name }, process.env.JWT_SECRET, {
+    expiresIn: "1h",
+  });
+  
   res.status(200).json({
     msg: "Login successful",
+    token: token, 
   });
 
 }catch(error){
@@ -106,7 +111,6 @@ const loginClient = async (req, res) => {
   return res.status(500).json({ error: "Internal error" });
 }
 };
-
 
 const verifyEmail = async (req, res) => {
   const { clientId, otp } = req.body;
@@ -246,9 +250,8 @@ const resetPassword = async (req, res) => {
 };
 
 // get a clients profile
-
 const getClientProfile = async (req, res) => {
-  const { clientId } = req.params;
+  const clientId = req.clientId;
 
   if (!isValidObjectId(clientId)) {
     return res.status(400).json({ msg: "Invalid client ID" });
@@ -267,10 +270,8 @@ const getClientProfile = async (req, res) => {
 };
 
 // update a clients profile
-
 const updateClientProfile = async (req, res) => {
   const {
-    clientId,
     name,
     email,
     numberOfEmployees,
@@ -279,6 +280,7 @@ const updateClientProfile = async (req, res) => {
     numberOfLocations,
     structure,
   } = req.body;
+  const clientId = req.clientId; // Added this line
 
   if (!isValidObjectId(clientId)) {
     return res.status(400).json({ msg: "Invalid client ID" });
@@ -308,7 +310,9 @@ const updateClientProfile = async (req, res) => {
 
 // update client password
 const updateClientPassword = async (req, res) => {
-  const { clientId, oldPassword, newPassword } = req.body;
+  const { oldPassword, newPassword } = req.body;
+  const clientId = req.clientId; // Added this line
+
   if (!isValidObjectId(clientId)) {
     return res.status(400).json({ msg: "Invalid client ID" });
   }
@@ -333,7 +337,7 @@ const updateClientPassword = async (req, res) => {
 // delete a client
 
 const deleteClient = async (req, res) => {
-  const { clientId } = req.params;
+  const clientId = req.clientId; // Added this line
 
   if (!isValidObjectId(clientId)) {
     return res.status(400).json({ msg: "Invalid client ID" });

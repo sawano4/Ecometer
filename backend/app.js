@@ -9,6 +9,7 @@ const adminRoutes = require("./routes/admin");
 const objectifRoutes = require("./routes/objectifs");
 const logging = require("./middleware/logging");
 const errorHandler = require("./middleware/errorHandler");
+const { verifyClientToken } = require("./middleware/auth");
 
 const app = express();
 const cors = require("cors");
@@ -22,11 +23,11 @@ app.use(logging);
 app.use(errorHandler);
 // Routes and other middleware...
 app.use("/api/admin/", adminRoutes);
-app.use("/api/categories/", categoryRoutes);
 app.use("/api/Emission/", categoryRoutes);
-app.use("/api/clients/", clientRouter);
-app.use("/api/bilans/", bilanRoutes);
-app.use("/api/objectifs/", objectifRoutes);
+app.use("/api/categories/",verifyClientToken, categoryRoutes);
+app.use("/api/clients/",clientRouter);
+app.use("/api/bilans/",verifyClientToken, bilanRoutes);
+app.use("/api/objectifs/",verifyClientToken, objectifRoutes);
 
 // Start the server
 app.listen(serverConfig.port, () => {
