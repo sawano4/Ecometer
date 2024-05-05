@@ -1,36 +1,23 @@
-
+import React from 'react';
 import PropTypes from 'prop-types';
-import Battery from '../icons/Battery.jsx';
-import Car from '../icons/Car.jsx';
-import Cart from '../icons/Cart.jsx';
-import Bag from '../icons/Bag.jsx';
-import Fire from '../icons/Fire.jsx';
-import Other from '../icons/Other.jsx';
-import BatteryOff from '../icons/BatteryOff.jsx';
-import CarOff from '../icons/CarOff.jsx';
-import BagOff from '../icons/BagOff.jsx';
-import CartOff from '../icons/CartOff.jsx';
-import OtherOff from '../icons/OtherOff.jsx';
+import { WhatshotOutlined, BatteryFullOutlined, DirectionsCarOutlined, ShoppingCartOutlined, DeleteOutlineOutlined } from '@mui/icons-material';
 
 function ColorlibStepIcon(props) {
     const { active, completed, className } = props;
 
-    const iconColor = active || completed ? true : false;
+    const iconColor = active || completed ? '#C92C39' : '#000000';
 
     const icons = {
-        1: <Fire />,
-        2:  iconColor ? <Battery /> : <BatteryOff />,
-        3:  iconColor ? <Car /> : <CarOff />,
-        4:  iconColor ? <Bag /> : <BagOff />,
-        5: iconColor ? <Cart /> : <CartOff />,
-        6:  iconColor ? <Other/> : <OtherOff />,
-        
+        1: <WhatshotOutlined style={{ color: iconColor }} />,
+        2: <BatteryFullOutlined style={{ color: iconColor }} />,
+        3: <DirectionsCarOutlined style={{ color: iconColor }} />,
+        4: <ShoppingCartOutlined style={{ color: iconColor }} />,
+        5: <DeleteOutlineOutlined style={{ color: iconColor }} />,
     };
 
     return (
         <div className={className}>
             {icons[String(props.icon)]}
-            
         </div>
     );
 }
