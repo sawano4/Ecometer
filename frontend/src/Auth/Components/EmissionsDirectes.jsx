@@ -8,9 +8,12 @@ import {
   Paper,
   Dialog,
   DialogContent,
-  Checkbox,
-  FormControlLabel,
   TextField,
+  FormControl,
+  FormLabel,
+  RadioGroup,
+  Radio,
+  FormControlLabel,
 } from "@mui/material";
 import CroixIcon from "./CroixIcon";
 const Styles = {
@@ -177,9 +180,9 @@ function EmissionsDirectes() {
   const handleClose = () => {
     setOpenDialog(false);
   };
-  const handleCheckboxChange = (optionLabel) => {
+  /* const handleCheckboxChange = (optionLabel) => {
     setSelectedOptions((prevOptions) => [...prevOptions, optionLabel]);
-  };
+  };*/
   const handleValider = () => {
     const updatedEmissionsList = [...emissionsList];
     updatedEmissionsList[selectedEmissionIndex].selectedOptions.push(
@@ -188,6 +191,7 @@ function EmissionsDirectes() {
     setEmissionsList(updatedEmissionsList);
     setSelectedOptions([]);
     setOpenDialog(false);
+    setFe();
   };
   const SupprimerSelectedOption = (optionToRemove) => {
     console.log("Option à supprimer :", optionToRemove);
@@ -305,6 +309,7 @@ function EmissionsDirectes() {
                           padding: "20px",
                           borderColor: "#6F6C8F",
                         }}
+                        key={optionIndex}
                       >
                         <Grid item md={12}>
                           <Grid container>
@@ -319,14 +324,13 @@ function EmissionsDirectes() {
                                 alignItems: "center",
                               }}
                             >
-                              <Typography
-                                key={optionIndex}
-                                style={Styles.contenuEtape}
-                              >
-                                {option}
+                              <Typography style={Styles.contenuEtape}>
+                                {option.item}
                               </Typography>
                               <CroixIcon
-                                onClick={() => SupprimerSelectedOption(option)}
+                                onClick={() =>
+                                  SupprimerSelectedOption(option.item)
+                                }
                               />
                             </Grid>
                             <Grid
@@ -341,28 +345,46 @@ function EmissionsDirectes() {
                                 Quantité :
                               </Typography>
                             </Grid>
-
                             <Grid item xs={12} md={10.4}>
                               <TextField
                                 variant="outlined"
                                 fullWidth
+                                value={option.quantity}
                                 sx={{
                                   borderRadius: "15px",
                                   mt: 1,
                                   mb: 2,
                                   "& .MuiOutlinedInput-notchedOutline": {
-                                    borderColor: "#969696 !important", // Couleur de la bordure
+                                    borderColor: "#969696 !important",
                                     borderRadius: "15px",
                                   },
                                   "&:hover .MuiOutlinedInput-notchedOutline": {
-                                    borderColor: "#969696 !important", // Couleur de la bordure en survol
+                                    borderColor: "#969696 !important",
                                     borderRadius: "15px",
                                   },
                                   "& .Mui-focused .MuiOutlinedInput-notchedOutline":
                                     {
-                                      borderColor: "#969696 !important", // Couleur de la bordure en focus
+                                      borderColor: "#969696 !important",
                                       borderRadius: "15px",
                                     },
+                                }}
+                                onChange={(e) => {
+                                  const updatedEmissionsList = [
+                                    ...emissionsList,
+                                  ];
+                                  updatedEmissionsList[
+                                    selectedEmissionIndex
+                                  ].selectedOptions[optionIndex].quantity =
+                                    e.target.value;
+                                  console.log(
+                                    updatedEmissionsList[selectedEmissionIndex]
+                                      .selectedOptions[optionIndex].item
+                                  );
+                                  console.log(
+                                    updatedEmissionsList[selectedEmissionIndex]
+                                      .selectedOptions[optionIndex].quantity
+                                  );
+                                  setEmissionsList(updatedEmissionsList);
                                 }}
                               />
                             </Grid>
@@ -456,48 +478,55 @@ function EmissionsDirectes() {
                 </Typography>
               </Button>
             </Grid>
-            <Grid item xs={12} md={12} style={{ overflow: "auto" }}>
+            <Grid
+              item
+              xs={12}
+              md={12}
+              style={{ overflow: "auto", backgroundColor: "#F2F4F8" }}
+            >
               <Paper
+                elevation={0}
                 style={{
-                  height: "152px",
+                  height: "150px",
                   borderRadius: "15px",
                   padding: "20px",
                   backgroundColor: "#F2F4F8",
                 }}
               >
-                <FormControlLabel
-                  control={
-                    <Checkbox
-                      onChange={(event) =>
-                        handleCheckboxChange(event.target.value)
-                      }
-                    />
-                  }
-                  label="Option 1"
-                  value="Option 1"
-                />
-                <FormControlLabel
-                  control={
-                    <Checkbox
-                      onChange={(event) =>
-                        handleCheckboxChange(event.target.value)
-                      }
-                    />
-                  }
-                  label="Option 2"
-                  value="Option 2"
-                />
-                <FormControlLabel
-                  control={
-                    <Checkbox
-                      onChange={(event) =>
-                        handleCheckboxChange(event.target.value)
-                      }
-                    />
-                  }
-                  label="Option 3"
-                  value="Option 3"
-                />
+                <FormControl>
+                  <FormLabel>Emissions Fe</FormLabel>
+                  <RadioGroup
+                    aria-labelledby="demo-radio-buttons-group-label"
+                    defaultValue={""} // Assuming selectedOption is the state for the selected radio button
+                    name="radio-buttons-group"
+                    onChange={(e) => {
+                      console.log(e.target.value); // Access the selected value using e.target.value
+                    }}
+                  >
+                    {fe &&
+                      fe
+                        .filter(
+                          (item, index, self) =>
+                            index ===
+                            self.findIndex(
+                              (t) => t.identifier === item.identifier
+                            )
+                        )
+                        .map((item, index) => {
+                          if (item.elementType === "Elément") {
+                            return (
+                              <FormControlLabel
+                                key={index}
+                                value={item._id} // Adjust this value as needed
+                                control={<Radio />} // Using Radio component here
+                                label={item.name + item.description} // Adjust this label as needed
+                              />
+                            );
+                          }
+                          return null; // Skip rendering if condition doesn't match
+                        })}
+                  </RadioGroup>
+                </FormControl>
               </Paper>
             </Grid>
             <Grid item xs={12} md={12}>
