@@ -187,8 +187,8 @@ function Calculateur() {
         { label: 'Energie', icon: 2, backgroundColor: '#E0E5EC' },
         { label: 'Déplacement', icon: 3, backgroundColor: '#D1D9E4' },
         { label: 'Produits Achetés', icon: 4, backgroundColor: '#C1CDE0' },
-        { label: 'Produits Vendus', icon: 4, backgroundColor: '#C1CDE0' },
-        { label: 'Autres émissions indirectes', icon: 5, backgroundColor: '#B2C8DC' },
+        { label: 'Produits Vendus', icon: 5, backgroundColor: '#C1CDE0' },
+        { label: 'Autres émissions indirectes', icon: 6, backgroundColor: '#B2C8DC' },
     ];
 
 
