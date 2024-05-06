@@ -7,12 +7,12 @@ function Dropdown(props) {
   const [open, setOpen] = useState(false);
   const handleExpand = () => {
     setRotation((rotation + 180 ) % 360);
-    console.log(rotation)
     open ? setOpen(false) : setOpen(true);
   }
 
   const handleClick = (e) => {
     setOpen(false);
+    setRotation((rotation + 180 ) % 360);
     setChoix(e.target.innerHTML);
   }
   return (

@@ -13,13 +13,13 @@ function Profil() {
         <h1 className='text-2xl font-bold mb-10'>Profil</h1>
         <div className="flex w-full justify-between gap-10">
             <div className="bg-[#F2F4F8] rounded-xl p-5 w-full flex flex-col justify-between">
-                <p className="font-bold">Nom de l'organisation: </p>
+                <p className="font-bold">Nom de l'organisation:</p>
                 <span>{nom}</span>
-                <p className="font-bold">Structure de l'organisation: </p>
+                <p className="font-bold">Structure de l'organisation:</p>
                 <span>{structure}</span>
-                <p className="font-bold">Adresse: </p>
+                <p className="font-bold">Adresse:</p>
                 <span>{adresse}</span>
-                <p className="font-bold">Industrie</p>
+                <p className="font-bold">Industrie:</p>
                 <span>{industrie}</span>
             </div>
             <div className='flex flex-col w-full items-center gap-5'>
@@ -35,8 +35,8 @@ function Profil() {
             </div>
         </div>
         <div className='flex gap-6 mx-4 mt-28'>
-            <Button text="Annuler" background="#ffffff" color="#D62828"/>
-            <Button text="Valider" background="#003049" color="#ffffff"/>
+            <Button text="Annuler" background="white" color="secondaryRed"/>
+            <Button text="Valider" background="primaryBlue" color="white"/>
         </div>
     </div>
   )
