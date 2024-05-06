@@ -13,7 +13,7 @@ function Dropdown(props) {
   const handleClick = (e) => {
     setOpen(false);
     setRotation((rotation + 180 ) % 360);
-    setChoix(e.target.innerHTML);
+    setChoix(e.target.innerText);
   }
   return (
     <div className='relative w-full'>
@@ -26,10 +26,10 @@ function Dropdown(props) {
     </div>
     {open ?
       <div className='absolute bg-[#ffffff] z-10 w-full rounded-lg cursor-pointer'>
-        <div className="w-full text-center py-1 border border-solid hover:bg-blue-600 hover:text-white" onClick={(e) => handleClick(e)}>
+        <div className="w-full text-center py-1 border border-solid hover:bg-blue-600 hover:text-white" onClick={(e) => handleExpand(e)}>
           <p>Exemple 1</p>
         </div>
-        <div className="w-full text-center py-1 border border-solid hover:bg-blue-600 hover:text-white" onClick={(e) => handleClick(e)}>
+        <div className="w-full text-center py-1 border border-solid hover:bg-blue-600 hover:text-white" onClick={(e) => handleExpand(e)}>
           <p>Exemple 2</p>
         </div>
       </div>
