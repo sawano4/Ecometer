@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import  { useState } from 'react';
 import { Grid, Paper, Typography } from '@mui/material';
 import AppBarComponent from '../Components/AppBarComponent';
 import SideBar from '../Components/SideBar';
@@ -42,7 +42,7 @@ const Rapport = () => {
                     <Grid container spacing={2}>
                       {/* Titre Rapport annuel d'émissions 2024 */}
                       <Grid item xs={12} md={6}>
-                        <Typography variant="h4" sx={{ textAlign: { md: 'start', xs: 'center' }, marginBottom: '20px' }}>Rapport annuel d'émissions 2024</Typography>
+                        <Typography variant="h4" sx={{ textAlign: { md: 'start', xs: 'center' }, marginBottom: '20px' }}>Rapport annuel d&apos;émissions 2024</Typography>
                       </Grid>
 
                       {/* Bouton Voir plus de détails */}

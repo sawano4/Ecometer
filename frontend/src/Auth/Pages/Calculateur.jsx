@@ -1,6 +1,5 @@
-import React, { useState } from 'react';
-import { Grid, Typography, Paper, Button, Box, Stepper, Step, StepLabel, Select } from '@mui/material';
-import { WhatshotOutlined, BatteryFullOutlined, DirectionsCarOutlined, ShoppingCartOutlined, DeleteOutlineOutlined } from '@mui/icons-material';
+import  { useState } from 'react';
+import { Grid, Typography, Paper, Button, Box, Stepper, Step, StepLabel } from '@mui/material';
 import AppBarComponent from '.././Components/AppBarComponent';
 import EmissionsDirectes from '../Components/EmissionsDirectes';
 import Deplacement from '../Components/Deplacement';
