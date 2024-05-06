@@ -71,7 +71,7 @@ function Signup() {
       const url = "http://localhost:3000/api/clients/register";
       const { data: res } = await axios.post(url, data);
       navigate("/login");
-      console.log(res.message);
+      console.log(res);
     } catch (error) {
       if (
         error.response &&

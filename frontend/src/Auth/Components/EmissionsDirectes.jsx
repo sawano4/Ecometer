@@ -9,6 +9,11 @@ import {
   Dialog,
   DialogContent,
   TextField,
+  FormControl,
+  FormLabel,
+  RadioGroup,
+  Radio,
+  FormControlLabel,
 } from "@mui/material";
 import CroixIcon from "./CroixIcon";
 const Styles = {
@@ -480,42 +485,48 @@ function EmissionsDirectes() {
               style={{ overflow: "auto", backgroundColor: "#F2F4F8" }}
             >
               <Paper
+                elevation={0}
                 style={{
-                  height: "auto",
+                  height: "150px",
                   borderRadius: "15px",
                   padding: "20px",
                   backgroundColor: "#F2F4F8",
                 }}
               >
-                {fe &&
-                  fe
-                    .filter(
-                      (item, index, self) =>
-                        index ===
-                        self.findIndex((t) => t.identifier === item.identifier)
-                    )
-                    .map((item, index) => {
-                      if (
-                        item.elementType === "Elément" ||
-                        item.elementType === "Poste"
-                      ) {
-                        return (
-                          <div key={index}>
-                            <label>
-                              <input
-                                type="checkbox"
-                                value={item}
-                                // checked={selectedOption === item}
-                                // onChange={() => setSelectedOption(item)}
+                <FormControl>
+                  <FormLabel>Emissions Fe</FormLabel>
+                  <RadioGroup
+                    aria-labelledby="demo-radio-buttons-group-label"
+                    defaultValue={""} // Assuming selectedOption is the state for the selected radio button
+                    name="radio-buttons-group"
+                    onChange={(e) => {
+                      console.log(e.target.value); // Access the selected value using e.target.value
+                    }}
+                  >
+                    {fe &&
+                      fe
+                        .filter(
+                          (item, index, self) =>
+                            index ===
+                            self.findIndex(
+                              (t) => t.identifier === item.identifier
+                            )
+                        )
+                        .map((item, index) => {
+                          if (item.elementType === "Elément") {
+                            return (
+                              <FormControlLabel
+                                key={index}
+                                value={item._id} // Adjust this value as needed
+                                control={<Radio />} // Using Radio component here
+                                label={item.name + item.description} // Adjust this label as needed
                               />
-                              {item.name + item.description}
-                              {/* Display whatever property you want */}
-                            </label>
-                          </div>
-                        );
-                      }
-                      return null; // Skip rendering if condition doesn't match
-                    })}
+                            );
+                          }
+                          return null; // Skip rendering if condition doesn't match
+                        })}
+                  </RadioGroup>
+                </FormControl>
               </Paper>
             </Grid>
             <Grid item xs={12} md={12}>
