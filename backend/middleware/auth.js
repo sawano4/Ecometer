@@ -12,14 +12,18 @@ const verifyClientToken = (req, res, next) => {
 
         const decodedData = jwt.verify(token, process.env.JWT_SECRET);
         req.clientId = decodedData.clientId;
+
         next();
 
     } catch (error) {
         if (error.name === 'TokenExpiredError') {
             return res.status(401).json({ error: 'Expired Token' });
+        } else if (error.name === 'JsonWebTokenError') {
+            return res.status(401).json({ error: 'Invalid Token' });
+        } else {
+            return res.status(500).json({ error: 'Internal Server Error' });
         }
-        return res.status(401).json({ error: 'Invalid Token' });
     }
 };
 
-module.exports = { verifyClientToken } ;
+module.exports = { verifyClientToken };
