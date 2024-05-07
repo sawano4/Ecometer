@@ -1,5 +1,4 @@
-import React from 'react';
-import { Paper, Typography, Grid } from '@mui/material';
+import { Paper, Grid } from '@mui/material';
 import TotalCard from './TotalCard';
 import ChartCard from './ChartCard';
 import ScopesCard from './ScopesCard';

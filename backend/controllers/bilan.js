@@ -47,6 +47,8 @@ const createBilan = async (req, res) => {
 // update and calculate bilan
 const updateAndCalculateBilan = async (req, res) => {
   const { clientId, year, selectedCategoryElements } = req.body;
+
+  console.log("req.body = ", req.body);
   if (!isValidObjectId(clientId)) {
     return res.status(400).json({ msg: "Invalid client ID" });
   }

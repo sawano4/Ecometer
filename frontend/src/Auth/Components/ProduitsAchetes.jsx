@@ -13,8 +13,9 @@ import {
   RadioGroup,
   FormControlLabel,
   Radio,
+  TextField,
 } from "@mui/material";
-
+import CroixIcon from "./CroixIcon";
 const Styles = {
   contenuEtape: {
     fontSize: "18px",
@@ -130,41 +131,49 @@ const Styles = {
   },
 };
 
-const produitsAchetesList = [
-  {
-    label: "Achat de biens",
-    dialogOptions: [{ label: "Achat de biens", value: "Achats de biens" }],
-  },
-  {
-    label: "Immobilisation de biens",
-    dialogOptions: [{ label: "Achat de biens", value: "Achats de biens" }],
-  },
-  {
-    label: "Gestion des déchets",
-    dialogOptions: [
-      { label: "Traitement des déchets", value: "Traitement des déchets" },
-    ],
-  },
-  {
-    label: "Actifs en leasing amont",
-    dialogOptions: [{ label: "Achats de biens", value: "Achats de biens" }],
-  },
-  {
-    label: "Achat de services",
-    dialogOptions: [{ label: "Achat de service", value: "Achats de services" }],
-  },
-];
-
 function ProduitsAchetes() {
+  const [produitsAchetesList, setproduitsAchetesList] = useState([
+    {
+      label: "Achat de biens",
+      ind: 12,
+      dialogOptions: [{ label: "Achat de biens", value: "Achats de biens" }],
+      selectedOptions: [],
+    },
+    {
+      label: "Immobilisation de biens",
+      ind: 13,
+      dialogOptions: [{ label: "Achat de biens", value: "Achats de biens" }],
+      selectedOptions: [],
+    },
+    {
+      label: "Gestion des déchets",
+      ind: 14,
+      dialogOptions: [
+        {
+          label: "Traitement des déchets",
+          value: "Traitement des déchets",
+        },
+      ],
+      selectedOptions: [],
+    },
+    {
+      label: "Actifs en leasing amont",
+      ind: 15,
+      dialogOptions: [{ label: "Achats de biens", value: "Achats de biens" }],
+      selectedOptions: [],
+    },
+    {
+      label: "Achat de services",
+      ind: 16,
+      dialogOptions: [
+        { label: "Achat de service", value: "Achats de services" },
+      ],
+      selectedOptions: [],
+    },
+  ]);
   const [selectedEmissionIndex, setSelectedEmissionIndex] = useState(null);
+  const [selectedOptions, setSelectedOptions] = useState([]);
   const [openDialog, setOpenDialog] = useState(false);
-  const handleClickOpen = (index) => {
-    setSelectedEmissionIndex(index);
-    setOpenDialog(true);
-  };
-  const handleClose = () => {
-    setOpenDialog(false);
-  };
   const [err, setError] = useState(null);
   const [data, setData] = useState("");
   const [category1, setCategory1] = useState("");
@@ -236,6 +245,52 @@ function ProduitsAchetes() {
       console.log(err);
     }
   };
+  const handleClickOpen = (index, ind) => {
+    setSelectedEmissionIndex(index);
+    setOpenDialog(true);
+    setIndice(ind);
+  };
+  const handleClose = () => {
+    setOpenDialog(false);
+  };
+  const handleCheckboxChange = async (optionLabel, idElment) => {
+    setSelectedOptions((prevOptions) => [...prevOptions, optionLabel]);
+    setIdElment(idElment);
+  };
+  const handleValider = () => {
+    const updatedEmissionsList = [...produitsAchetesList];
+    updatedEmissionsList[selectedEmissionIndex].selectedOptions.push(
+      ...selectedOptions
+    );
+    setproduitsAchetesList(updatedEmissionsList);
+    setSelectedOptions([]);
+    setOpenDialog(false);
+    setFe();
+  };
+  const SupprimerSelectedOption = (optionToRemove) => {
+    const updatedEmissionsList = [...produitsAchetesList];
+    updatedEmissionsList[selectedEmissionIndex].selectedOptions =
+      updatedEmissionsList[selectedEmissionIndex].selectedOptions.filter(
+        (option) => option !== optionToRemove
+      );
+    setproduitsAchetesList(updatedEmissionsList);
+  };
+  const [indice, setIndice] = useState();
+  const [idElment, setIdElment] = useState();
+  const [Quantité, setQuantité] = useState(0);
+  const handleChange = (e) => {
+    setQuantité(Number(e.target.value)); //
+  };
+  const handleSave = async () => {
+    const bilan = JSON.parse(localStorage.getItem("Bilan"));
+    console.log("bilan", bilan);
+    bilan.selectedCategoryElements[indice].push({
+      quantity: Quantité,
+      categoryElement: idElment,
+    }); //{ "quantity": 3, "categoryElement": "66101ed3aad307245468b5e1" }
+    localStorage.setItem("Bilan", JSON.stringify(bilan));
+
+  };
   return (
     <div>
       {produitsAchetesList.map((produit, index) => (
@@ -249,12 +304,105 @@ function ProduitsAchetes() {
             <Grid item xs={12} md={3} sx={{ textAlign: "center" }}>
               <Button
                 style={Styles.ajouterActiviteButton}
-                onClick={() => handleClickOpen(index)}
+                onClick={() => handleClickOpen(index, produit.ind)}
               >
                 <Typography style={Styles.ajouterText}>
                   Ajouter Activité
                 </Typography>
               </Button>
+            </Grid>
+            {/* write code  */}
+            <Grid item xs={12} md={12}>
+              {produit.selectedOptions &&
+                produit.selectedOptions.length > 0 && (
+                  <Grid style={{ marginTop: "15px" }}>
+                    {produit.selectedOptions.map((option, optionIndex) => (
+                      <Grid
+                        key={optionIndex}
+                        container
+                        sx={{
+                          border: "1px solid black",
+                          borderRadius: "15px",
+                          marginBottom: "15px",
+                          padding: "20px",
+                          borderColor: "#6F6C8F",
+                        }}
+                      >
+                        <Grid item md={12}>
+                          <Grid container>
+                            <Grid
+                              item
+                              xs={12}
+                              md={12}
+                              sx={{
+                                marginBottom: "15px",
+                                display: "flex",
+                                justifyContent: "space-between",
+                                alignItems: "center",
+                              }}
+                            >
+                              <Typography
+                                key={optionIndex}
+                                style={Styles.contenuEtape}
+                              >
+                                {option}
+                              </Typography>
+                              <CroixIcon
+                                onClick={() => SupprimerSelectedOption(option)}
+                              />
+                            </Grid>
+                            <Grid
+                              item
+                              md={1.6}
+                              xs={12}
+                              container
+                              alignItems="center"
+                              style={{ marginTop: "-8px" }}
+                            >
+                              <Typography style={Styles.contenuEtape}>
+                                Quantité :
+                              </Typography>
+                            </Grid>
+
+                            <Grid item xs={12} md={10.4}>
+                              <TextField
+                                type="number"
+                                variant="outlined"
+                                fullWidth
+                                sx={{
+                                  borderRadius: "15px",
+                                  mt: 1,
+                                  mb: 2,
+                                  "& .MuiOutlinedInput-notchedOutline": {
+                                    borderColor: "#969696 !important", // Couleur de la bordure
+                                    borderRadius: "15px",
+                                  },
+                                  "&:hover .MuiOutlinedInput-notchedOutline": {
+                                    borderColor: "#969696 !important", // Couleur de la bordure en survol
+                                    borderRadius: "15px",
+                                  },
+                                  "& .Mui-focused .MuiOutlinedInput-notchedOutline":
+                                    {
+                                      borderColor: "#969696 !important", // Couleur de la bordure en focus
+                                      borderRadius: "15px",
+                                    },
+                                }}
+                                onChange={handleChange}
+                              />
+                              <Button
+                                variant="contained"
+                                href="#contained-buttons"
+                                onClick={handleSave}
+                              >
+                                save
+                              </Button>
+                            </Grid>
+                          </Grid>
+                        </Grid>
+                      </Grid>
+                    ))}
+                  </Grid>
+                )}
             </Grid>
           </Grid>
         </Box>
@@ -339,7 +487,12 @@ function ProduitsAchetes() {
                 </Typography>
               </Button>
             </Grid>
-            <Grid item xs={12} md={12} style={{ overflow: "auto" }}>
+            <Grid
+              item
+              xs={12}
+              md={12}
+              style={{ overflow: "auto", backgroundColor: "#F2F4F8" }}
+            >
               <Paper
                 elevation={0}
                 style={{
@@ -355,9 +508,12 @@ function ProduitsAchetes() {
                     aria-labelledby="demo-radio-buttons-group-label"
                     defaultValue={""} // Assuming selectedOption is the state for the selected radio button
                     name="radio-buttons-group"
-                    onChange={(e) => {
-                      console.log(e.target.value); // Access the selected value using e.target.value
-                    }}
+                    onChange={(event) =>
+                      handleCheckboxChange(
+                        event.target.labels[0].innerText,
+                        event.target.value
+                      )
+                    }
                   >
                     {fe &&
                       fe
@@ -369,13 +525,22 @@ function ProduitsAchetes() {
                             )
                         )
                         .map((item, index) => {
-                          if (item.elementType === "Elément") {
+                          if (
+                            item.elementType === "Elément" ||
+                            item.elementType === "Poste"
+                          ) {
                             return (
                               <FormControlLabel
                                 key={index}
                                 value={item._id} // Adjust this value as needed
                                 control={<Radio />} // Using Radio component here
-                                label={item.name + item.description} // Adjust this label as needed
+                                label={
+                                  item.name +
+                                  "," +
+                                  item.description +
+                                  ", " +
+                                  item.unit
+                                } // Adjust this label as needed
                               />
                             );
                           }
@@ -392,6 +557,7 @@ function ProduitsAchetes() {
                     variant="contained"
                     fullWidth
                     style={{ ...Styles.annulerButton }}
+                    onClick={handleClose}
                   >
                     <Typography style={Styles.annulerText}>Annuler</Typography>
                   </Button>
@@ -401,7 +567,7 @@ function ProduitsAchetes() {
                     variant="contained"
                     fullWidth
                     style={{ ...Styles.validerButton }}
-                    onClick={handleClose}
+                    onClick={handleValider}
                   >
                     <Typography style={Styles.validerText}>Valider</Typography>
                   </Button>
