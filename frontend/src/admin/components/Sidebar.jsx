@@ -3,10 +3,11 @@ import React from 'react'
 function Sidebar(props) {
   // code to make the selected tab brighter, prop should be 1, 2 or 3
   const selected = parseInt(props.selected);
+  console.log("selected = "+ selected);
   const select = ["primaryBlue", "primaryBlue", "primaryBlue"];
   select[selected - 1] = "selectedBlue";
   return (
-    <div className="bg-primaryBlue w-[270px] min-h-full">
+    <div className="bg-primaryBlue w-[270px] h-full">
       <div className='flex flex-col items-center'>
         <img src="../../../public/EcometerLogo.svg" alt="ECOmeter" className="w-[70px] h-[70px] mb-7 mt-5"/>
         <div className='flex justify-between gap-5 mb-5 cursor-pointer'>

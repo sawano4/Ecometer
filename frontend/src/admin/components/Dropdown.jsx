@@ -2,9 +2,11 @@ import React from 'react'
 import { useState } from 'react'
 
 function Dropdown(props) {
+  // props needed: label, choixPossibles
   const [rotation, setRotation] = useState(0);
   const [choix, setChoix] = useState("Choisir");
   const [open, setOpen] = useState(false);
+
   const handleExpand = () => {
     setRotation((rotation + 180 ) % 360);
     open ? setOpen(false) : setOpen(true);
@@ -26,12 +28,12 @@ function Dropdown(props) {
     </div>
     {open ?
       <div className='absolute bg-[#ffffff] z-10 w-full rounded-lg cursor-pointer'>
-        <div className="w-full text-center py-1 border border-solid hover:bg-blue-600 hover:text-white" onClick={(e) => handleExpand(e)}>
-          <p>Exemple 1</p>
-        </div>
-        <div className="w-full text-center py-1 border border-solid hover:bg-blue-600 hover:text-white" onClick={(e) => handleExpand(e)}>
-          <p>Exemple 2</p>
-        </div>
+        {
+          props.choixPossibles.map((choix, index) => (
+            <div className="w-full text-center py-1 border border-solid hover:bg-blue-600 hover:text-white" onClick={(e) => handleClick(e)}>
+              <p>{choix}</p>
+            </div>
+          ))}
       </div>
       : null}
       </div>

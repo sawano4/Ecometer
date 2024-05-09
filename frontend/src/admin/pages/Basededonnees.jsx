@@ -18,7 +18,7 @@ function Basededonnees() {
   }
   return (
     <div className='flex h-screen bg-[#404040]'>
-      <Sidebar selected="1" className="fixed"/>
+      <Sidebar selected="2" className="fixed"/>
       <div className='bg-[#F0F3F5] w-full h-screen'>
         <Topbar title="Base de données"/>
         <div className='w-full flex flex-col items-center'>

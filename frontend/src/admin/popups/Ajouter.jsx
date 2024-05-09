@@ -21,8 +21,8 @@ function Ajouter() {
                     <Input type="number" label="Nombre d'employés"/>
                     <Input type="number" label="Nombre de locaux"/>
                 </div>
-                <Dropdown label="Structure de l'organisation"/>
-                <Dropdown label="Industrie"/>
+                <Dropdown label="Structure de l'organisation" choixPossibles={["Exemple 1", "Exemple 2"]}/>
+                <Dropdown label="Industrie" choixPossibles={["Exemple 1", "Exemple 2"]}/>
             </div>
         </div>
         <div className='flex gap-6 mx-4 mt-20'>

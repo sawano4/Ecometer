@@ -14,6 +14,7 @@ function Utilisateurs() {
         <div className='w-full flex flex-col items-center'>
           <Searchbar placeholder="Rechercher une entreprise"/>
         </div>
+        
       </div>
     </div>
   )
