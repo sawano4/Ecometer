@@ -24,7 +24,7 @@ function Basededonnees() {
         <div className='w-full flex flex-col items-center'>
           <Searchbar placeholder="Rechercher un facteur d'émission"/>
         </div>
-        <div className='flex mt-10 flex-col items-center gap-3'>
+        <div className='flex mt-5 flex-col items-center gap-3'>
           <div className='flex justify-between w-[70%] items-center'>
               <div className='bg-white p-2 rounded-lg border border-[2px] border-solid border-primaryBlue pr-4 pl-4 cursor-pointer'>
                   <p className="text-[16px]">Ajouter Element</p>
