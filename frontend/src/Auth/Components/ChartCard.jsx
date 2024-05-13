@@ -1,4 +1,3 @@
-import React from 'react';
 import {Grid ,  Paper, Typography } from '@mui/material';
 const ChartCard = () => {
   return (
@@ -23,7 +22,7 @@ const ChartCard = () => {
 
               </Grid>
               <Grid item>
-                  <Typography sx={{fontFamily : 'Inter , sans-serif'  , fontWeight : '700' , fontSize : '16px'}}>80%</Typography>
+                  <Typography sx={{fontFamily : 'Inter , sans-serif'  , fontWeight : '700' , fontSize : '16px'}}>60%</Typography>
               </Grid>
             </Grid>
         </Grid>

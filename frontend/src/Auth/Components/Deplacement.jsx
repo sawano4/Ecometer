@@ -1,5 +1,4 @@
 import { useState } from "react";
-import axios from "axios";
 import {
   Box,
   Typography,
@@ -13,7 +12,10 @@ import {
   RadioGroup,
   FormControlLabel,
   Radio,
+  TextField,
 } from "@mui/material";
+import CroixIcon from "./CroixIcon";
+import axios from "axios";
 
 const Styles = {
   contenuEtape: {
@@ -130,55 +132,58 @@ const Styles = {
   },
 };
 
-const deplacementList = [
-  {
-    label: "Transport de marchandise amont",
-    dialogOptions: [
-      {
-        label: "Transport de marchandises",
-        value: "Transport de marchandises",
-      },
-    ],
-  },
-  {
-    label: "Transport de marchandise aval",
-    dialogOptions: [
-      {
-        label: "Transport de marchandises",
-        value: "Transport de marchandises",
-      },
-    ],
-  },
-  {
-    label: "Déplacements domicile-travail",
-    dialogOptions: [
-      { label: "Transport de personnes", value: "Transport de personnes" },
-    ],
-  },
-  {
-    label: "Déplacements des visiteurs et des clients",
-    dialogOptions: [
-      { label: "Transport de personnes", value: "Transport de personnes" },
-    ],
-  },
-  {
-    label: "Déplacements professionnels",
-    dialogOptions: [
-      { label: "Transport de personnes", value: "Transport de personnes" },
-    ],
-  },
-];
-
 function Deplacement() {
+  const [deplacementList, setDeplacementList] = useState([
+    {
+      label: "Transport de marchandise amont",
+      ind: 7,
+      dialogOptions: [
+        {
+          label: "Transport de marchandises",
+          value: "Transport de marchandises",
+        },
+      ],
+      selectedOptions: [],
+    },
+    {
+      label: "Transport de marchandise aval",
+      ind: 8,
+      dialogOptions: [
+        {
+          label: "Transport de marchandises",
+          value: "Transport de marchandises",
+        },
+      ],
+      selectedOptions: [],
+    },
+    {
+      label: "Déplacements domicile-travail",
+      ind: 9,
+      dialogOptions: [
+        { label: "Transport de personnes", value: "Transport de personnes" },
+      ],
+      selectedOptions: [],
+    },
+    {
+      label: "Déplacements des visiteurs et des clients",
+      ind: 10,
+      dialogOptions: [
+        { label: "Transport de personnes", value: "Transport de personnes" },
+      ],
+      selectedOptions: [],
+    },
+    {
+      label: "Déplacements professionnels",
+      ind: 11,
+      dialogOptions: [
+        { label: "Transport de personnes", value: "Transport de personnes" },
+      ],
+      selectedOptions: [],
+    },
+  ]);
   const [selectedEmissionIndex, setSelectedEmissionIndex] = useState(null);
+  const [selectedOptions, setSelectedOptions] = useState([]);
   const [openDialog, setOpenDialog] = useState(false);
-  const handleClickOpen = (index) => {
-    setSelectedEmissionIndex(index);
-    setOpenDialog(true);
-  };
-  const handleClose = () => {
-    setOpenDialog(false);
-  };
   const [err, setError] = useState(null);
   const [data, setData] = useState("");
   const [category1, setCategory1] = useState("");
@@ -195,6 +200,7 @@ function Deplacement() {
         userSelectedCategories: [event.target.value],
       });
       setnextLevelCategories(res.nextCategories);
+      setFe(res.matchingDocuments);
       setData([category1]);
     } catch (error) {
       if (
@@ -215,7 +221,6 @@ function Deplacement() {
         userSelectedCategories: [category1, event.target.value],
       });
       setnextLevelCategories2(res.nextCategories);
-      setFe(res.matchingDocuments);
       setData([category1, category2]);
     } catch (error) {
       if (
@@ -250,25 +255,163 @@ function Deplacement() {
       console.log(err);
     }
   };
+  const handleClickOpen = (index, ind) => {
+    setSelectedEmissionIndex(index);
+    setOpenDialog(true);
+    setIndice(ind);
+  };
+  const handleClose = () => {
+    setOpenDialog(false);
+  };
+  const handleCheckboxChange = async (optionLabel, idElment) => {
+    setSelectedOptions((prevOptions) => [...prevOptions, optionLabel]);
+    setIdElment(idElment);
+  };
+  const handleValider = () => {
+    const updatedEmissionsList = [...deplacementList];
+    updatedEmissionsList[selectedEmissionIndex].selectedOptions.push(
+      ...selectedOptions
+    );
+    setDeplacementList(updatedEmissionsList);
+    setSelectedOptions([]);
+    setOpenDialog(false);
+    setFe();
+  };
+  const SupprimerSelectedOption = (optionToRemove) => {
+    const updatedEmissionsList = [...deplacementList];
+    updatedEmissionsList[selectedEmissionIndex].selectedOptions =
+      updatedEmissionsList[selectedEmissionIndex].selectedOptions.filter(
+        (option) => option !== optionToRemove
+      );
+    setDeplacementList(updatedEmissionsList);
+  };
+  const [indice, setIndice] = useState();
+  const [idElment, setIdElment] = useState();
+  const [Quantité, setQuantité] = useState(0);
+  const handleChange = (e) => {
+    setQuantité(Number(e.target.value)); //
+  };
+  const handleSave = async () => {
+    const bilan = JSON.parse(localStorage.getItem("Bilan"));
+    console.log("bilan", bilan);
+    bilan.selectedCategoryElements[indice].push({
+      quantity: Quantité,
+      categoryElement: idElment,
+    }); //{ "quantity": 3, "categoryElement": "66101ed3aad307245468b5e1" }
+    localStorage.setItem("Bilan", JSON.stringify(bilan));
+  };
   return (
     <div>
-      {deplacementList.map((emission, index) => (
+      {deplacementList.map((produit, index) => (
         <Box key={index} p={2} bgcolor={"#F0F2F7"} mb={2} borderRadius={4}>
           <Grid container justifyContent="space-between" alignItems="center">
             <Grid item xs={12} md={9}>
               <Typography variant="h6" gutterBottom style={Styles.contenuEtape}>
-                {emission.label}
+                {produit.label}
               </Typography>
             </Grid>
             <Grid item xs={12} md={3} sx={{ textAlign: "center" }}>
               <Button
                 style={Styles.ajouterActiviteButton}
-                onClick={() => handleClickOpen(index)}
+                onClick={() => handleClickOpen(index, produit.ind)}
               >
                 <Typography style={Styles.ajouterText}>
                   Ajouter Activité
                 </Typography>
               </Button>
+            </Grid>
+            {/* write code  */}
+            <Grid item xs={12} md={12}>
+              {produit.selectedOptions &&
+                produit.selectedOptions.length > 0 && (
+                  <Grid style={{ marginTop: "15px" }}>
+                    {produit.selectedOptions.map((option, optionIndex) => (
+                      <Grid
+                        key={optionIndex}
+                        container
+                        sx={{
+                          border: "1px solid black",
+                          borderRadius: "15px",
+                          marginBottom: "15px",
+                          padding: "20px",
+                          borderColor: "#6F6C8F",
+                        }}
+                      >
+                        <Grid item md={12}>
+                          <Grid container>
+                            <Grid
+                              item
+                              xs={12}
+                              md={12}
+                              sx={{
+                                marginBottom: "15px",
+                                display: "flex",
+                                justifyContent: "space-between",
+                                alignItems: "center",
+                              }}
+                            >
+                              <Typography
+                                key={optionIndex}
+                                style={Styles.contenuEtape}
+                              >
+                                {option}
+                              </Typography>
+                              <CroixIcon
+                                onClick={() => SupprimerSelectedOption(option)}
+                              />
+                            </Grid>
+                            <Grid
+                              item
+                              md={1.6}
+                              xs={12}
+                              container
+                              alignItems="center"
+                              style={{ marginTop: "-8px" }}
+                            >
+                              <Typography style={Styles.contenuEtape}>
+                                Quantité :
+                              </Typography>
+                            </Grid>
+
+                            <Grid item xs={12} md={10.4}>
+                              <TextField
+                                type="number"
+                                variant="outlined"
+                                fullWidth
+                                sx={{
+                                  borderRadius: "15px",
+                                  mt: 1,
+                                  mb: 2,
+                                  "& .MuiOutlinedInput-notchedOutline": {
+                                    borderColor: "#969696 !important", // Couleur de la bordure
+                                    borderRadius: "15px",
+                                  },
+                                  "&:hover .MuiOutlinedInput-notchedOutline": {
+                                    borderColor: "#969696 !important", // Couleur de la bordure en survol
+                                    borderRadius: "15px",
+                                  },
+                                  "& .Mui-focused .MuiOutlinedInput-notchedOutline":
+                                    {
+                                      borderColor: "#969696 !important", // Couleur de la bordure en focus
+                                      borderRadius: "15px",
+                                    },
+                                }}
+                                onChange={handleChange}
+                              />
+                              <Button
+                                variant="contained"
+                                href="#contained-buttons"
+                                onClick={handleSave}
+                              >
+                                save
+                              </Button>
+                            </Grid>
+                          </Grid>
+                        </Grid>
+                      </Grid>
+                    ))}
+                  </Grid>
+                )}
             </Grid>
           </Grid>
         </Box>
@@ -299,14 +442,13 @@ function Deplacement() {
                   <option disabled selected>
                     Selectionner une catégorie
                   </option>
-                  {selectedEmissionIndex !== null &&
-                    deplacementList[selectedEmissionIndex].dialogOptions.map(
-                      (option, index) => (
-                        <option key={index} value={option.label}>
-                          {option.label}
-                        </option>
-                      )
-                    )}
+                  {deplacementList[selectedEmissionIndex].dialogOptions.map(
+                    (option, index) => (
+                      <option key={index} value={option.value}>
+                        {option.label}
+                      </option>
+                    )
+                  )}
                 </select>
               </Grid>
             )}
@@ -354,7 +496,12 @@ function Deplacement() {
                 </Typography>
               </Button>
             </Grid>
-            <Grid item xs={12} md={12} style={{ overflow: "auto" }}>
+            <Grid
+              item
+              xs={12}
+              md={12}
+              style={{ overflow: "auto", backgroundColor: "#F2F4F8" }}
+            >
               <Paper
                 elevation={0}
                 style={{
@@ -370,9 +517,12 @@ function Deplacement() {
                     aria-labelledby="demo-radio-buttons-group-label"
                     defaultValue={""} // Assuming selectedOption is the state for the selected radio button
                     name="radio-buttons-group"
-                    onChange={(e) => {
-                      console.log(e.target.value); // Access the selected value using e.target.value
-                    }}
+                    onChange={(event) =>
+                      handleCheckboxChange(
+                        event.target.labels[0].innerText,
+                        event.target.value
+                      )
+                    }
                   >
                     {fe &&
                       fe
@@ -384,13 +534,22 @@ function Deplacement() {
                             )
                         )
                         .map((item, index) => {
-                          if (item.elementType === "Elément") {
+                          if (
+                            item.elementType === "Elément" ||
+                            item.elementType === "Poste"
+                          ) {
                             return (
                               <FormControlLabel
                                 key={index}
                                 value={item._id} // Adjust this value as needed
                                 control={<Radio />} // Using Radio component here
-                                label={item.name + item.description} // Adjust this label as needed
+                                label={
+                                  item.name +
+                                  "," +
+                                  item.description +
+                                  ", " +
+                                  item.unit
+                                } // Adjust this label as needed
                               />
                             );
                           }
@@ -407,6 +566,7 @@ function Deplacement() {
                     variant="contained"
                     fullWidth
                     style={{ ...Styles.annulerButton }}
+                    onClick={handleClose}
                   >
                     <Typography style={Styles.annulerText}>Annuler</Typography>
                   </Button>
@@ -416,7 +576,7 @@ function Deplacement() {
                     variant="contained"
                     fullWidth
                     style={{ ...Styles.validerButton }}
-                    onClick={handleClose}
+                    onClick={handleValider}
                   >
                     <Typography style={Styles.validerText}>Valider</Typography>
                   </Button>

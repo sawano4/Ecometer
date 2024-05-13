@@ -14,6 +14,7 @@ import {
   RadioGroup,
   Radio,
   FormControlLabel,
+  
 } from "@mui/material";
 import CroixIcon from "./CroixIcon";
 const Styles = {
@@ -135,16 +136,19 @@ function EmissionsDirectes() {
   const [emissionsList, setEmissionsList] = useState([
     {
       label: "émissions directes des sources fixes de combustion",
+      ind: 0,
       dialogueOptions: [{ label: "Combustibles", value: "Combustibles" }],
       selectedOptions: [],
     },
     {
       label: "émissions directes des sources mobiles de combustion",
+      ind: 1,
       dialogueOptions: [{ label: "Combustibles", value: "Combustibles" }],
       selectedOptions: [],
     },
     {
       label: "émissions directes des procédés hors énergie",
+      ind: 2,
       dialogueOptions: [
         {
           label: "Process et émissions fugitives",
@@ -155,6 +159,7 @@ function EmissionsDirectes() {
     },
     {
       label: "émissions directes fugitives",
+      ind: 3,
       dialogueOptions: [
         {
           label: "Process et émissions fugitives",
@@ -165,45 +170,14 @@ function EmissionsDirectes() {
     },
     {
       label: "émission issues de la biomasse (sols et forêts)",
+      ind: 4,
       dialogueOptions: [{ label: "UTCF", value: "UTCF" }],
       selectedOptions: [],
     },
   ]);
   const [selectedEmissionIndex, setSelectedEmissionIndex] = useState(null);
-  const [openDialog, setOpenDialog] = useState(false);
   const [selectedOptions, setSelectedOptions] = useState([]);
-  const handleClickOpen = (index) => {
-    setSelectedEmissionIndex(index);
-    setOpenDialog(true);
-    console.log("aaaa : ", index);
-  };
-  const handleClose = () => {
-    setOpenDialog(false);
-  };
-  /* const handleCheckboxChange = (optionLabel) => {
-    setSelectedOptions((prevOptions) => [...prevOptions, optionLabel]);
-  };*/
-  const handleValider = () => {
-    const updatedEmissionsList = [...emissionsList];
-    updatedEmissionsList[selectedEmissionIndex].selectedOptions.push(
-      ...selectedOptions
-    );
-    setEmissionsList(updatedEmissionsList);
-    setSelectedOptions([]);
-    setOpenDialog(false);
-    setFe();
-  };
-  const SupprimerSelectedOption = (optionToRemove) => {
-    console.log("Option à supprimer :", optionToRemove);
-    console.log("Index de l'émission sélectionnée :", selectedEmissionIndex);
-    const updatedEmissionsList = [...emissionsList];
-    updatedEmissionsList[selectedEmissionIndex].selectedOptions =
-      updatedEmissionsList[selectedEmissionIndex].selectedOptions.filter(
-        (option) => option !== optionToRemove
-      );
-    setEmissionsList(updatedEmissionsList);
-  };
-
+  const [openDialog, setOpenDialog] = useState(false);
   const [err, setError] = useState(null);
   const [data, setData] = useState("");
   const [category1, setCategory1] = useState("");
@@ -220,6 +194,7 @@ function EmissionsDirectes() {
         userSelectedCategories: [event.target.value],
       });
       setnextLevelCategories(res.nextCategories);
+      setFe(res.matchingDocuments);
       setData([category1]);
     } catch (error) {
       if (
@@ -240,7 +215,6 @@ function EmissionsDirectes() {
         userSelectedCategories: [category1, event.target.value],
       });
       setnextLevelCategories2(res.nextCategories);
-      setFe(res.matchingDocuments);
       setData([category1, category2]);
     } catch (error) {
       if (
@@ -275,32 +249,79 @@ function EmissionsDirectes() {
       console.log(err);
     }
   };
+  const handleClickOpen = (index, ind) => {
+    setSelectedEmissionIndex(index);
+    setOpenDialog(true);
+    setIndice(ind);
+  };
+  const handleClose = () => {
+    setOpenDialog(false);
+  };
+  const handleCheckboxChange = async (optionLabel, idElment) => {
+    setSelectedOptions((prevOptions) => [...prevOptions, optionLabel]);
+    setIdElment(idElment);
+  };
+  const handleValider = () => {
+    const updatedEmissionsList = [...emissionsList];
+    updatedEmissionsList[selectedEmissionIndex].selectedOptions.push(
+      ...selectedOptions
+    );
+    setEmissionsList(updatedEmissionsList);
+    setSelectedOptions([]);
+    setOpenDialog(false);
+    setFe();
+  };
+  const SupprimerSelectedOption = (optionToRemove) => {
+    const updatedEmissionsList = [...emissionsList];
+    updatedEmissionsList[selectedEmissionIndex].selectedOptions =
+      updatedEmissionsList[selectedEmissionIndex].selectedOptions.filter(
+        (option) => option !== optionToRemove
+      );
+    setEmissionsList(updatedEmissionsList);
+  };
+  const [indice, setIndice] = useState();
+  const [idElment, setIdElment] = useState();
+  const [Quantité, setQuantité] = useState(0);
+  const handleChange = (e) => {
+    setQuantité(Number(e.target.value)); //
+  };
+  const handleSave = async () => {
+    const bilan = JSON.parse(localStorage.getItem("Bilan"));
+    console.log("bilan", bilan);
+    bilan.selectedCategoryElements[indice].push({
+      quantity: Quantité,
+      categoryElement: idElment,
+    }); //{ "quantity": 3, "categoryElement": "66101ed3aad307245468b5e1" }
+    localStorage.setItem("Bilan", JSON.stringify(bilan));
+  };
   return (
     <div>
-      {emissionsList.map((emission, index) => (
+      {emissionsList.map((produit, index) => (
         <Box key={index} p={2} bgcolor={"#F0F2F7"} mb={2} borderRadius={4}>
           <Grid container justifyContent="space-between" alignItems="center">
             <Grid item xs={12} md={9}>
               <Typography variant="h6" gutterBottom style={Styles.contenuEtape}>
-                {emission.label}
+                {produit.label}
               </Typography>
             </Grid>
             <Grid item xs={12} md={3} sx={{ textAlign: "center" }}>
               <Button
                 style={Styles.ajouterActiviteButton}
-                onClick={() => handleClickOpen(index)}
+                onClick={() => handleClickOpen(index, produit.ind)}
               >
                 <Typography style={Styles.ajouterText}>
                   Ajouter Activité
                 </Typography>
               </Button>
             </Grid>
+            {/* write code  */}
             <Grid item xs={12} md={12}>
-              {emission.selectedOptions &&
-                emission.selectedOptions.length > 0 && (
+              {produit.selectedOptions &&
+                produit.selectedOptions.length > 0 && (
                   <Grid style={{ marginTop: "15px" }}>
-                    {emission.selectedOptions.map((option, optionIndex) => (
+                    {produit.selectedOptions.map((option, optionIndex) => (
                       <Grid
+                        key={optionIndex}
                         container
                         sx={{
                           border: "1px solid black",
@@ -309,7 +330,6 @@ function EmissionsDirectes() {
                           padding: "20px",
                           borderColor: "#6F6C8F",
                         }}
-                        key={optionIndex}
                       >
                         <Grid item md={12}>
                           <Grid container>
@@ -324,13 +344,14 @@ function EmissionsDirectes() {
                                 alignItems: "center",
                               }}
                             >
-                              <Typography style={Styles.contenuEtape}>
-                                {option.item}
+                              <Typography
+                                key={optionIndex}
+                                style={Styles.contenuEtape}
+                              >
+                                {option}
                               </Typography>
                               <CroixIcon
-                                onClick={() =>
-                                  SupprimerSelectedOption(option.item)
-                                }
+                                onClick={() => SupprimerSelectedOption(option)}
                               />
                             </Grid>
                             <Grid
@@ -345,48 +366,39 @@ function EmissionsDirectes() {
                                 Quantité :
                               </Typography>
                             </Grid>
+
                             <Grid item xs={12} md={10.4}>
                               <TextField
+                                type="number"
                                 variant="outlined"
                                 fullWidth
-                                value={option.quantity}
                                 sx={{
                                   borderRadius: "15px",
                                   mt: 1,
                                   mb: 2,
                                   "& .MuiOutlinedInput-notchedOutline": {
-                                    borderColor: "#969696 !important",
+                                    borderColor: "#969696 !important", // Couleur de la bordure
                                     borderRadius: "15px",
                                   },
                                   "&:hover .MuiOutlinedInput-notchedOutline": {
-                                    borderColor: "#969696 !important",
+                                    borderColor: "#969696 !important", // Couleur de la bordure en survol
                                     borderRadius: "15px",
                                   },
                                   "& .Mui-focused .MuiOutlinedInput-notchedOutline":
                                     {
-                                      borderColor: "#969696 !important",
+                                      borderColor: "#969696 !important", // Couleur de la bordure en focus
                                       borderRadius: "15px",
                                     },
                                 }}
-                                onChange={(e) => {
-                                  const updatedEmissionsList = [
-                                    ...emissionsList,
-                                  ];
-                                  updatedEmissionsList[
-                                    selectedEmissionIndex
-                                  ].selectedOptions[optionIndex].quantity =
-                                    e.target.value;
-                                  console.log(
-                                    updatedEmissionsList[selectedEmissionIndex]
-                                      .selectedOptions[optionIndex].item
-                                  );
-                                  console.log(
-                                    updatedEmissionsList[selectedEmissionIndex]
-                                      .selectedOptions[optionIndex].quantity
-                                  );
-                                  setEmissionsList(updatedEmissionsList);
-                                }}
+                                onChange={handleChange}
                               />
+                              <Button
+                                variant="contained"
+                                href="#contained-buttons"
+                                onClick={handleSave}
+                              >
+                                save
+                              </Button>
                             </Grid>
                           </Grid>
                         </Grid>
@@ -405,9 +417,8 @@ function EmissionsDirectes() {
         fullWidth
         maxWidth="md"
         borderRadius={15}
-        sx={{ borderRadius: "15px", fontFamily: "Inter, sans-serif" }}
       >
-        <DialogContent sx={Styles.dialogContent}>
+        <DialogContent>
           <Grid
             container
             spacing={2}
@@ -471,6 +482,7 @@ function EmissionsDirectes() {
                 ))}
               </select>
             </Grid>
+
             <Grid item xs={12} md={12}>
               <Button style={Styles.rechercheButton}>
                 <Typography style={Styles.rechercherText}>
@@ -499,9 +511,12 @@ function EmissionsDirectes() {
                     aria-labelledby="demo-radio-buttons-group-label"
                     defaultValue={""} // Assuming selectedOption is the state for the selected radio button
                     name="radio-buttons-group"
-                    onChange={(e) => {
-                      console.log(e.target.value); // Access the selected value using e.target.value
-                    }}
+                    onChange={(event) =>
+                      handleCheckboxChange(
+                        event.target.labels[0].innerText,
+                        event.target.value
+                      )
+                    }
                   >
                     {fe &&
                       fe
@@ -513,13 +528,22 @@ function EmissionsDirectes() {
                             )
                         )
                         .map((item, index) => {
-                          if (item.elementType === "Elément") {
+                          if (
+                            item.elementType === "Elément" ||
+                            item.elementType === "Poste"
+                          ) {
                             return (
                               <FormControlLabel
                                 key={index}
                                 value={item._id} // Adjust this value as needed
                                 control={<Radio />} // Using Radio component here
-                                label={item.name + item.description} // Adjust this label as needed
+                                label={
+                                  item.name +
+                                  "," +
+                                  item.description +
+                                  ", " +
+                                  item.unit
+                                } // Adjust this label as needed
                               />
                             );
                           }
@@ -536,6 +560,7 @@ function EmissionsDirectes() {
                     variant="contained"
                     fullWidth
                     style={{ ...Styles.annulerButton }}
+                    onClick={handleClose}
                   >
                     <Typography style={Styles.annulerText}>Annuler</Typography>
                   </Button>

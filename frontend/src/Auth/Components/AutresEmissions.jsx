@@ -1,5 +1,4 @@
-import React from 'react';
-import { Box, Typography, Grid, Button, Paper } from '@mui/material';
+import { Box, Typography, Grid, Button } from '@mui/material';
 
 const Styles = {
     contenuEtape: {
