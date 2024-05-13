@@ -12,10 +12,26 @@ function Signup() {
     address: "",
     numberOfLocations: 0,
     structure: "",
+    profilePicture: "",
   });
 
   const [error, setError] = useState("");
   const [confirmPassword, setConfirmPassword] = useState(true);
+  const [imageInputState, setImageInputState] = useState("");
+
+  const [ selectedImage, setSelectedImage] = useState(null);
+
+  const handleImageChange = (e) => {
+    const file = e.target.files[0];
+    const reader = new FileReader();
+    reader.onloadend = () => {
+      const base64String = reader.result.replace("data:", "").replace(/^.+,/, "");
+      setData({ ...data, profilePicture: reader.result });
+      setSelectedImage(reader.result); // Update the selected image preview
+    };
+    reader.readAsDataURL(file);
+  };
+
   const handleConfirmPasswordChange = (e) => {
     setConfirmPassword(e.target.value);
     // Check if passwords match when confirm password changes
@@ -249,12 +265,20 @@ function Signup() {
                 </div>
                 <div id="left" className="w-1/2  h-full">
                   <div className="w-full h-[40%]  flex justify-center items-center">
-                    <div className="  w-[23vh] h-[23vh] bg-rose-300 rounded-full flex justify-center items-center">
-                      <img
+                    <div className="  w-[23vh] h-[23vh] bg-rose-300 rounded-full flex justify-center items-center cursor-pointer" onClick={() => document.getElementById('imageInput').click()} >
+                     {
+                      !selectedImage ?
+                      (<img
                         src="/camera.svg"
                         className="max-w-full h-[6vh] "
                         alt="SVG Image"
-                      ></img>
+                      ></img>) : (<img
+                        src={selectedImage}
+                        className="min-w-full min-h-full"
+                        alt="SVG Image"
+                      ></img> )
+                     }
+                      <input type="file" name="image" className="hidden" id="imageInput" onChange={handleImageChange}/>
                     </div>
                   </div>
                   <div className="w-full h-[20%]  flex justify-center items-center">

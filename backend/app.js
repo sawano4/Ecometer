@@ -2,6 +2,8 @@
 const express = require("express");
 const serverConfig = require("./config/server");
 const connectToDb = require("./db/index");
+const multer = require("multer");
+const path = require("path");
 const clientRouter = require("./routes/client");
 const categoryRoutes = require("./routes/categoryRoutes");
 const bilanRoutes = require("./routes/bilanRoutes");
@@ -16,6 +18,20 @@ connectToDb();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors());
+
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, "public/images");
+  },
+  filename: function (req, file, cb) {
+    cb(null, file.fieldname + "-" + Date.now() + path.extname(file.originalname));
+  },
+});
+
+const upload = multer({ 
+  storage: storage
+});
+
 // Routes and other middleware...
 app.use("/api/admin/", adminRoutes);
 app.use("/api/categories/", categoryRoutes);

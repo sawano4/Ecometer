@@ -3,6 +3,7 @@ const VerificationToken = require("../Models/verificationToken");
 const ResetToken = require("../Models/resetToken");
 const crypto = require("crypto");
 const { createRandomBytes } = require("../utils/helper");
+const cloudinary = require("../utils/cloudinary");
 const {
   generateOTP,
   mailTransport,
@@ -27,11 +28,19 @@ const registerClient = async (req, res) => {
     address,
     numberOfLocations,
     structure,
+    profilePicture,
   } = req.body;
 
   try {
     // Create a new client using Model.create()
-    console.log(req.body);
+
+    const uploadedResponse = await cloudinary.uploader.upload(profilePicture, {
+      upload_preset: "ecometer",
+      folder: `profile_pictures/${name}`
+    });
+
+    console.log(uploadedResponse);
+  
     const newClient = new Client({
       name,
       email,
@@ -41,6 +50,11 @@ const registerClient = async (req, res) => {
       address,
       numberOfLocations,
       structure,
+      profilePicture: {
+        public_id: uploadedResponse.public_id,
+        url: uploadedResponse.secure_url,
+      },
+    
     });
 
     // Save the client to the database
@@ -256,9 +270,11 @@ const getClientProfile = async (req, res) => {
 
   try {
     const client = await Client.findById(clientId);
+
     if (!client) {
       return res.status(404).json({ msg: "Client not found" });
     }
+
     return res.status(200).json(client);
   } catch (error) {
     console.error("Error:", error);
