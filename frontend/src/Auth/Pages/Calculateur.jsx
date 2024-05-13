@@ -203,7 +203,7 @@ function Calculateur() {
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
   };
   const navigate = useNavigate();
-  const handleReset = async () => {
+  const handleCalculer = async () => {
     const bilan = JSON.parse(localStorage.getItem("Bilan"));
     try {
       const url = "http://localhost:3000/api/bilans/calculate-bilan";
@@ -384,7 +384,7 @@ function Calculateur() {
                           <Button
                             onClick={
                               activeStep === steps.length - 1
-                                ? handleReset
+                                ? handleCalculer
                                 : handleNext
                             }
                             style={Styles.suivantButton}

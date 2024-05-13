@@ -80,7 +80,7 @@ function Login() {
                 <div className=" w-[10%] float-right h-[100%] flex justify-center ">
                   <img
                     className="w-[70%] my-[auto] h-[70%] cursor-pointer"
-                    src={show ? "public/Eye.svg" : "eye-off.svg"}
+                    src={show ? "Eye.svg" : "eye-off.svg"}
                     alt="toggle"
                     onClick={toggle}
                   ></img>
