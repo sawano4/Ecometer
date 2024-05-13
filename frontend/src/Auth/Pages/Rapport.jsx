@@ -3,7 +3,6 @@ import { Grid, Paper, Typography } from "@mui/material";
 import AppBarComponent from "../Components/AppBarComponent";
 import SideBar from "../Components/SideBar";
 import BilanDetails from "../Components/BilanDetails";
-import axios from "axios";
 const Styles = {
   Detail: {
     fontFamily: "Inter",
@@ -22,38 +21,31 @@ const Rapport = () => {
   const [scope1, setScope1] = useState(0);
   const [scope2, setScope2] = useState(0);
   const [scope3, setScope3] = useState(0);
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get(
-          "http://localhost:3000/api/bilans/663423f16e90cffe89fdd32a/2024"
-        );
-        localStorage.setItem("ClientBilan", JSON.stringify(response.data));
-        console.log(response.data);
-        const data = response.data;
-        data.emissionPosts.map((element) => {
-          if (
-            element.index === 1.1 ||
-            element.index === 1.2 ||
-            element.index === 1.3 ||
-            element.index === 1.4 ||
-            element.index === 1.5
-          ) {
-            console.log(element.emissions);
-            setScope1((prev) => prev + element.emissions);
-          } else if (element.index === 2.1 || element.index === 2.2) {
-            setScope2((prev) => prev + element.emissions);
-          } else {
-            setScope3((prev) => prev + element.emissions);
-          }
-        });
-        setTotal(data.totalEmissions);
-        setYear(data.year);
-      } catch (error) {
-        console.error(error);
+  const Data = JSON.parse(localStorage.getItem("ClientBilan"));
+  const calculateScopeEmissions = () => {
+    Data.emissionPosts.map((element) => {
+      if (
+        element.index === 1.1 ||
+        element.index === 1.2 ||
+        element.index === 1.3 ||
+        element.index === 1.4 ||
+        element.index === 1.5
+      ) {
+        console.log(element.emissions);
+        setScope1((prev) => prev + element.emissions);
+      } else if (element.index === 2.1 || element.index === 2.2) {
+        setScope2((prev) => prev + element.emissions);
+      } else {
+        setScope3((prev) => prev + element.emissions);
       }
-    };
-    fetchData();
+      setTotal((prev) => prev + element.emissions);
+    });
+    setYear(Data.year);
+  };
+
+  useEffect(() => {
+    calculateScopeEmissions();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
@@ -218,7 +210,13 @@ const Rapport = () => {
                               >
                                 Scope {item}
                               </Typography>
-                              <Grid container alignItems="center">
+                              <Grid container alignItems="center" style={
+                                {
+                                  display: 'flex',
+                                  justifyContent: 'center',
+                                  flexDirection: 'column',
+                                }
+                              }>
                                 <Typography
                                   variant="h3"
                                   sx={{
@@ -229,8 +227,8 @@ const Rapport = () => {
                                   {item === 1
                                     ? (scope1 / 100).toFixed(2)
                                     : item === 2
-                                    ? (scope2 ).toFixed(2)
-                                    : (scope3).toFixed(2)}
+                                    ? (scope2 / 100).toFixed(2)
+                                    : (scope3 / 100).toFixed(2)}
                                 </Typography>
                                 <Typography
                                   variant="h6"

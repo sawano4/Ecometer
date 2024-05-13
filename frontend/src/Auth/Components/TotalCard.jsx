@@ -1,39 +1,35 @@
-import React from 'react';
-import {Grid ,  Paper, Typography } from '@mui/material';
-
+import { Grid, Paper, Typography } from "@mui/material";
 
 const Styles = {
-  EmissionsText  : {
-    fontFamily : 'Eudoxus , sans-serif',
-    fontWeight : '700',
-    fontSize : '20px',
-    lineHeight : '24px',
-    marginBottom : '10px',
-  }, 
-
-  TotalText : {
-    fontFamily : 'Eudoxus , sans-serif',
-    fontWeight : '500',
-    fontSize : '48px',
-    lineHeight : '58px',
-    marginBottom : '10px',
-    
+  EmissionsText: {
+    fontFamily: "Eudoxus , sans-serif",
+    fontWeight: "700",
+    fontSize: "20px",
+    lineHeight: "24px",
+    marginBottom: "10px",
   },
 
-  IncertitudeText : {
-    fontFamily : 'Inter , sans-serif',
-    fontWeight : '400',
-    fontSize : '16px',
-    lineHeight : '24px',
-
+  TotalText: {
+    fontFamily: "Eudoxus , sans-serif",
+    fontWeight: "500",
+    fontSize: "48px",
+    lineHeight: "58px",
+    marginBottom: "10px",
   },
-  UnityText : {
-    fontFamily : 'Eudoxus , sans-serif',
-    fontWeight : '500',
-    fontSize : '23px',
-    lineHeight : '58px',
-  }
-}
+
+  IncertitudeText: {
+    fontFamily: "Inter , sans-serif",
+    fontWeight: "400",
+    fontSize: "16px",
+    lineHeight: "24px",
+  },
+  UnityText: {
+    fontFamily: "Eudoxus , sans-serif",
+    fontWeight: "500",
+    fontSize: "23px",
+    lineHeight: "58px",
+  },
+};
 
 const TotalCard = () => {
   return (
