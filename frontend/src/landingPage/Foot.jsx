@@ -1,5 +1,5 @@
 import React from "react";
-
+import Ecometer from './Ecometer'
 function Foot() {
   return (
     <React.Fragment>
@@ -13,7 +13,7 @@ function Foot() {
         <div className="absolute flex flex-col  items-center w-full h-full ">
           <div className=" absolute w-[95%] bottom-[12%] h-[60%] flex flex-col  items-center">
             <div className="  flex w-[90%] h-[70%]">
-              {/* ------------------------------------------------------*/} 
+              {/* ------------------------------------------------------*/}
               {/* ------------------------------------------------------*/}
               {/* ------------------------------------------------------*/}
               <div className=" w-1/6 h-full">
@@ -271,7 +271,9 @@ function Foot() {
             <div className="w-[90%] h-[15%] border-solid border-[#334155] border-b-[0.3vh]"></div>
             <div className=" w-[90%] h-[15%] flex justify ">
               <div className="w-[60%] justify-between flex items-center">
-                <h3 className="font-bold text-white text-[4vh]">Ecometer</h3>
+                <a href="/">
+                  <Ecometer />
+                </a>
 
                 <a
                   href="/#"

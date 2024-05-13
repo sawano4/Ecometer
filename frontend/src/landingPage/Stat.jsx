@@ -95,7 +95,7 @@ function Stat() {
             </div>
             <div className="h-[12vh] w-full flex justify-center items-center">
               <a className="w-[100%]" href="/acceuil">
-                <div className=" mx-auto py-[2vh]  rounded-[2vh] bg-[#003049] w-[55%] justify-center flex items-center">
+                <div className=" hover:bg-[#023559] duration-[0.3s] hover:rounded-[1.8vh] mx-auto py-[2vh]  rounded-[2vh] bg-[#003049] w-[55%] justify-center flex items-center">
                   <div className=" w-[80%]  text-center text-[2.6vh] text-white  ">
                     Determiner Votre Bilan Carbone
                   </div>

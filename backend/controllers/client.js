@@ -3,7 +3,7 @@ const VerificationToken = require("../Models/verificationToken");
 const ResetToken = require("../Models/resetToken");
 const crypto = require("crypto");
 const { createRandomBytes } = require("../utils/helper");
-const jwt = require('jsonwebtoken');
+const jwt = require("jsonwebtoken");
 const cloudinary = require("../utils/cloudinary");
 const {
   generateOTP,
@@ -36,11 +36,11 @@ const registerClient = async (req, res) => {
 
     const uploadedResponse = await cloudinary.uploader.upload(profilePicture, {
       upload_preset: "ecometer",
-      folder: `profile_pictures/${name}`
+      folder: `profile_pictures/${name}`,
     });
 
     console.log(uploadedResponse);
-  
+
     const newClient = new Client({
       name,
       email,
@@ -54,7 +54,6 @@ const registerClient = async (req, res) => {
         public_id: uploadedResponse.public_id,
         url: uploadedResponse.secure_url,
       },
-    
     });
 
     // Save the client to the database
@@ -95,40 +94,42 @@ const registerClient = async (req, res) => {
 // login the client
 const loginClient = async (req, res) => {
   const { email, password } = req.body;
-  try{
+  try {
+    if (!email.trim() || !password.trim()) {
+      return res.status(400).json({ msg: "Email and password are required" });
+    }
+    console.log(email);
+    const client = await Client.findOne({ email });
+    if (!client) {
+      return res.status(404).json({ msg: "User not found" });
+    }
 
-  if (!email.trim() || !password.trim()) {
-    return res.status(400).json({ msg: "Email and password are required" });
+    const isMatched = await client.comparePassword(password);
+    if (!isMatched) {
+      return res.status(401).json({ msg: "Invalid Credentials" });
+    }
+
+    const token = jwt.sign(
+      { clientId: client._id, username: client.name },
+      process.env.JWT_SECRET,
+      {
+        expiresIn: "1h",
+      }
+    );
+
+    res.status(200).json({
+      msg: "Login successful",
+      token: token,
+    });
+  } catch (error) {
+    console.error("Error:", error);
+    return res.status(500).json({ error: "Internal error" });
   }
-  console.log(email);
-  const client = await Client.findOne({ email });
-  if (!client) {
-    return res.status(404).json({ msg: "User not found" });
-  }
-
-  const isMatched = await client.comparePassword(password);
-  if (!isMatched) {
-    return res.status(401).json({ msg: "Invalid Credentials" });
-  }
-
-  const token = jwt.sign({ clientId: client._id, username: client.name }, process.env.JWT_SECRET, {
-    expiresIn: "1h",
-  });
-  
-  res.status(200).json({
-    msg: "Login successful",
-    token: token, 
-  });
-
-}catch(error){
-  console.error("Error:", error);
-  return res.status(500).json({ error: "Internal error" });
-}
 };
 
 const verifyEmail = async (req, res) => {
   const { clientId, otp } = req.body;
-  
+
   //otp should be a string
   if (!clientId || !otp.trim()) {
     return res.status(400).json({ msg: "Client ID and OTP are missing" });
@@ -194,11 +195,9 @@ const forgotPassword = async (req, res) => {
   // look if the user has already sent a reset password request
   const token = await ResetToken.findOne({ owner: client._id });
   if (token) {
-    return res
-      .status(400)
-      .json({
-        msg: "A Password reset email has already been sent. Please check ur email ",
-      });
+    return res.status(400).json({
+      msg: "A Password reset email has already been sent. Please check ur email ",
+    });
   }
 
   const newToken = await createRandomBytes();

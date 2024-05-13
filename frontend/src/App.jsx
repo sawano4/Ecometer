@@ -15,6 +15,11 @@ import Signup from "./signUp/Signup";
 import Calculateur from "./Auth/Pages/Calculateur.jsx";
 import Acceuil from "./Auth/Pages/Accueil.jsx";
 import Rapport from "./Auth/Pages/Rapport.jsx";
+import Forgetpassword from "./logIn/Forgetpassword.jsx";
+import Verf from "./logIn/Verf.jsx";
+
+
+
 import "./App.css";
 
 function App() {
@@ -32,6 +37,8 @@ function App() {
           />
           <Route path="/calculateur" element={<Calculateur />} />
           <Route path="/rapport" element={<Rapport />} />
+          <Route path="/forgetpassword" element={<Forgetpassword />} />
+          <Route path="/verf" element={<Verf />} />
         </Routes>
       </QueryClientProvider>
     </BrowserRouter>
