@@ -77,12 +77,19 @@ const registerClient = async (req, res) => {
       subject: "Verify your email account",
       html: emailVerificationTemplate(OTP),
     });
+    const token = jwt.sign(
+      { clientId: newClient._id, username: newClient.name },
+      process.env.JWT_SECRET,
+      {
+        expiresIn: "30d",
+      }
+    );
 
     // Return the newly created client in the response
     res.status(201).json({
       msg: "Client created successfully",
       data: newClient,
-      verificationToken: newVerificationToken,
+      token: token,
     });
   } catch (error) {
     // If an error occurs during validation or database operation, handle it
@@ -128,7 +135,8 @@ const loginClient = async (req, res) => {
 };
 
 const verifyEmail = async (req, res) => {
-  const { clientId, otp } = req.body;
+  const { otp } = req.body;
+  const clientId = req.clientId;
 
   //otp should be a string
   if (!clientId || !otp.trim()) {

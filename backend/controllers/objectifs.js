@@ -69,7 +69,7 @@ const deleteObjectif = async (req, res) => {
 
 // Function to get all objectifs
 const getAllObjectifs = async (req, res) => {
-  const { clientId } = req.params;
+  const clientId  = req.clientId;
   if (!isValidObjectId(clientId)) {
     return res.status(400).json({ msg: "Invalid client ID" });
   }
