@@ -9,6 +9,7 @@ const {
   updateClientProfile,
   deleteClient,
   updateClientPassword,
+  getAllClients,
 } = require("../controllers/client");
 const { verifyClientToken } = require("../middleware/auth");
 
