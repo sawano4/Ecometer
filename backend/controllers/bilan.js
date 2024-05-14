@@ -183,9 +183,10 @@ const getBilan = async (req, res) => {
 
 const getAllBilans = async (req, res) => {
   try {
-    const { clientId } = req.params;
-    const carbonFootprints = await CarbonFootprint.find(clientId);
-    return res.status(200).json(carbonFootprints);
+    const clientId  = req.clientId;
+    const carbonFootprints = await CarbonFootprint.find({ clientId: clientId });
+    return res.status(200).json({carbonFootprints,
+      clientId  });
   } catch (error) {
     console.error("Error:", error);
     return res.status(500).json({ error: "Internal error" });

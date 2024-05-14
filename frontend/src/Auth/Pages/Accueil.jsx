@@ -6,10 +6,74 @@ import FirstCard from '../Components/FirstCard';
 import CustomBarChart from '../Components/CustomBarChart';
 import Legend from '../Components/Lengend';
 import ThirdCard from '../Components/ThirdCard';
+// Import Axios library
+import axios from 'axios';
+
+
 
 function Acceuil() {
+    const token = localStorage.getItem('token');
     const theme = useTheme();
     const isSmallScreen = useMediaQuery(theme.breakpoints.down('md'));
+    // Function to fetch client profile data
+const fetchClientProfile = async () => {
+    try {
+      // Send a GET request to the backend endpoint
+      const response = await axios.get('http://localhost:3000/api/clients/profile', {
+        headers: {
+          Authorization: `Bearer ${token}`, 
+        },
+      });
+  
+      // Log the response data to the console
+      console.log('Client Profile Data:', response.data);
+      
+      // Return the response data if needed
+      return response.data;
+    } catch (error) {
+      // Handle any errors
+      console.error('Error fetching client profile:', error);
+      // Optionally, return an error message or throw the error
+      throw error;
+    }
+  };
+
+  const fetchClientObjectives = async () => {
+           const token = localStorage.getItem('token');
+           const headers = {
+            Authorization: `Bearer ${token}`,
+          };
+           
+    try {
+         
+        const response = await axios.get('http://localhost:3000/api/objectifs/get',{ headers: headers});
+       
+        console.log('Client Objectives Data:', response.data);
+        return response.data;
+    } catch (error) {
+        console.error('Error fetching client objectives:', error);
+        throw error;
+    }};
+
+    const fetchClientBilans = async () => {
+        const token = localStorage.getItem('token');
+        const headers = {
+            Authorization: `Bearer ${token}`,
+            };
+        try {
+            const response = await axios.get('http://localhost:3000/api/bilans/all',{ headers: headers});
+            console.log('Client Bilans Data:', response.data);
+            return response.data;
+        } catch (error) {
+            console.error('Error fetching client bilans:', error);
+            throw error;
+        }};
+
+
+  // Call the function to fetch client profile data
+  fetchClientProfile();
+  fetchClientObjectives();
+  fetchClientBilans();
 
     return (
         <Grid container>

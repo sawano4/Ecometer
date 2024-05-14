@@ -88,6 +88,10 @@ function Signup() {
       const { data: res } = await axios.post(url, data);
       navigate("/verf");
       console.log(res);
+
+      // store the token generated from the signup
+      localStorage.setItem("token",res.token);
+
     } catch (error) {
       if (
         error.response &&
@@ -274,7 +278,7 @@ function Signup() {
                         alt="SVG Image"
                       ></img>) : (<img
                         src={selectedImage}
-                        className="min-w-full min-h-full"
+                        className="min-w-full min-h-full rounded-full"
                         alt="SVG Image"
                       ></img> )
                      }

@@ -47,6 +47,7 @@ const getEmissionFactors = async (req, res) => {
     res.status(500).json({ error: "Internal server error" });
   }
 };
+
 // Add a new emission factor
 const addEmissionFactor = async (req, res) => {
   try {
