@@ -176,11 +176,9 @@ const forgotPassword = async (req, res) => {
   // look if the user has already sent a reset password request
   const token = await ResetToken.findOne({ owner: client._id });
   if (token) {
-    return res
-      .status(400)
-      .json({
-        msg: "A Password reset email has already been sent. Please check ur email ",
-      });
+    return res.status(400).json({
+      msg: "A Password reset email has already been sent. Please check ur email ",
+    });
   }
 
   const newToken = await createRandomBytes();
@@ -199,6 +197,7 @@ const forgotPassword = async (req, res) => {
     subject: "Password Reset link",
     html: passwordResetTemplate(client.name, process.env.PWD_RESET_LINK),
   });
+  console.log(email);
   res.status(200).json({ msg: "reset Email sent successfully" });
 };
 

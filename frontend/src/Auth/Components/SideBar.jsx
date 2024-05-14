@@ -1,6 +1,4 @@
-import React from 'react';
 import { Grid, Typography, List, ListItem, ListItemIcon, ListItemText } from '@mui/material';
-import { AccountCircle, Home, Settings, ExitToApp } from '@mui/icons-material';
 import AccueilIcon from './AcceuilIcon';
 import CalculateurIcon from './CalculateurIcon';
 import RapportIcon from './RapportIcon';
@@ -130,6 +128,7 @@ const SideBar = () => {
           </ListItemIcon>
           <ListItemText
             onClick={handleLogout}
+            className="cursor-pointer"
             primary="Se déconnecter"
             style={{ ...listItemTextStyle, marginLeft: "8px" }}
           />

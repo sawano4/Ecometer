@@ -119,13 +119,15 @@ const Rapport = () => {
                           marginBottom: { xs: "20px" },
                         }}
                       >
-                        <Typography
-                          variant="body1"
-                          sx={{ color: "#F77F00" }}
-                          onClick={() => setShowFirstMain(false)}
-                        >
-                          Voir plus de détails
-                        </Typography>
+                        <div className="cursor-pointer">
+                          <Typography
+                            variant="body1"
+                            sx={{ color: "#F77F00" }}
+                            onClick={() => setShowFirstMain(false)}
+                          >
+                            Voir plus de détails
+                          </Typography>
+                        </div>
                       </Grid>
                     </Grid>
 
@@ -210,13 +212,15 @@ const Rapport = () => {
                               >
                                 Scope {item}
                               </Typography>
-                              <Grid container alignItems="center" style={
-                                {
-                                  display: 'flex',
-                                  justifyContent: 'center',
-                                  flexDirection: 'column',
-                                }
-                              }>
+                              <Grid
+                                container
+                                alignItems="center"
+                                style={{
+                                  display: "flex",
+                                  justifyContent: "center",
+                                  flexDirection: "column",
+                                }}
+                              >
                                 <Typography
                                   variant="h3"
                                   sx={{

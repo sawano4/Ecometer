@@ -27,23 +27,11 @@ const subTextStyle = {
   fontSize: "16px",
 };
 const EmissionsDirectesCard = () => {
-    const [post1, setPost1] = useState({total:0, co2a: 0, cob: 0, ch4: 0, n2o: 0 });
-    const [post2, setPost2] = useState({total:0, co2a: 0, cob: 0, ch4: 0, n2o: 0 });
-    const [post3, setPost3] = useState({total:0, co2a: 0, cob: 0, ch4: 0, n2o: 0 });
-    const [post4, setPost4] = useState({
-      total: 0,
-      co2a: 0,
-      cob: 0,
-      ch4: 0,
-      n2o: 0,
-    });
-    const [post5, setPost5] = useState({
-      total: 0,
-      co2a: 0,
-      cob: 0,
-      ch4: 0,
-      n2o: 0,
-    });
+  const [post1, setPost1] = useState({});
+  const [post2, setPost2] = useState({});
+  const [post3, setPost3] = useState({});
+  const [post4, setPost4] = useState({});
+  const [post5, setPost5] = useState({});
   const [isDropVisible, setIsDropVisible] = useState(false);
   const [emissionsList, setEmissionsList] = useState([
     {
@@ -58,16 +46,12 @@ const EmissionsDirectesCard = () => {
     },
     {
       label: "émissions directes des procédés hors énergie",
-      dialogueOptions: [
-        { label: "Process et émissions fugitives", value: 3 },
-      ],
+      dialogueOptions: [{ label: "Process et émissions fugitives", value: 3 }],
       selectedOptions: [],
     },
     {
       label: "émissions directes fugitives",
-      dialogueOptions: [
-        { label: "Process et émissions fugitives", value: 4 },
-      ],
+      dialogueOptions: [{ label: "Process et émissions fugitives", value: 4 }],
       selectedOptions: [],
     },
     {
@@ -82,49 +66,55 @@ const EmissionsDirectesCard = () => {
     console.log(isDropVisible);
   };
 
-  let cob;
-  let ch4;
-  let n2o;
-  let co2a;
   const Data = JSON.parse(localStorage.getItem("ClientBilan"));
   const calculateScopeEmissions = () => {
     Data.emissionPosts.map((element) => {
       switch (element.index) {
         case 1.1:
-          cob = element.CO2;
-          ch4 = element.CH4;
-           n2o = element.N2O;
-           co2a = element.emissions - (cob + ch4 + n2o);
-          setPost1({ co2a: 0, cob: 0, ch4: 0, n2o: 0});
+          setPost1({
+            total: element.emissions,
+            co2a: element.emissions - element.CO2 - element.CH4 - element.N2O,
+            cob: element.CO2,
+            ch4: element.CH4,
+            n2o: element.N2O,
+          });
           break;
         case 1.2:
-           cob = element.CO2;
-           ch4 = element.CH4;
-           n2o = element.N2O;
-           co2a = element.emissions - (cob + ch4 + n2o);
-          setPost2({ co2a: 0, cob: 0, ch4: 0, n2o: 0});
+          setPost2({
+            total: element.emissions,
+            co2a: element.emissions - element.CO2 - element.CH4 - element.N2O,
+            cob: element.CO2,
+            ch4: element.CH4,
+            n2o: element.N2O,
+          });
 
           break;
         case 1.3:
-          cob = element.CO2;
-          ch4 = element.CH4;
-          n2o = element.N2O;
-          co2a = element.emissions - (cob + ch4 + n2o);
-          setPost3({ co2a: 0, cob: 0, ch4: 0, n2o: 0 });
+          setPost3({
+            total: element.emissions,
+            co2a: element.emissions - element.CO2 - element.CH4 - element.N2O,
+            cob: element.CO2,
+            ch4: element.CH4,
+            n2o: element.N2O,
+          });
           break;
         case 1.4:
-          cob = element.CO2;
-          ch4 = element.CH4;
-          n2o = element.N2O;
-          co2a = element.emissions - (cob + ch4 + n2o);
-          setPost4({ co2a: 0, cob: 0, ch4: 0, n2o: 0 });
+          setPost4({
+            total: element.emissions,
+            co2a: element.emissions - element.CO2 - element.CH4 - element.N2O,
+            cob: element.CO2,
+            ch4: element.CH4,
+            n2o: element.N2O,
+          });
           break;
         case 1.5:
-          cob = element.CO2;
-          ch4 = element.CH4;
-          n2o = element.N2O;
-          co2a = element.emissions - (cob + ch4 + n2o);
-          setPost5({ co2a: 0, cob: 0, ch4: 0, n2o: 0 });
+          setPost5({
+            total: element.emissions,
+            co2a: element.emissions - element.CO2 - element.CH4 - element.N2O,
+            cob: element.CO2,
+            ch4: element.CH4,
+            n2o: element.N2O,
+          });
           break;
         default:
           break;
@@ -176,7 +166,13 @@ const EmissionsDirectesCard = () => {
                     marginRight: { md: "20px", xs: "10px" },
                   }}
                 >
-                  {post1.total} kgCO2e
+                  {((post1.total +
+                    post2.total +
+                    post3.total +
+                    post4.total +
+                    post5.total) /
+                    100).toFixed(2)}{" "}
+                  tCO2e
                 </Typography>
               </Grid>
             </Grid>
@@ -201,7 +197,7 @@ const EmissionsDirectesCard = () => {
                           }}
                         >
                           {" "}
-                          CO2
+                          CO2a
                         </Typography>
                       </Grid>
                       <Grid item md={12}>
@@ -212,7 +208,17 @@ const EmissionsDirectesCard = () => {
                             fontSize: "16px",
                           }}
                         >
-                          {}
+                          {item.dialogueOptions[0].value === 1
+                            ? (post1.co2a / 100).toFixed(2)
+                            : item.dialogueOptions[0].value === 2
+                            ? (post2.co2a / 100).toFixed(2)
+                            : item.dialogueOptions[0].value === 3
+                            ? (post3.co2a / 100).toFixed(2)
+                            : item.dialogueOptions[0].value === 4
+                            ? (post4.co2a / 100).toFixed(2)
+                            : item.dialogueOptions[0].value === 5
+                            ? (post5.co2a / 100).toFixed(2)
+                            : ""}
                         </Typography>
                       </Grid>
                     </Grid>
@@ -239,8 +245,17 @@ const EmissionsDirectesCard = () => {
                             fontSize: "16px",
                           }}
                         >
-                          {" "}
-                          {item.value.ch4}
+                          {item.dialogueOptions[0].value === 1
+                            ? (post1.ch4 / 100).toFixed(2)
+                            : item.dialogueOptions[0].value === 2
+                            ? (post2.ch4 / 100).toFixed(2)
+                            : item.dialogueOptions[0].value === 3
+                            ? (post3.ch4 / 100).toFixed(2)
+                            : item.dialogueOptions[0].value === 4
+                            ? (post4.ch4 / 100).toFixed(2)
+                            : item.dialogueOptions[0].value === 5
+                            ? (post5.ch4 / 100).toFixed(2)
+                            : ""}
                         </Typography>
                       </Grid>
                     </Grid>
@@ -267,8 +282,17 @@ const EmissionsDirectesCard = () => {
                             fontSize: "16px",
                           }}
                         >
-                          {" "}
-                          {item.value.n2o}
+                          {item.dialogueOptions[0].value === 1
+                            ? (post1.n2o / 100).toFixed(2)
+                            : item.dialogueOptions[0].value === 2
+                            ? (post2.n2o / 100).toFixed(2)
+                            : item.dialogueOptions[0].value === 3
+                            ? (post3.n2o / 100).toFixed(2)
+                            : item.dialogueOptions[0].value === 4
+                            ? (post4.n2o / 100).toFixed(2)
+                            : item.dialogueOptions[0].value === 5
+                            ? (post5.n2o / 100).toFixed(2)
+                            : ""}
                         </Typography>
                       </Grid>
                     </Grid>
@@ -295,8 +319,17 @@ const EmissionsDirectesCard = () => {
                             fontSize: "16px",
                           }}
                         >
-                          {" "}
-                          {item.value.cob}
+                          {item.dialogueOptions[0].value === 1
+                            ? (post1.cob / 100).toFixed(2)
+                            : item.dialogueOptions[0].value === 2
+                            ? (post2.cob / 100).toFixed(2)
+                            : item.dialogueOptions[0].value === 3
+                            ? (post3.cob / 100).toFixed(2)
+                            : item.dialogueOptions[0].value === 4
+                            ? (post4.cob / 100).toFixed(2)
+                            : item.dialogueOptions[0].value === 5
+                            ? (post5.cob / 100).toFixed(2)
+                            : ""}
                         </Typography>
                       </Grid>
                     </Grid>
