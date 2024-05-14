@@ -1,5 +1,5 @@
 import React from "react";
-
+import axios from "axios";
 
 
 
@@ -7,6 +7,8 @@ import { MuiOtpInput } from "mui-one-time-password-input";
 
 function Verf() {
   const [otp, setOtp] = React.useState("");
+  const token = localStorage.getItem("token");
+  console.log(token);
 
   const handleChange = (newValue) => {
     setOtp(newValue);
@@ -24,6 +26,27 @@ function Verf() {
   const validateChar = (value) => {
     return matchIsNumeric(value);
   };
+
+  const handleVerification = async () => {
+    try {
+      // Set the Authorization header with the token
+      const headers = {
+        Authorization: `Bearer ${token}`,
+      };
+  
+      const response = await axios.post(
+        "http://localhost:3000/api/clients/verify-email",
+        { otp: otp },
+        { headers: headers }
+      );
+      console.log('verification response:', response.data);
+      localStorage.setItem('verifiedEmail',true);
+    } catch (error) {
+      // Handle any errors
+      console.error('Error during verification:', error);
+    }
+  };
+  
 
   return (
     <div className="realtive font-['Inter']">
@@ -54,9 +77,9 @@ function Verf() {
           <div className="h-[16%] text-orange flex justify-center items-center leading-9">
             <div className="text-[#F77F00] text-[3vh] font-sans">00:30</div>
           </div>
-          <button onClick="" type="submit" className=" w-full">
+          <button onClick={handleVerification} type="submit" className=" w-full">
             <div className="w-[84%]  hover:bg-[#023559] duration-[0.3s]   hover:rounded-[1.8vh] h-[8vh]  bg-sky-950 rounded-[2vh] justify-center items-center gap-2.5 inline-flex">
-              <div className="text-center text-white text-[3vh]  font-['Inter sans'] ">
+              <div className="text-center text-white text-[3vh]  font-['Inter sans'] "  >
                 Se connecter
               </div>
             </div>

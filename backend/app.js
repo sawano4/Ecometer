@@ -2,8 +2,6 @@
 const express = require("express");
 const serverConfig = require("./config/server");
 const connectToDb = require("./db/index");
-const multer = require("multer");
-const path = require("path");
 const clientRouter = require("./routes/client");
 const categoryRoutes = require("./routes/categoryRoutes");
 const bilanRoutes = require("./routes/bilanRoutes");
@@ -21,29 +19,15 @@ connectToDb();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors());
-
-const storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, "public/images");
-  },
-  filename: function (req, file, cb) {
-    cb(null, file.fieldname + "-" + Date.now() + path.extname(file.originalname));
-  },
-});
-
-const upload = multer({ 
-  storage: storage
-});
-
 app.use(logging);
 app.use(errorHandler);
 // Routes and other middleware...
 app.use("/api/admin/", adminRoutes);
 app.use("/api/Emission/", categoryRoutes);
-app.use("/api/categories/",/*verifyClientToken,*/ categoryRoutes);
+app.use("/api/categories/", categoryRoutes);
 app.use("/api/clients/",clientRouter);
-app.use("/api/bilans/",/*verifyClientToken,*/ bilanRoutes);
-app.use("/api/objectifs/",/*verifyClientToken,*/ objectifRoutes);
+app.use("/api/bilans/",verifyClientToken, bilanRoutes);
+app.use("/api/objectifs/",verifyClientToken, objectifRoutes);
 
 // Start the server
 app.listen(serverConfig.port, () => {

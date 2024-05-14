@@ -21,11 +21,14 @@ import Verf from "./logIn/Verf.jsx";
 
 
 import "./App.css";
+import Utilisateurs from "./admin/pages/Utilisateurs.jsx";
 
 function App() {
   const isConnected = localStorage.getItem('isConnected'); // Gérer l'état de connexion ici
+  const verifiedEmail = localStorage.getItem('verifiedEmail'); // Gérer l'état de vérification de l'email ici
   return (
-    <BrowserRouter>
+    <>
+      <BrowserRouter>
       <QueryClientProvider client={queryClient}>
         <Routes>
           <Route path="/" element={<Home />} />
@@ -37,11 +40,13 @@ function App() {
           />
           <Route path="/calculateur" element={<Calculateur />} />
           <Route path="/rapport" element={<Rapport />} />
+          <Route path="/admin" element={<Utilisateurs/>}/>
           <Route path="/forgetpassword" element={<Forgetpassword />} />
-          <Route path="/verf" element={<Verf />} />
+          <Route path="/verf" element={ !verifiedEmail ? <Verf /> : <Navigate to="/acceuil" />}/>
         </Routes>
       </QueryClientProvider>
-    </BrowserRouter>
+      </BrowserRouter>
+    </>
   );
 }
 

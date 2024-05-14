@@ -4,6 +4,7 @@ import Sidebar from '../components/Sidebar'
 import Topbar from '../components/Topbar'
 import Searchbar from '../components/Searchbar'
 import Facteur from '../components/Facteur'
+import AjouterElm from '../popups/AjouterElm'
 
 function Basededonnees() {
   const [open, setOpen] = useState(false);
@@ -16,6 +17,16 @@ function Basededonnees() {
     setOpen(false);
     setChoix(e.target.innerText)
   }
+
+  const [popupAdd, setPopupAdd] = useState(false);
+
+  const showPopupAdd = () => {
+    setPopupAdd(true);
+  }
+
+  const hidePopupAdd = () => {
+    setPopupAdd(false);
+  }
   return (
     <div className='flex h-screen bg-[#404040]'>
       <Sidebar selected="2" className="fixed"/>
@@ -26,7 +37,7 @@ function Basededonnees() {
         </div>
         <div className='flex mt-5 flex-col items-center gap-3'>
           <div className='flex justify-between w-[70%] items-center'>
-              <div className='bg-white p-2 rounded-lg border border-[2px] border-solid border-primaryBlue pr-4 pl-4 cursor-pointer'>
+              <div className='bg-white p-2 rounded-lg border border-[2px] border-solid border-primaryBlue pr-4 pl-4 cursor-pointer' onClick={showPopupAdd}>
                   <p className="text-[16px]">Ajouter Element</p>
               </div>
               <div className='flex gap-2'>
@@ -60,6 +71,11 @@ function Basededonnees() {
           </div>
         </div>
       </div>
+      {popupAdd && (
+        <div className='absolute flex items-center justify-center h-screen w-screen backdrop-blur-sm bg-gray-900 bg-opacity-50'>
+          <AjouterElm annuler={hidePopupAdd} />
+        </div>
+      )}
     </div>
   )
 }

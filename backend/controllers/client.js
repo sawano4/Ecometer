@@ -77,12 +77,19 @@ const registerClient = async (req, res) => {
       subject: "Verify your email account",
       html: emailVerificationTemplate(OTP),
     });
+    const token = jwt.sign(
+      { clientId: newClient._id, username: newClient.name },
+      process.env.JWT_SECRET,
+      {
+        expiresIn: "30d",
+      }
+    );
 
     // Return the newly created client in the response
     res.status(201).json({
       msg: "Client created successfully",
       data: newClient,
-      verificationToken: newVerificationToken,
+      token: token,
     });
   } catch (error) {
     // If an error occurs during validation or database operation, handle it
@@ -113,7 +120,7 @@ const loginClient = async (req, res) => {
       { clientId: client._id, username: client.name },
       process.env.JWT_SECRET,
       {
-        expiresIn: "1h",
+        expiresIn: "30d",
       }
     );
 
@@ -128,7 +135,8 @@ const loginClient = async (req, res) => {
 };
 
 const verifyEmail = async (req, res) => {
-  const { clientId, otp } = req.body;
+  const { otp } = req.body;
+  const clientId = req.clientId;
 
   //otp should be a string
   if (!clientId || !otp.trim()) {
@@ -370,6 +378,18 @@ const deleteClient = async (req, res) => {
   }
 };
 
+// get all clients
+
+const getAllClients = async (req, res) => {
+  try {
+    const clients = await Client.find();
+    return res.status(200).json(clients);
+  } catch (error) {
+    console.error("Error:", error);
+    return res.status(500).json({ error: "Internal error" });
+  }
+};
+
 module.exports = {
   registerClient,
   loginClient,
@@ -380,4 +400,5 @@ module.exports = {
   updateClientProfile,
   deleteClient,
   updateClientPassword,
+  getAllClients,
 };
