@@ -7,6 +7,7 @@ import RapportIcon from './RapportIcon';
 import ObjectifIcon from './ObjectifIcon';
 import LogoutIcon from './LogoutIcon';
 import { useNavigate, useLocation } from 'react-router-dom';
+import Ecometer from '../../landingPage/Ecometer';
 
 const ecometerTextStyle = {
   fontFamily: 'Inter',
@@ -55,15 +56,8 @@ const SideBar = () => {
   return (
     <Grid container style={{ height: "100%", backgroundColor: "#003049" }}>
       <Grid item xs={12}>
-        <Typography
-          variant="h5"
-          align="center"
-          gutterBottom
-          marginTop={"22px"}
-          style={ecometerTextStyle}
-        >
-          Ecometer
-        </Typography>
+        <div className="h-[2%]"></div>
+        <Ecometer />
         <Typography
           variant="h6"
           gutterBottom
@@ -126,9 +120,16 @@ const SideBar = () => {
           style={{ ...listItemStyle, display: "flex", alignItems: "center" }}
         >
           <ListItemIcon style={{ color: "#fff" }}>
-            <LogoutIcon />
+            <div
+              className="cursor-pointer
+              "
+              onClick={handleLogout}
+            >
+              <LogoutIcon />
+            </div>
           </ListItemIcon>
           <ListItemText
+            className="cursor-pointer "
             onClick={handleLogout}
             primary="Se déconnecter"
             style={{ ...listItemTextStyle, marginLeft: "8px" }}

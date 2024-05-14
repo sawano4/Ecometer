@@ -31,9 +31,9 @@ function Utilisateurs() {
     setPopupAdd(false);
   }
   useEffect(() => {
-    axios.get('http://localhost:5173/api/clients/all-clients')
+    axios.get('http://localhost:3000/api/admin/clients')
       .then(res => {
-        console.log(res);
+        console.log(res.data.clients);
       })
       .catch(err => {
         console.log(err);

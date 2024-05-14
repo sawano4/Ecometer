@@ -14,9 +14,25 @@ const {
   UTCF,
   categoriesConnection,
 } = require("../Models/Category");
+const Client = require("../Models/Client");
 const validCategories = require("../utils/data").validCategories;
 
 const { isValidObjectId } = require("mongoose");
+
+// get all clients
+
+const getClients = async (req, res) => {
+  try {
+    const clients = await Client.find();
+    res.json({ clients });
+  } catch (error) {
+    res.status(500).json({ error: "Internal server error" });
+  }
+};
+
+
+
+
 // Function to get emission factors for a given category
 const getEmissionFactors = async (req, res) => {
   try {
@@ -104,4 +120,5 @@ module.exports = {
   addEmissionFactor,
   deleteEmissionFactor,
   modifyEmissionFactor,
+  getClients,
 };

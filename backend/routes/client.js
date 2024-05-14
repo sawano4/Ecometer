@@ -25,7 +25,6 @@ router.post("/reset-password", resetPassword);
 // GET Routes
 
 router.get("/profile",verifyClientToken, getClientProfile);
-router.get("/all-clients",/*verifyClientToken,*/ getAllClients);
 
 // UPDATE Routes
 

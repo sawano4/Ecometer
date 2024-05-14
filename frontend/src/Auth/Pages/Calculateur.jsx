@@ -207,8 +207,8 @@ function Calculateur() {
     const bilan = JSON.parse(localStorage.getItem("Bilan"));
     try {
       const url = "http://localhost:3000/api/bilans/calculate-bilan";
-      const { data: res } = await axios.post(url, bilan);
-      console.log(res);
+      const response = await axios.post(url, bilan);
+      localStorage.setItem("ClientBilan", JSON.stringify(response.data));
     } catch (err) {
       console.log(err);
     }
