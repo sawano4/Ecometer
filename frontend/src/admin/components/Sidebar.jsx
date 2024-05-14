@@ -3,7 +3,6 @@ import React from 'react'
 function Sidebar(props) {
   // code to make the selected tab brighter, prop should be 1, 2 or 3
   const selected = parseInt(props.selected);
-  console.log("selected = "+ selected);
   const select = ["primaryBlue", "primaryBlue", "primaryBlue"];
   select[selected - 1] = "#184760";
   return (

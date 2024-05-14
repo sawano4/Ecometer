@@ -3,6 +3,7 @@ import { useEffect } from 'react'
 import { useState } from 'react'
 import axios from 'axios'
 import Ajouter from '../popups/Ajouter'
+import Modifier from '../popups/Modifier'
 import Profil from '../popups/Profil'
 import Sidebar from '../components/Sidebar'
 import Topbar from '../components/Topbar'
@@ -12,6 +13,18 @@ import InfoUtilisateur from '../components/InfoUtilisateur'
 function Utilisateurs() {
   const [open, setOpen] = useState(false);
   const [choix, setChoix] = useState("Tous");
+  const [users, setUsers] = useState([]);
+  const [popupAdd, setPopupAdd] = useState(false);
+  const [popupMod, setPopupMod] = useState(false);
+  const [inputValue, setInputValue] = useState("");
+  const [filteredUsers, setFilteredUsers] = useState([]);
+  const [selectedUser, setSelectedUser] = useState("");
+
+  const updateInputValue = (s) => {
+    setInputValue(s);
+    setFilteredUsers(users.filter(user => user.name.toLowerCase().startsWith(inputValue.toLowerCase())));
+  }
+
   const handleExpand = () => {
     open ? setOpen(false) : setOpen(true);
   }
@@ -21,8 +34,6 @@ function Utilisateurs() {
     setChoix(e.target.innerText)
   }
 
-  const [popupAdd, setPopupAdd] = useState(false);
-
   const showPopupAdd = () => {
     setPopupAdd(true);
   }
@@ -30,9 +41,24 @@ function Utilisateurs() {
   const hidePopupAdd = () => {
     setPopupAdd(false);
   }
+
+  const showPopupMod = () => {
+    setPopupMod(true);
+  }
+
+  const hidePopupMod = () => {
+    setPopupMod(false);
+  }
+
+  const modifySelectedUser = (i, filtered) => {
+    filtered ?
+    setSelectedUser(filteredUsers[i]) : setSelectedUser(users[i]);
+  }
+
   useEffect(() => {
     axios.get('http://localhost:3000/api/admin/clients')
       .then(res => {
+        setUsers(res.data.clients);
         console.log(res.data.clients);
       })
       .catch(err => {
@@ -45,12 +71,12 @@ function Utilisateurs() {
       <div className='bg-[#F0F3F5] w-full h-screen'>
         <Topbar title="Utilisateurs" />
         <div className='w-full flex flex-col items-center'>
-          <Searchbar placeholder="Rechercher une entreprise" />
+          <Searchbar placeholder="Rechercher une entreprise" update={updateInputValue}/>
         </div>
         <div className='flex mt-5 flex-col items-center gap-3'>
           <div className='flex justify-between w-[70%] items-center'>
             <div className='bg-white p-2 rounded-lg border border-[2px] border-solid border-primaryBlue pr-4 pl-4 cursor-pointer' onClick={() => showPopupAdd()}>
-              <p className="text-[16px]">Ajouter Element</p>
+              <p className="text-[16px]">Ajouter un utilisateur</p>
             </div>
             <div className='flex gap-2'>
               <p>Filtre: <span className='text-accentOrange'>{choix}</span></p>
@@ -71,22 +97,33 @@ function Utilisateurs() {
             <div className='flex justify-between p-3 text-specialGrey'>
               <p className='w-full'>Nom</p>
               <p className='w-full'>Structure</p>
-              <p className='w-full flex justify-center items-center'>Nombre Bilans</p>
+              <p className='w-full flex justify-center items-center'>Employés</p>
               <p className='w-full flex justify-center'>État</p>
               <p className='w-full flex justify-center'>Action</p>
             </div>
-            <InfoUtilisateur nom="Exemple" structure="Entreprise" nbrBilans={6} verifie={true} />
-            <InfoUtilisateur nom="Exemple" structure="Association" nbrBilans={6} verifie={true} />
-            <InfoUtilisateur nom="Exemple" structure="Entreprise" nbrBilans={6} verifie={false} />
-            <InfoUtilisateur nom="Exemple" structure="Etat" nbrBilans={6} verifie={true} />
-            <InfoUtilisateur nom="Exemple" structure="Entreprise" nbrBilans={6} verifie={false} />
-            <InfoUtilisateur nom="Exemple" structure="Entreprise" nbrBilans={6} verifie={true} />
+            {((users.length == 0) || ((inputValue != "") && (filteredUsers.length == 0))) && (
+              <div className='bg-white w-full flex items-center justify-center p-4'>
+                <p className='text-specialGrey'>Aucun utilisateur trouvé</p>
+              </div>
+            )}
+            {(inputValue == "") ?
+              users.map((user, index) => (
+                <InfoUtilisateur key={index} nom={user.name} structure={user.structure} nbrBilans={user.numberOfEmployees} verifie={user.verified} show={showPopupMod} modify={() => {modifySelectedUser(index, false)}}/>
+              )) :
+              filteredUsers.map((user, index) => (
+                <InfoUtilisateur key={index} nom={user.name} structure={user.structure} nbrBilans={user.numberOfEmployees} verifie={user.verified} show={showPopupMod} modify={() => {modifySelectedUser(index, true)}}/>
+              ))}
           </div>
         </div>
       </div>
       {popupAdd && (
         <div className='absolute flex items-center justify-center h-screen w-screen backdrop-blur-sm bg-gray-900 bg-opacity-50'>
           <Ajouter annuler={hidePopupAdd} />
+        </div>
+      )}
+      {popupMod && (
+        <div className='absolute flex items-center justify-center h-screen w-screen backdrop-blur-sm bg-gray-900 bg-opacity-50'>
+          <Modifier annuler={hidePopupMod} user={selectedUser} />
         </div>
       )}
     </div>

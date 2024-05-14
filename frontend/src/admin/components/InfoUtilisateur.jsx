@@ -2,7 +2,7 @@ import React from 'react'
 import Etat from './Etat'
 
 function InfoUtilisateur(props) {
-    // props needed: nom, Structure, nbrBilans, verifie
+    // props needed: nom, Structure, nbrBilans, verifie, 
   return (
     <div className='flex justify-between p-3 flex-1'>
         <div className='w-full'>
@@ -18,7 +18,7 @@ function InfoUtilisateur(props) {
             <Etat verifie={props.verifie}/>
         </div>
         <div className='w-full flex justify-center items-center'>
-            <img src="../../../public/modify.svg" alt="Modify" className='cursor-pointer w-[19px] h-[19px]' />
+            <img src="../../../public/modify.svg" alt="Modify" className='cursor-pointer w-[19px] h-[19px]' onClick={() => {props.show();props.modify()}}/>
         </div>
     </div>
   )
