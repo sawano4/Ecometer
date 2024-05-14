@@ -355,6 +355,18 @@ const deleteClient = async (req, res) => {
   }
 };
 
+// get all clients
+
+const getAllClients = async (req, res) => {
+  try {
+    const clients = await Client.find();
+    return res.status(200).json(clients);
+  } catch (error) {
+    console.error("Error:", error);
+    return res.status(500).json({ error: "Internal error" });
+  }
+};
+
 module.exports = {
   registerClient,
   loginClient,
@@ -365,4 +377,5 @@ module.exports = {
   updateClientProfile,
   deleteClient,
   updateClientPassword,
+  getAllClients,
 };

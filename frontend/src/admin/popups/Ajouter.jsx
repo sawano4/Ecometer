@@ -3,7 +3,7 @@ import Input from '../components/Input'
 import Dropdown from '../components/Dropdown'
 import Button from '../components/Button'
 
-function Ajouter() {
+function Ajouter(props) {
   return (
     <div className='bg-[#ffffff] h-[600px] w-[850px] rounded-2xl px-12 py-7 flex flex-col'>
         <h1 className='text-2xl font-bold'>Ajouter utilisateur</h1>
@@ -26,7 +26,9 @@ function Ajouter() {
             </div>
         </div>
         <div className='flex gap-6 mx-4 mt-20'>
-            <Button text="Annuler" background="#ffffff" color="#003049"/>
+            <div className='w-full' onClick={props.annuler}>
+                <Button text="Annuler" background="#ffffff" color="#D62828"/>
+            </div>
             <Button text="Valider" background="#003049" color="#ffffff"/>
         </div>
     </div>

@@ -3,7 +3,7 @@ import Input from '../components/Input'
 import Dropdown from '../components/Dropdown'
 import Button from '../components/Button'
 
-function AjouterElm() {
+function AjouterElm(props) {
   return (
     <div className='bg-[#ffffff] h-[600px] w-[850px] rounded-2xl px-12 py-7 flex flex-col justify-between'>
         <h1 className='text-2xl font-bold'>Ajouter Élement</h1>
@@ -28,7 +28,9 @@ function AjouterElm() {
                 <Input type="number" label="N2O" placeholder="Exemple Élement"/>
             </div>
             <div className='flex gap-6 mx-4 mt-20 justify-between'>
-                <Button text="Annuler" background="#ffffff" color="#D62828"/>
+                <div className='w-full' onClick={props.annuler}>
+                    <Button text="Annuler" background="#ffffff" color="#D62828"/>
+                </div>
                 <Button text="Valider" background="#003049" color="#ffffff"/>
             </div>
         </div>

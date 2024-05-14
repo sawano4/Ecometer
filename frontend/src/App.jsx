@@ -16,10 +16,7 @@ import Calculateur from "./Auth/Pages/Calculateur.jsx";
 import Acceuil from "./Auth/Pages/Accueil.jsx";
 import Rapport from "./Auth/Pages/Rapport.jsx";
 import "./App.css";
-import Basededonnees from "./admin/pages/Basededonnees";
-import Utilisateurs from "./admin/pages/Utilisateurs";
-import Empty from "./admin/pages/Empty";
-import ModifierCollection from "./admin/pages/ModifierCollection";
+import Utilisateurs from "./admin/pages/Utilisateurs.jsx";
 
 function App() {
   const isConnected = localStorage.getItem('isConnected'); // Gérer l'état de connexion ici
@@ -37,10 +34,10 @@ function App() {
           />
           <Route path="/calculateur" element={<Calculateur />} />
           <Route path="/rapport" element={<Rapport />} />
+          <Route path="/admin" element={<Utilisateurs/>}/>
         </Routes>
       </QueryClientProvider>
       </BrowserRouter>
-      <ModifierCollection/>
     </>
   );
 }
