@@ -36,6 +36,14 @@ const ClientSchema = new mongoose.Schema({
     min: [1, 'Number of employees must be at least 1'],
     max: [10000, 'Number of employees cannot exceed 10,000'] // Adjust max value as needed
   },
+  profilePicture: {
+    public_id:{
+      type: String,
+    },
+    url:{
+      type: String,
+    },
+  },  
   industry: {
     type: String,
     required: [true, 'Industry is required'],
@@ -115,7 +123,6 @@ ClientSchema.pre('save', async function(next) {
   if (!this.isModified('password')) {
     return next();
   }
-
   try {
     // Generate a salt
     const salt = await bcrypt.genSalt(10);
@@ -127,6 +134,13 @@ ClientSchema.pre('save', async function(next) {
   } catch (error) {
     next(error);
   }
+});
+
+ClientSchema.pre('save', function(next) {
+  if (!this.profilePicture) {
+    this.profilePicture = null; // Set to null if profile picture is not provided
+  }
+  next();
 });
 
 
