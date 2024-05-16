@@ -1,5 +1,6 @@
 import React from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 
 
@@ -13,6 +14,8 @@ function Verf() {
   const handleChange = (newValue) => {
     setOtp(newValue);
   };
+
+  const navigate = useNavigate(); 
 
   function matchIsNumeric(text) {
     const isNumber = typeof text === "number";
@@ -41,6 +44,7 @@ function Verf() {
       );
       console.log('verification response:', response.data);
       localStorage.setItem('verifiedEmail',true);
+      navigate("/acceuil");
     } catch (error) {
       // Handle any errors
       console.error('Error during verification:', error);

@@ -22,6 +22,7 @@ import Verf from "./logIn/Verf.jsx";
 
 import "./App.css";
 import Utilisateurs from "./admin/pages/Utilisateurs.jsx";
+import Basededonnees from "./admin/pages/Basededonnees.jsx";
 
 function App() {
   const isConnected = localStorage.getItem('isConnected'); // Gérer l'état de connexion ici
@@ -40,9 +41,10 @@ function App() {
           />
           <Route path="/calculateur" element={<Calculateur />} />
           <Route path="/rapport" element={<Rapport />} />
-          <Route path="/admin" element={<Utilisateurs/>}/>
+          <Route path="/admin/utilisateurs" element={<Utilisateurs/>}/>
+          <Route path="/admin/bdd" element={<Basededonnees/>}/>
           <Route path="/forgetpassword" element={<Forgetpassword />} />
-          <Route path="/verf" element={ !verifiedEmail ? <Verf /> : <Navigate to="/acceuil" />}/>
+          <Route path="/verf" element={ <Verf />}/>
         </Routes>
       </QueryClientProvider>
       </BrowserRouter>

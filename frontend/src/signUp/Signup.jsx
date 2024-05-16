@@ -87,7 +87,7 @@ function Signup() {
       const url = "http://localhost:3000/api/clients/register";
       const { data: res } = await axios.post(url, data);
       navigate("/verf");
-      console.log(res);
+      
 
       // store the token generated from the signup
       localStorage.setItem("token",res.token);
