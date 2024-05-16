@@ -11,6 +11,7 @@ import Searchbar from '../components/Searchbar'
 import InfoUtilisateur from '../components/InfoUtilisateur'
 
 function Utilisateurs() {
+
   const [open, setOpen] = useState(false);
   const [choix, setChoix] = useState("Tous");
   const [users, setUsers] = useState([]);
@@ -19,9 +20,11 @@ function Utilisateurs() {
   const [inputValue, setInputValue] = useState("");
   const [filteredUsers, setFilteredUsers] = useState([]);
   const [selectedUser, setSelectedUser] = useState("");
+  const filters = ["Tous", "Non vérifiés", "Vérifiés", "Employés < 10", "10 < Employés < 100", "Employés > 100"]
 
   const updateInputValue = (s) => {
     setInputValue(s);
+    console.log(s);
     setFilteredUsers(users.filter(user => user.name.toLowerCase().startsWith(inputValue.toLowerCase())));
   }
 
@@ -31,7 +34,26 @@ function Utilisateurs() {
 
   const handleClick = (e) => {
     setOpen(false);
-    setChoix(e.target.innerText)
+    setChoix(e.target.innerText);
+    // switch (choix) {
+    //   case "Tous":
+    //     filteredUsers = [...users]; 
+    //   case "Non vérifiés":
+    //     setFilteredUsers(filteredUsers.filter(user => (!user.verified)));
+    //     break;
+    //   case "Vérifiés":
+    //     setFilteredUsers(filteredUsers.filter(user => (user.verified)));
+    //     break;
+    //   case "Employés < 10":
+    //     setFilteredUsers(filteredUsers.filter(user => (user.numberOfEmployees <= 10)));
+    //     break;
+    //   case "10 < Employés < 100":
+    //     setFilteredUsers(filteredUsers.filter(user => (user.numberOfEmployees > 10 && user.numberOfEmployees <= 100)));
+    //     break;
+    //   case "Employés > 100":
+    //     setFilteredUsers(filteredUsers.filter(user => (user.numberOfEmployees > 100)));
+    //     break;
+    // }
   }
 
   const showPopupAdd = () => {
@@ -83,17 +105,16 @@ function Utilisateurs() {
               <img src="../../../public/fleche.svg" alt="Expand" className='cursor-pointer' onClick={handleExpand} />
               {open ? (
                 <div className='absolute bg-[#ffffff] z-10  rounded-lg cursor-pointer'>
-                  <div className="w-full text-center p-2 border border-solid hover:bg-blue-600 hover:text-white" onClick={(e) => handleClick(e)}>
-                    <p>Tous</p>
-                  </div>
-                  <div className="w-full text-center p-2 border border-solid hover:bg-blue-600 hover:text-white" onClick={(e) => handleClick(e)}>
-                    <p>Exemple</p>
-                  </div>
+                  {filters.map((filter, index) => (
+                    <div className="w-full text-center p-2 border border-solid hover:bg-blue-600 hover:text-white" onClick={(e) => handleClick(e)} key={index}>
+                      <p>{filter}</p>
+                    </div>
+                  ))}
                 </div>
               ) : null}
             </div>
           </div>
-          <div className='w-[80%] max-h-[400px] bg-white rounded-xl px-5 overflow-y-scroll'>
+          <div className='w-[80%] max-h-[400px] bg-white rounded-xl px-5 overflow-y-scroll shadow-xl'>
             <div className='flex justify-between p-3 text-specialGrey'>
               <p className='w-full'>Nom</p>
               <p className='w-full'>Structure</p>
@@ -106,7 +127,7 @@ function Utilisateurs() {
                 <p className='text-specialGrey'>Aucun utilisateur trouvé</p>
               </div>
             )}
-            {(inputValue == "") ?
+            {(inputValue == "")  ?
               users.map((user, index) => (
                 <InfoUtilisateur key={index} nom={user.name} structure={user.structure} nbrBilans={user.numberOfEmployees} verifie={user.verified} show={showPopupMod} modify={() => {modifySelectedUser(index, false)}}/>
               )) :
