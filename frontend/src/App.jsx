@@ -42,7 +42,7 @@ function App() {
           <Route path="/rapport" element={<Rapport />} />
           <Route path="/admin" element={<Utilisateurs/>}/>
           <Route path="/forgetpassword" element={<Forgetpassword />} />
-          <Route path="/verf" element={ !verifiedEmail ? <Verf /> : <Navigate to="/acceuil" />}/>
+          <Route path="/verf" element={ <Verf />}/>
         </Routes>
       </QueryClientProvider>
       </BrowserRouter>
