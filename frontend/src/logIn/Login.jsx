@@ -58,7 +58,7 @@ function Login() {
                   <div className="w-[60vh]  justify-start items-center inline-flex">
                     <div className="text-neutral-500  font-normal  ">
                       <input
-                        className="text-[2.6vh]  font-sans  focus:border-none focus:outline-none "
+                        className="text-[2.6vh] w-[40 vh] font-sans  focus:border-none focus:outline-none "
                         type="email"
                         name="email"
                         placeholder="exemple@domain.com"
