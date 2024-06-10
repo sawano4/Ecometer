@@ -69,7 +69,7 @@ const ChartCard = () => {
                   fontSize: "16px",
                 }}
               >
-                {((scope1 / total) * 1000).toFixed(2)}%{" "}
+                {((scope1 / total) * 100).toFixed(2)}%{" "}
               </Typography>
             </Grid>
           </Grid>
@@ -89,7 +89,7 @@ const ChartCard = () => {
                   fontSize: "16px",
                 }}
               >
-                {((scope2 / total) * 1000).toFixed(2)}%{" "}
+                {((scope2 / total) * 100).toFixed(2)}%{" "}
               </Typography>
             </Grid>
           </Grid>
@@ -109,7 +109,7 @@ const ChartCard = () => {
                   fontSize: "16px",
                 }}
               >
-                {((scope3 / total) * 1000).toFixed(2)}%{" "}
+                {((scope3 / total) * 100).toFixed(2)}%{" "}
               </Typography>
             </Grid>
           </Grid>
