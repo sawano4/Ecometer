@@ -38,7 +38,6 @@ const ScopesCard = () => {
            element.index === 1.4 ||
            element.index === 1.5
          ) {
-           console.log(element.emissions);
            setScope1((prev) => prev + element.emissions);
          } else if (element.index === 2.1 || element.index === 2.2) {
            setScope2((prev) => prev + element.emissions);

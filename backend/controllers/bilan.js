@@ -46,8 +46,7 @@ const createBilan = async (req, res) => {
 
 // update and calculate bilan
 const updateAndCalculateBilan = async (req, res) => {
-  const { clientId, year, selectedCategoryElements } = req.body;
-
+  const { year, clientId, selectedCategoryElements } = req.body;
   console.log("req.body = ", req.body);
   if (!isValidObjectId(clientId)) {
     return res.status(400).json({ msg: "Invalid client ID" });
@@ -183,10 +182,9 @@ const getBilan = async (req, res) => {
 
 const getAllBilans = async (req, res) => {
   try {
-    const clientId  = req.clientId;
+    const clientId = req.clientId;
     const carbonFootprints = await CarbonFootprint.find({ clientId: clientId });
-    return res.status(200).json({carbonFootprints,
-      clientId  });
+    return res.status(200).json({ carbonFootprints, clientId });
   } catch (error) {
     console.error("Error:", error);
     return res.status(500).json({ error: "Internal error" });

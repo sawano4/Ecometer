@@ -22,6 +22,7 @@ function Login() {
     try {
       const url = "http://localhost:3000/api/clients/login";
       const { data: res } = await axios.post(url, data);
+      localStorage.removeItem("token");
       localStorage.setItem("token", res.token);
       console.log(res);
       localStorage.setItem("isConnected", true);
@@ -33,12 +34,12 @@ function Login() {
         error.response.status <= 500
       ) {
         setError(error.response.data.message);
-        
+
         if (error.response.status === 404) {
           setRedEmail(true);
-        }else if (error.response.status === 401) {
+        } else if (error.response.status === 401) {
           setRedPass(true);
-      }
+        }
       }
     }
   };
@@ -103,7 +104,7 @@ function Login() {
                 <div className=" w-[10%] float-right h-[100%] flex justify-center ">
                   <img
                     className="w-[70%] my-[auto] h-[70%] cursor-pointer"
-                    src={show ? "public/Eye.svg" : "eye-off.svg"}
+                    src={show ? "Eye.svg" : "eye-off.svg"}
                     alt="toggle"
                     onClick={toggle}
                   ></img>

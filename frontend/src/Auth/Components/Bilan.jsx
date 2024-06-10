@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Grid, Typography, Paper, Button, Select } from "@mui/material";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
@@ -79,7 +80,7 @@ const Styles = {
 function Bilan({ showBilan, setShowBilan }) {
   const data = {
     year: 2024,
-    clientId: "663423f16e90cffe89fdd32a", //localStorage.getItem("clientId"),
+    clientId: "6666cb3cdcd1561334ffd601", //localStorage.getItem("clientId"),
     selectedCategoryElements: [
       [],
       [],
@@ -106,12 +107,17 @@ function Bilan({ showBilan, setShowBilan }) {
     ],
   };
   const handleClick = () => {
+    localStorage.removeItem("Bilan");
     localStorage.setItem("Bilan", JSON.stringify(data));
     setShowBilan(!showBilan); // Inversion de l'état de showBilan
     // if (localStorage.getItem("'isConnected'")) {
     //   localStorage.setItem("Bilan", data);
     // }
   };
+  const pays = [{ id: 1, name: "Algerie" }];
+  const wilayas = ["Alger", "Oran", "Tizi Ouzou"];
+  const [selectedPays, setSelectedPays] = useState("");
+  const [selectedWilaya, setSelectedWilaya] = useState("");
   return (
     <div>
       <ThemeProvider theme={newTheme}>
@@ -138,36 +144,7 @@ function Bilan({ showBilan, setShowBilan }) {
             <Grid item md={12} xs={12}>
               <Grid container direction={"row"} spacing={2}>
                 <Grid item md={4.2} xs={12}>
-                  <Typography style={Styles.bodyText}>Peroide</Typography>
-                  <LocalizationProvider dateAdapter={AdapterDayjs} fullWidth>
-                    <DatePicker
-                      slotProps={{
-                        textField: {
-                          fullWidth: true,
-                          sx: {
-                            borderRadius: "15px",
-
-                            "& .MuiOutlinedInput-notchedOutline": {
-                              borderColor: "#EEF5FC !important",
-                              borderRadius: "15px",
-                            },
-                            "&:hover .MuiOutlinedInput-notchedOutline": {
-                              borderColor: "#EEF5FC !important",
-                              borderRadius: "15px",
-                            },
-                            "& .Mui-focused .MuiOutlinedInput-notchedOutline": {
-                              borderColor: "#EEF5FCD !important",
-                              borderRadius: "15px",
-                            },
-                          },
-                        },
-                      }}
-                      placeholder="A"
-                    />
-                  </LocalizationProvider>
-                </Grid>
-                <Grid item md={4.2} xs={12}>
-                  <Typography style={Styles.bodyText}>Periode</Typography>
+                  <Typography style={Styles.bodyText}>Année</Typography>
                   <LocalizationProvider dateAdapter={AdapterDayjs} fullWidth>
                     <DatePicker
                       slotProps={{
@@ -219,14 +196,25 @@ function Bilan({ showBilan, setShowBilan }) {
                         borderRadius: "15px",
                       },
                     }}
-                  />
+                    value={selectedPays}
+                    onChange={(e) => setSelectedPays(e.target.value)}
+                  >
+                    <option disabled selected>
+                      Selectionner un pays
+                    </option>
+                    {pays.map((pays) => (
+                      <option key={pays.id} value={pays.id}>
+                        {pays.name}
+                      </option>
+                    ))}
+                  </Select>
                 </Grid>
               </Grid>
             </Grid>
             <Grid item md={12} xs={12}>
               <Grid container spacing={2}>
                 <Grid item md={4.2} xs={12}>
-                  <Typography style={Styles.bodyText}>Province</Typography>
+                  <Typography style={Styles.bodyText}>wilaya</Typography>
                   <Select
                     fullWidth
                     sx={{
@@ -245,7 +233,18 @@ function Bilan({ showBilan, setShowBilan }) {
                         borderRadius: "15px",
                       },
                     }}
-                  />
+                    value={selectedWilaya}
+                    onChange={(e) => setSelectedWilaya(e.target.value)}
+                  >
+                    <option disabled selected>
+                      Selectionner une wilaya
+                    </option>
+                    {wilayas.map((wilayas) => (
+                      <option key={wilayas} value={wilayas}>
+                        {wilayas}
+                      </option>
+                    ))}
+                  </Select>
                 </Grid>
               </Grid>
             </Grid>

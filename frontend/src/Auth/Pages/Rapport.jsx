@@ -210,13 +210,15 @@ const Rapport = () => {
                               >
                                 Scope {item}
                               </Typography>
-                              <Grid container alignItems="center" style={
-                                {
-                                  display: 'flex',
-                                  justifyContent: 'center',
-                                  flexDirection: 'column',
-                                }
-                              }>
+                              <Grid
+                                container
+                                alignItems="center"
+                                style={{
+                                  display: "flex",
+                                  justifyContent: "center",
+                                  flexDirection: "column",
+                                }}
+                              >
                                 <Typography
                                   variant="h3"
                                   sx={{
