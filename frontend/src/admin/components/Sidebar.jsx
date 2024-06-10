@@ -1,7 +1,9 @@
 import React from 'react'
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
 
 function Sidebar(props) {
+  const navigate = useNavigate();
   // code to make the selected tab brighter, prop should be 1, 2 or 3
   const selected = parseInt(props.selected);
   const select = ["primaryBlue", "primaryBlue", "primaryBlue"];
@@ -19,11 +21,11 @@ function Sidebar(props) {
         </div>
       </div>
       <h1 className='mb-3 ml-5 text-white text-[20px]'>Accès Rapide</h1>
-      <div className={`flex gap-5 items-center pt-2 pb-2 text-white cursor-pointer`} style={{ backgroundColor: select[0] }}>
+      <div className={`flex gap-5 items-center pt-2 pb-2 text-white cursor-pointer`} style={{ backgroundColor: select[0] }} onClick={() => navigate('/admin/utilisateurs')}>
         <img src="../../../public/users.svg" alt="" className='h-[30px] w-[30px] ml-5' />
         <p className='text-[16px]'>Utilisateurs</p>
       </div>
-      <div className={`flex gap-5 items-center pt-2 pb-2 text-white cursor-pointer`} style={{ backgroundColor: select[1] }}>
+      <div className={`flex gap-5 items-center pt-2 pb-2 text-white cursor-pointer`} style={{ backgroundColor: select[1] }} onClick={() => navigate('/admin/bdd')}>
         <img src="../../../public/database.svg" alt="" className='h-[30px] w-[30px] ml-5' />
         <p className='text-[16px]'>Base de données</p>
       </div>

@@ -40,6 +40,7 @@ const getEmissionFactors = async (req, res) => {
     // If SelectedCategories isn't valid return 400 bad request
     if (!validCategories.includes(selectedCategorie)) {
       return res.status(400).json({ error: "Invalid category" });
+      // return res.status(400).json({ error: (selectedCategorie + " is an invalid category") });
     }
     const factors = await categoriesConnection.model(selectedCategorie).find();
     res.json({ factors });

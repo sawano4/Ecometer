@@ -60,8 +60,8 @@ function Basededonnees() {
               <p>Collections</p>
               <p>Actions</p>
             </div>
-            <Facteur text="Achat de biens"/>
-            <Facteur text="Achat de services"/>
+            <Facteur text="Achats de biens"/>
+            <Facteur text="Achats de services"/>
             <Facteur text="Transport de marchandises"/>
             <Facteur text="Transport de personnes"/>
             <Facteur text="Process et émissions fugitives"/>
