@@ -119,15 +119,13 @@ const Rapport = () => {
                           marginBottom: { xs: "20px" },
                         }}
                       >
-                        <div className="cursor-pointer">
-                          <Typography
-                            variant="body1"
-                            sx={{ color: "#F77F00" }}
-                            onClick={() => setShowFirstMain(false)}
-                          >
-                            Voir plus de détails
-                          </Typography>
-                        </div>
+                        <Typography
+                          variant="body1"
+                          sx={{ color: "#F77F00" }}
+                          onClick={() => setShowFirstMain(false)}
+                        >
+                          Voir plus de détails
+                        </Typography>
                       </Grid>
                     </Grid>
 

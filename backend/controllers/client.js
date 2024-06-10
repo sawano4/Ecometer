@@ -3,6 +3,8 @@ const VerificationToken = require("../Models/verificationToken");
 const ResetToken = require("../Models/resetToken");
 const crypto = require("crypto");
 const { createRandomBytes } = require("../utils/helper");
+const jwt = require("jsonwebtoken");
+const cloudinary = require("../utils/cloudinary");
 const {
   generateOTP,
   mailTransport,
@@ -11,7 +13,6 @@ const {
   passwordResetTemplate,
   passwordResetSuccessTemplate,
 } = require("../utils/mail");
-const jwt = require("jsonwebtoken");
 const dotenv = require("dotenv");
 dotenv.config();
 const { isValidObjectId } = require("mongoose");
@@ -27,11 +28,19 @@ const registerClient = async (req, res) => {
     address,
     numberOfLocations,
     structure,
+    profilePicture,
   } = req.body;
 
   try {
     // Create a new client using Model.create()
-    console.log(req.body);
+
+    const uploadedResponse = await cloudinary.uploader.upload(profilePicture, {
+      upload_preset: "ecometer",
+      folder: `profile_pictures/${name}`,
+    });
+
+    console.log(uploadedResponse);
+
     const newClient = new Client({
       name,
       email,
@@ -41,6 +50,10 @@ const registerClient = async (req, res) => {
       address,
       numberOfLocations,
       structure,
+      profilePicture: {
+        public_id: uploadedResponse.public_id,
+        url: uploadedResponse.secure_url,
+      },
     });
 
     // Save the client to the database
@@ -64,12 +77,19 @@ const registerClient = async (req, res) => {
       subject: "Verify your email account",
       html: emailVerificationTemplate(OTP),
     });
+    const token = jwt.sign(
+      { clientId: newClient._id, username: newClient.name },
+      process.env.JWT_SECRET,
+      {
+        expiresIn: "30d",
+      }
+    );
 
     // Return the newly created client in the response
     res.status(201).json({
       msg: "Client created successfully",
       data: newClient,
-      verificationToken: newVerificationToken,
+      token: token,
     });
   } catch (error) {
     // If an error occurs during validation or database operation, handle it
@@ -81,37 +101,44 @@ const registerClient = async (req, res) => {
 // login the client
 const loginClient = async (req, res) => {
   const { email, password } = req.body;
-  if (!email.trim() || !password.trim()) {
-    return res.status(400).json({ msg: "Email and password are required" });
-  }
-  console.log(email);
-  const client = await Client.findOne({ email });
-  if (!client) {
-    return res.status(404).json({ msg: "User not found" });
-  }
-
-  const isMatched = await client.comparePassword(password);
-  if (!isMatched) {
-    return res.status(400).json({ msg: "Invalid password" });
-  }
-
-  jwt.sign(
-    { clientId: client._id },
-    process.env.JWT_SECRET,
-    { expiresIn: "1d" },
-    (err, token) => {
-      if (err) {
-        console.error("Error generating token:", err);
-        return res.status(500).json({ msg: "Server error" });
-      }
-      res.status(200).json({ msg: "Login successful", token });
+  try {
+    if (!email.trim() || !password.trim()) {
+      return res.status(400).json({ msg: "Email and password are required" });
     }
-  );
+    console.log(email);
+    const client = await Client.findOne({ email });
+    if (!client) {
+      return res.status(404).json({ msg: "User not found" });
+    }
+
+    const isMatched = await client.comparePassword(password);
+    if (!isMatched) {
+      return res.status(401).json({ msg: "Invalid Credentials" });
+    }
+
+    const token = jwt.sign(
+      { clientId: client._id, username: client.name },
+      process.env.JWT_SECRET,
+      {
+        expiresIn: "30d",
+      }
+    );
+
+    res.status(200).json({
+      msg: "Login successful",
+      token: token,
+    });
+  } catch (error) {
+    console.error("Error:", error);
+    return res.status(500).json({ error: "Internal error" });
+  }
 };
 
 const verifyEmail = async (req, res) => {
-  const { clientId, otp } = req.body;
+  const { otp } = req.body;
+  const clientId = req.clientId;
 
+  //otp should be a string
   if (!clientId || !otp.trim()) {
     return res.status(400).json({ msg: "Client ID and OTP are missing" });
   }
@@ -245,9 +272,8 @@ const resetPassword = async (req, res) => {
 };
 
 // get a clients profile
-
 const getClientProfile = async (req, res) => {
-  const { clientId } = req.params;
+  const clientId = req.clientId;
 
   if (!isValidObjectId(clientId)) {
     return res.status(400).json({ msg: "Invalid client ID" });
@@ -255,9 +281,11 @@ const getClientProfile = async (req, res) => {
 
   try {
     const client = await Client.findById(clientId);
+
     if (!client) {
       return res.status(404).json({ msg: "Client not found" });
     }
+
     return res.status(200).json(client);
   } catch (error) {
     console.error("Error:", error);
@@ -266,10 +294,8 @@ const getClientProfile = async (req, res) => {
 };
 
 // update a clients profile
-
 const updateClientProfile = async (req, res) => {
   const {
-    clientId,
     name,
     email,
     numberOfEmployees,
@@ -278,6 +304,7 @@ const updateClientProfile = async (req, res) => {
     numberOfLocations,
     structure,
   } = req.body;
+  const clientId = req.clientId; // Added this line
 
   if (!isValidObjectId(clientId)) {
     return res.status(400).json({ msg: "Invalid client ID" });
@@ -307,7 +334,9 @@ const updateClientProfile = async (req, res) => {
 
 // update client password
 const updateClientPassword = async (req, res) => {
-  const { clientId, oldPassword, newPassword } = req.body;
+  const { oldPassword, newPassword } = req.body;
+  const clientId = req.clientId; // Added this line
+
   if (!isValidObjectId(clientId)) {
     return res.status(400).json({ msg: "Invalid client ID" });
   }
@@ -332,7 +361,7 @@ const updateClientPassword = async (req, res) => {
 // delete a client
 
 const deleteClient = async (req, res) => {
-  const { clientId } = req.params;
+  const clientId = req.clientId; // Added this line
 
   if (!isValidObjectId(clientId)) {
     return res.status(400).json({ msg: "Invalid client ID" });
@@ -350,6 +379,18 @@ const deleteClient = async (req, res) => {
   }
 };
 
+// get all clients
+
+const getAllClients = async (req, res) => {
+  try {
+    const clients = await Client.find();
+    return res.status(200).json(clients);
+  } catch (error) {
+    console.error("Error:", error);
+    return res.status(500).json({ error: "Internal error" });
+  }
+};
+
 module.exports = {
   registerClient,
   loginClient,
@@ -360,4 +401,5 @@ module.exports = {
   updateClientProfile,
   deleteClient,
   updateClientPassword,
+  getAllClients,
 };

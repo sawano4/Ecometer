@@ -1,3 +1,15 @@
 @tailwind components;
 @tailwind utilities;
 @tailwind base;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+@font-face {
+    font-family: 'Eudoxus';
+    src: url(../public/EudoxusSans-Regular.woff2);
+}
+body {
+    font-family: 'Eudoxus';
+}

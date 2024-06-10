@@ -80,7 +80,7 @@ const Styles = {
 function Bilan({ showBilan, setShowBilan }) {
   const data = {
     year: 2024,
-    clientId: "663423f16e90cffe89fdd32a", //localStorage.getItem("clientId"),
+    clientId: "6666cb3cdcd1561334ffd601", //localStorage.getItem("clientId"),
     selectedCategoryElements: [
       [],
       [],
@@ -107,6 +107,7 @@ function Bilan({ showBilan, setShowBilan }) {
     ],
   };
   const handleClick = () => {
+    localStorage.removeItem("Bilan");
     localStorage.setItem("Bilan", JSON.stringify(data));
     setShowBilan(!showBilan); // Inversion de l'état de showBilan
     // if (localStorage.getItem("'isConnected'")) {

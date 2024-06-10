@@ -9,8 +9,8 @@ function Info() {
             </div>
 
             <a className="w-[80%]" href="/acceuil">
-              <div className="  border-[#000000] border-solid border-[0.3vh] py-[2.1vh] rounded-[2vh]  w-[65%] justify-center flex items-center">
-                <div className=" w-[80%] pl-[1vh] text-center  text-[#000000] text-[2.5vh]   ">
+              <div className=" hover:bg-[#efefef]  text-[2.5vh] hover:rounded-[1.8vh]  border-[#000000] border-solid border-[0.3vh] py-[2.1vh] rounded-[2vh]  w-[65%] justify-center flex items-center">
+                <div className="  w-[80%] pl-[1vh] text-center  text-[#000000]    ">
                   Commencer le bilan Carbone
                 </div>
                 <div className=" w-[20%]  pl-[2vh] ">

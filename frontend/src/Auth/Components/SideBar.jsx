@@ -1,41 +1,49 @@
-import { Grid, Typography, List, ListItem, ListItemIcon, ListItemText } from '@mui/material';
-import AccueilIcon from './AcceuilIcon';
-import CalculateurIcon from './CalculateurIcon';
-import RapportIcon from './RapportIcon';
-import ObjectifIcon from './ObjectifIcon';
-import LogoutIcon from './LogoutIcon';
-import { useNavigate, useLocation } from 'react-router-dom';
+import {
+  Grid,
+  Typography,
+  List,
+  ListItem,
+  ListItemIcon,
+  ListItemText,
+} from "@mui/material";
+import AccueilIcon from "./AcceuilIcon";
+import CalculateurIcon from "./CalculateurIcon";
+import RapportIcon from "./RapportIcon";
+import ObjectifIcon from "./ObjectifIcon";
+import LogoutIcon from "./LogoutIcon";
+import { useNavigate, useLocation } from "react-router-dom";
+import Ecometer from "../../landingPage/Ecometer";
 
-const ecometerTextStyle = {
-  fontFamily: 'Inter',
-  fontSize: '25px',
-  fontWeight: 700,
-  lineHeight: '24px',
-  textAlign: 'center',
-  color: '#fff'
-};
+// const ecometerTextStyle = {
+//   fontFamily: 'Inter',
+//   fontSize: '25px',
+//   fontWeight: 700,
+//   lineHeight: '24px',
+//   textAlign: 'center',
+//   color: '#fff'
+// };
 
 const accessTextStyle = {
-  fontFamily: 'Eudoxus , sans-serif',
-  fontSize: '20px',
+  fontFamily: "Eudoxus , sans-serif",
+  fontSize: "20px",
   fontWeight: 500,
-  lineHeight: '30px',
-  textAlign: 'left',
-  color: '#fff'
+  lineHeight: "30px",
+  textAlign: "left",
+  color: "#fff",
 };
 
 const listItemTextStyle = {
-  fontFamily: 'Inter',
-  fontSize: '16px',
+  fontFamily: "Inter",
+  fontSize: "16px",
   fontWeight: 400,
-  lineHeight: '24px',
-  textAlign: 'left',
-  color: '#fff'
+  lineHeight: "24px",
+  textAlign: "left",
+  color: "#fff",
 };
 
 const listItemStyle = {
-  paddingLeft: '32px',
-  marginBottom: '10px',
+  paddingLeft: "32px",
+  marginBottom: "10px",
 };
 
 const SideBar = () => {
@@ -45,23 +53,16 @@ const SideBar = () => {
   const handleListItemClick = (path) => {
     navigate(path);
   };
-    const handleLogout = () => {
-      localStorage.clear();
-      navigate("/login");
-    };
+  const handleLogout = () => {
+    localStorage.clear();
+    navigate("/login");
+  };
 
   return (
     <Grid container style={{ height: "100%", backgroundColor: "#003049" }}>
       <Grid item xs={12}>
-        <Typography
-          variant="h5"
-          align="center"
-          gutterBottom
-          marginTop={"22px"}
-          style={ecometerTextStyle}
-        >
-          Ecometer
-        </Typography>
+        <div className="h-[2%]"></div>
+        <Ecometer />
         <Typography
           variant="h6"
           gutterBottom
@@ -124,11 +125,17 @@ const SideBar = () => {
           style={{ ...listItemStyle, display: "flex", alignItems: "center" }}
         >
           <ListItemIcon style={{ color: "#fff" }}>
-            <LogoutIcon />
+            <div
+              className="cursor-pointer
+              "
+              onClick={handleLogout}
+            >
+              <LogoutIcon />
+            </div>
           </ListItemIcon>
           <ListItemText
+            className="cursor-pointer "
             onClick={handleLogout}
-            className="cursor-pointer"
             primary="Se déconnecter"
             style={{ ...listItemTextStyle, marginLeft: "8px" }}
           />

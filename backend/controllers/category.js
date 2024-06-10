@@ -46,7 +46,7 @@ const getCategoryElements = async (req, res) => {
     ) {
       return res.status(400).json({ msg: "enter Categories please" });
     }
-
+    
     // Query MongoDB to get the next level categories
     const { nextLevelCategories, matchingDocuments, existingCategory } =
       await getNextLevelCategories(userSelectedCategories);

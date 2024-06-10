@@ -15,12 +15,21 @@ import Signup from "./signUp/Signup";
 import Calculateur from "./Auth/Pages/Calculateur.jsx";
 import Acceuil from "./Auth/Pages/Accueil.jsx";
 import Rapport from "./Auth/Pages/Rapport.jsx";
+import Forgetpassword from "./logIn/Forgetpassword.jsx";
+import Verf from "./logIn/Verf.jsx";
+
+
+
 import "./App.css";
+import Utilisateurs from "./admin/pages/Utilisateurs.jsx";
+import Basededonnees from "./admin/pages/Basededonnees.jsx";
 
 function App() {
   const isConnected = localStorage.getItem('isConnected'); // Gérer l'état de connexion ici
+  const verifiedEmail = localStorage.getItem('verifiedEmail'); // Gérer l'état de vérification de l'email ici
   return (
-    <BrowserRouter>
+    <>
+      <BrowserRouter>
       <QueryClientProvider client={queryClient}>
         <Routes>
           <Route path="/" element={<Home />} />
@@ -32,9 +41,14 @@ function App() {
           />
           <Route path="/calculateur" element={<Calculateur />} />
           <Route path="/rapport" element={<Rapport />} />
+          <Route path="/admin/utilisateurs" element={<Utilisateurs/>}/>
+          <Route path="/admin/bdd" element={<Basededonnees/>}/>
+          <Route path="/forgetpassword" element={<Forgetpassword />} />
+          <Route path="/verf" element={ <Verf />}/>
         </Routes>
       </QueryClientProvider>
-    </BrowserRouter>
+      </BrowserRouter>
+    </>
   );
 }
 

@@ -4,8 +4,13 @@ import axios from "axios";
 function Login() {
   const [data, setData] = useState({ email: "", password: "" });
   const [error, setError] = useState("");
+  const [redPass, setRedPass] = useState(false);
+  const [redEmail, setRedEmail] = useState(false);
+
   const handleChange = ({ currentTarget: input }) => {
     setData({ ...data, [input.name]: input.value });
+    setRedEmail(false);
+    setRedPass(false);
   };
   const navigate = useNavigate();
   const [show, setShow] = useState(false);
@@ -17,6 +22,7 @@ function Login() {
     try {
       const url = "http://localhost:3000/api/clients/login";
       const { data: res } = await axios.post(url, data);
+      localStorage.removeItem("token");
       localStorage.setItem("token", res.token);
       console.log(res);
       localStorage.setItem("isConnected", true);
@@ -28,6 +34,12 @@ function Login() {
         error.response.status <= 500
       ) {
         setError(error.response.data.message);
+
+        if (error.response.status === 404) {
+          setRedEmail(true);
+        } else if (error.response.status === 401) {
+          setRedPass(true);
+        }
       }
     }
   };
@@ -49,7 +61,13 @@ function Login() {
           {/* formulaire  */}
           <form className="" onSubmit={handleSubmit}>
             <div className="flex flex-col  justify-center items-center">
-              <div className="w-[84%] h-[8vh] mb-[3vh]  px-5  rounded-[2vh] border border-slate-900 flex-col justify-center items-start flex">
+              <div
+                className={
+                  redEmail
+                    ? "w-[84%] h-[8vh] mb-[3vh]  px-5  rounded-[2vh] border border-red-500 flex-col justify-center items-start flex"
+                    : "w-[84%] h-[8vh] mb-[3vh]  px-5  rounded-[2vh] border border-slate-900 flex-col justify-center items-start flex"
+                }
+              >
                 <div className="  flex-col  justify-center  items-start flex">
                   <div className=" w-[50%] text-neutral-500  leading-none font-sans   text-[1.9vh] font-normal  ">
                     Email d’utilisateur
@@ -58,7 +76,7 @@ function Login() {
                   <div className="w-[60vh]  justify-start items-center inline-flex">
                     <div className="text-neutral-500  font-normal  ">
                       <input
-                        className="text-[2.6vh] w-[40 vh] font-sans  focus:border-none focus:outline-none "
+                        className="text-[2.6vh]  font-sans outline-none  focus:border-none focus:outline-none "
                         type="email"
                         name="email"
                         placeholder="exemple@domain.com"
@@ -76,7 +94,13 @@ function Login() {
                 </div>
               </div>
 
-              <div className=" w-[84%] h-[8vh]  px-5  rounded-[2vh] border border-slate-900 ">
+              <div
+                className={
+                  redPass
+                    ? "w-[84%] h-[8vh]  px-5  rounded-[2vh] border border-red-500"
+                    : "w-[84%] h-[8vh]  px-5  rounded-[2vh] border border-slate-900"
+                }
+              >
                 <div className=" w-[10%] float-right h-[100%] flex justify-center ">
                   <img
                     className="w-[70%] my-[auto] h-[70%] cursor-pointer"
@@ -105,17 +129,24 @@ function Login() {
                   </div>
                 </div>
               </div>
-              <div className="w-[82%] h-[4vh] mb-[3vh] justify-end items-center flex">
+              <div className="w-[82%] h-[4vh] mb-[3vh] justify-between items-center flex">
+                <div className="text-red-500 w-[50%] text-[1.9vh] font-sans font-normal   ">
+                  {redEmail
+                    ? "Cet Email n’exist pas"
+                    : redPass
+                    ? "Mot de passe incorrect"
+                    : ""}
+                </div>
                 <a
-                  href="/#"
-                  className="text-right  text-sky-600 text-[1.9vh] font-sans font-normal  "
+                  href="/forgetpassword"
+                  className="text-right w-[50%]  text-sky-600 text-[1.9vh] font-sans font-normal  "
                 >
                   Mot de passe oublié
                 </a>
               </div>
               <div className="w-full">
                 <button type="submit" className="w-full">
-                  <div className="w-[84%] h-[8vh]  bg-sky-950 rounded-[2vh] justify-center items-center gap-2.5 inline-flex">
+                  <div className="w-[84%] h-[8vh] hover:bg-[#023559] duration-[0.3s]   hover:rounded-[1.8vh]  bg-sky-950 rounded-[2vh] justify-center items-center gap-2.5 inline-flex">
                     <div className="text-center text-white text-[3vh]  font-['Inter sans'] ">
                       Se connecter
                     </div>

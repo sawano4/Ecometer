@@ -203,16 +203,21 @@ function Calculateur() {
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
   };
   const navigate = useNavigate();
-  const handleCalculer = async () => {
+  const handleReset = async () => {
     const bilan = JSON.parse(localStorage.getItem("Bilan"));
+    const token = localStorage.getItem("token");
     try {
+      const headers = {
+        Authorization: `Bearer ${token}`,
+      };
+
       const url = "http://localhost:3000/api/bilans/calculate-bilan";
-      const response = await axios.post(url, bilan);
+      const response = await axios.post(url, bilan, { headers: headers });
       localStorage.setItem("ClientBilan", JSON.stringify(response.data));
     } catch (err) {
       console.log(err);
     }
-      navigate("/rapport");
+    navigate("/rapport");
   };
 
   const steps = [
@@ -384,7 +389,7 @@ function Calculateur() {
                           <Button
                             onClick={
                               activeStep === steps.length - 1
-                                ? handleCalculer
+                                ? handleReset
                                 : handleNext
                             }
                             style={Styles.suivantButton}
