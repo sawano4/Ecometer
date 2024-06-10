@@ -1,35 +1,35 @@
-import { Grid, Paper, Typography } from '@mui/material';
+import { Grid, Paper, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
 const ChartCard = () => {
-     const [total, setTotal] = useState(0);
-     const [scope1, setScope1] = useState(0);
-     const [scope2, setScope2] = useState(0);
-     const [scope3, setScope3] = useState(0);
-     const Data = JSON.parse(localStorage.getItem("ClientBilan"));
-     const calculateScopeEmissions = () => {
-       Data.emissionPosts.map((element) => {
-         if (
-           element.index === 1.1 ||
-           element.index === 1.2 ||
-           element.index === 1.3 ||
-           element.index === 1.4 ||
-           element.index === 1.5
-         ) {
-           console.log(element.emissions);
-           setScope1((prev) => prev + element.emissions);
-         } else if (element.index === 2.1 || element.index === 2.2) {
-           setScope2((prev) => prev + element.emissions);
-         } else {
-           setScope3((prev) => prev + element.emissions);
-         }
-         setTotal((prev) => prev + element.emissions);
-       });
-     };
+  const [total, setTotal] = useState(0);
+  const [scope1, setScope1] = useState(0);
+  const [scope2, setScope2] = useState(0);
+  const [scope3, setScope3] = useState(0);
+  const Data = JSON.parse(localStorage.getItem("ClientBilan"));
+  const calculateScopeEmissions = () => {
+    Data.emissionPosts.map((element) => {
+      if (
+        element.index === 1.1 ||
+        element.index === 1.2 ||
+        element.index === 1.3 ||
+        element.index === 1.4 ||
+        element.index === 1.5
+      ) {
+        console.log(element.emissions);
+        setScope1((prev) => prev + element.emissions);
+      } else if (element.index === 2.1 || element.index === 2.2) {
+        setScope2((prev) => prev + element.emissions);
+      } else {
+        setScope3((prev) => prev + element.emissions);
+      }
+      setTotal((prev) => prev + element.emissions);
+    });
+  };
 
-     useEffect(() => {
-       calculateScopeEmissions();
-       // eslint-disable-next-line react-hooks/exhaustive-deps
-     }, []);
+  useEffect(() => {
+    calculateScopeEmissions();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   return (
     <Paper
       elevation={3}
