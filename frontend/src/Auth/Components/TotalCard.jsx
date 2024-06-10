@@ -50,7 +50,7 @@ const TotalCard = () => {
           <Typography style={Styles.TotalText}>
             {(
               JSON.parse(localStorage.getItem("ClientBilan")).totalEmissions /
-              100
+              1000
             ).toFixed(2)}
           </Typography>
         </Grid>

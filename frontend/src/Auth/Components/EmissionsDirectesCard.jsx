@@ -166,12 +166,14 @@ const EmissionsDirectesCard = () => {
                     marginRight: { md: "20px", xs: "10px" },
                   }}
                 >
-                  {((post1.total +
-                    post2.total +
-                    post3.total +
-                    post4.total +
-                    post5.total) /
-                    100).toFixed(2)}{" "}
+                  {(
+                    (post1.total +
+                      post2.total +
+                      post3.total +
+                      post4.total +
+                      post5.total) /
+                    1000
+                  ).toFixed(2)}{" "}
                   tCO2e
                 </Typography>
               </Grid>
@@ -209,15 +211,15 @@ const EmissionsDirectesCard = () => {
                           }}
                         >
                           {item.dialogueOptions[0].value === 1
-                            ? (post1.co2a / 100).toFixed(2)
+                            ? (post1.co2a / 1000).toFixed(2)
                             : item.dialogueOptions[0].value === 2
-                            ? (post2.co2a / 100).toFixed(2)
+                            ? (post2.co2a / 1000).toFixed(2)
                             : item.dialogueOptions[0].value === 3
-                            ? (post3.co2a / 100).toFixed(2)
+                            ? (post3.co2a / 1000).toFixed(2)
                             : item.dialogueOptions[0].value === 4
-                            ? (post4.co2a / 100).toFixed(2)
+                            ? (post4.co2a / 1000).toFixed(2)
                             : item.dialogueOptions[0].value === 5
-                            ? (post5.co2a / 100).toFixed(2)
+                            ? (post5.co2a / 1000).toFixed(2)
                             : ""}
                         </Typography>
                       </Grid>
@@ -246,15 +248,15 @@ const EmissionsDirectesCard = () => {
                           }}
                         >
                           {item.dialogueOptions[0].value === 1
-                            ? (post1.ch4 / 100).toFixed(2)
+                            ? (post1.ch4 / 1000).toFixed(2)
                             : item.dialogueOptions[0].value === 2
-                            ? (post2.ch4 / 100).toFixed(2)
+                            ? (post2.ch4 / 1000).toFixed(2)
                             : item.dialogueOptions[0].value === 3
-                            ? (post3.ch4 / 100).toFixed(2)
+                            ? (post3.ch4 / 1000).toFixed(2)
                             : item.dialogueOptions[0].value === 4
-                            ? (post4.ch4 / 100).toFixed(2)
+                            ? (post4.ch4 / 1000).toFixed(2)
                             : item.dialogueOptions[0].value === 5
-                            ? (post5.ch4 / 100).toFixed(2)
+                            ? (post5.ch4 / 1000).toFixed(2)
                             : ""}
                         </Typography>
                       </Grid>
@@ -283,15 +285,15 @@ const EmissionsDirectesCard = () => {
                           }}
                         >
                           {item.dialogueOptions[0].value === 1
-                            ? (post1.n2o / 100).toFixed(2)
+                            ? (post1.n2o / 1000).toFixed(2)
                             : item.dialogueOptions[0].value === 2
-                            ? (post2.n2o / 100).toFixed(2)
+                            ? (post2.n2o / 1000).toFixed(2)
                             : item.dialogueOptions[0].value === 3
-                            ? (post3.n2o / 100).toFixed(2)
+                            ? (post3.n2o / 1000).toFixed(2)
                             : item.dialogueOptions[0].value === 4
-                            ? (post4.n2o / 100).toFixed(2)
+                            ? (post4.n2o / 1000).toFixed(2)
                             : item.dialogueOptions[0].value === 5
-                            ? (post5.n2o / 100).toFixed(2)
+                            ? (post5.n2o / 1000).toFixed(2)
                             : ""}
                         </Typography>
                       </Grid>
@@ -320,15 +322,15 @@ const EmissionsDirectesCard = () => {
                           }}
                         >
                           {item.dialogueOptions[0].value === 1
-                            ? (post1.cob / 100).toFixed(2)
+                            ? (post1.cob / 1000).toFixed(2)
                             : item.dialogueOptions[0].value === 2
-                            ? (post2.cob / 100).toFixed(2)
+                            ? (post2.cob / 1000).toFixed(2)
                             : item.dialogueOptions[0].value === 3
-                            ? (post3.cob / 100).toFixed(2)
+                            ? (post3.cob / 1000).toFixed(2)
                             : item.dialogueOptions[0].value === 4
-                            ? (post4.cob / 100).toFixed(2)
+                            ? (post4.cob / 1000).toFixed(2)
                             : item.dialogueOptions[0].value === 5
-                            ? (post5.cob / 100).toFixed(2)
+                            ? (post5.cob / 1000).toFixed(2)
                             : ""}
                         </Typography>
                       </Grid>

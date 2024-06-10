@@ -122,7 +122,7 @@ const EnergieCard = () => {
                     marginRight: { md: "20px", xs: "10px" },
                   }}
                 >
-                  {((post1.total + post2.total) / 100).toFixed(2)} tCO2e
+                  {((post1.total + post2.total) / 1000).toFixed(2)} tCO2e
                 </Typography>
               </Grid>
             </Grid>
@@ -159,9 +159,9 @@ const EnergieCard = () => {
                           }}
                         >
                           {item.dialogueOptions[0].value === 1
-                            ? (post1.co2a / 100).toFixed(2)
+                            ? (post1.co2a / 1000).toFixed(2)
                             : item.dialogueOptions[0].value === 2
-                            ? (post2.co2a / 100).toFixed(2)
+                            ? (post2.co2a / 1000).toFixed(2)
                             : ""}
                         </Typography>
                       </Grid>
@@ -190,9 +190,9 @@ const EnergieCard = () => {
                           }}
                         >
                           {item.dialogueOptions[0].value === 1
-                            ? (post1.ch4 / 100).toFixed(2)
+                            ? (post1.ch4 / 1000).toFixed(2)
                             : item.dialogueOptions[0].value === 2
-                            ? (post2.ch4 / 100).toFixed(2)
+                            ? (post2.ch4 / 1000).toFixed(2)
                             : ""}
                         </Typography>
                       </Grid>
@@ -221,9 +221,9 @@ const EnergieCard = () => {
                           }}
                         >
                           {item.dialogueOptions[0].value === 1
-                            ? (post1.n2o / 100).toFixed(2)
+                            ? (post1.n2o / 1000).toFixed(2)
                             : item.dialogueOptions[0].value === 2
-                            ? (post2.n2o / 100).toFixed(2)
+                            ? (post2.n2o / 1000).toFixed(2)
                             : ""}
                         </Typography>
                       </Grid>
@@ -252,9 +252,9 @@ const EnergieCard = () => {
                           }}
                         >
                           {item.dialogueOptions[0].value === 1
-                            ? (post1.cob / 100).toFixed(2)
+                            ? (post1.cob / 1000).toFixed(2)
                             : item.dialogueOptions[0].value === 2
-                            ? (post2.cob / 100).toFixed(2)
+                            ? (post2.cob / 1000).toFixed(2)
                             : ""}
                         </Typography>
                       </Grid>

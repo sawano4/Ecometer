@@ -159,7 +159,7 @@ const Rapport = () => {
                                 marginRight: { md: "25px" },
                               }}
                             >
-                              {(total / 100).toFixed(2)}
+                              {(total / 1000).toFixed(2)}
                             </Typography>
                             <Typography
                               variant="h6"
@@ -227,10 +227,10 @@ const Rapport = () => {
                                   }}
                                 >
                                   {item === 1
-                                    ? (scope1 / 100).toFixed(2)
+                                    ? (scope1 / 1000).toFixed(2)
                                     : item === 2
-                                    ? (scope2 / 100).toFixed(2)
-                                    : (scope3 / 100).toFixed(2)}
+                                    ? (scope2 / 1000).toFixed(2)
+                                    : (scope3 / 1000).toFixed(2)}
                                 </Typography>
                                 <Typography
                                   variant="h6"
