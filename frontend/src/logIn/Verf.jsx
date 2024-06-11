@@ -2,8 +2,6 @@ import React from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-
-
 import { MuiOtpInput } from "mui-one-time-password-input";
 
 function Verf() {
@@ -15,7 +13,7 @@ function Verf() {
     setOtp(newValue);
   };
 
-  const navigate = useNavigate(); 
+  const navigate = useNavigate();
 
   function matchIsNumeric(text) {
     const isNumber = typeof text === "number";
@@ -36,21 +34,20 @@ function Verf() {
       const headers = {
         Authorization: `Bearer ${token}`,
       };
-  
+
       const response = await axios.post(
         "http://localhost:3000/api/clients/verify-email",
         { otp: otp },
         { headers: headers }
       );
-      console.log('verification response:', response.data);
-      localStorage.setItem('verifiedEmail',true);
+      console.log("verification response:", response.data);
+      localStorage.setItem("verifiedEmail", true);
       navigate("/acceuil");
     } catch (error) {
       // Handle any errors
-      console.error('Error during verification:', error);
+      console.error("Error during verification:", error);
     }
   };
-  
 
   return (
     <div className="realtive font-['Inter']">
@@ -60,7 +57,7 @@ function Verf() {
         alt="SVG Image"
       ></img>
       <div className="absolute w-full h-full  ">
-        <div className="  mx-auto mt-[22vh]    w-[30%] h-[56%]  bg-[white]  rounded-[15px] shadow-[0px_0px_30px_-15px]">
+        <div className="  mx-auto mt-[22vh] w-[35%] h-[62%]  bg-[white]  rounded-[15px] shadow-[0px_0px_30px_-15px]">
           <div className="text-center text-neutral-800 w-full h-[20%] text-[4.8vh] font-bold font-['Eudoxus Sans'] pt-[4vh]">
             Vérification
           </div>
@@ -78,12 +75,15 @@ function Verf() {
             />
           </div>
 
-          <div className="h-[16%] text-orange flex justify-center items-center leading-9">
-            <div className="text-[#F77F00] text-[3vh] font-sans">00:30</div>
-          </div>
-          <button onClick={handleVerification} type="submit" className=" w-full">
+          <div className="h-[10%] text-orange flex justify-center items-center leading-9"></div>
+
+          <button
+            onClick={handleVerification}
+            type="submit"
+            className=" w-full"
+          >
             <div className="w-[84%]  hover:bg-[#023559] duration-[0.3s]   hover:rounded-[1.8vh] h-[8vh]  bg-sky-950 rounded-[2vh] justify-center items-center gap-2.5 inline-flex">
-              <div className="text-center text-white text-[3vh]  font-['Inter sans'] "  >
+              <div className="text-center text-white text-[3vh]  font-['Inter sans'] ">
                 Se connecter
               </div>
             </div>

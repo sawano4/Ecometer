@@ -224,6 +224,7 @@ const forgotPassword = async (req, res) => {
     subject: "Password Reset link",
     html: passwordResetTemplate(client.name, process.env.PWD_RESET_LINK),
   });
+  console.log(email);
   res.status(200).json({ msg: "reset Email sent successfully" });
 };
 

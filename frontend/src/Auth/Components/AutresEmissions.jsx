@@ -44,7 +44,7 @@ function    AutresEmissions() {
                         </Grid>
                         <Grid item xs={12} md={3} sx={{ textAlign: 'center' }}>
                             <Button style={Styles.ajouterActiviteButton}>                                                 
-                                Votre bouton                                  
+                                Disabled                                  
                             </Button>
                         </Grid>
                     </Grid>
