@@ -4,9 +4,8 @@ const Styles = {
   EmissionsText: {
     fontFamily: "Eudoxus , sans-serif",
     fontWeight: "700",
-    fontSize: "20px",
-    lineHeight: "24px",
-    marginBottom: "10px",
+    fontSize: "3.5vh",
+    marginBottom: "1%",
   },
 
   TotalText: {
@@ -26,7 +25,7 @@ const Styles = {
   UnityText: {
     fontFamily: "Eudoxus , sans-serif",
     fontWeight: "500",
-    fontSize: "23px",
+    fontSize: "4vh",
     lineHeight: "58px",
   },
 };
@@ -60,10 +59,13 @@ const TotalCard = () => {
       </Grid>
       <Typography style={Styles.IncertitudeText}>
         Avec un taux d&apos;incertitudede{" "}
-        {(
-          JSON.parse(localStorage.getItem("ClientBilan")).totalUncertainty * 100
-        ).toFixed(2)}
-        %
+        <span style={{ fontWeight: "700" }}>
+          {(
+            JSON.parse(localStorage.getItem("ClientBilan")).totalUncertainty *
+            100
+          ).toFixed(2)}
+          %
+        </span>
       </Typography>
     </Paper>
   );

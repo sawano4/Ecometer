@@ -35,16 +35,16 @@ const BilanDetails = () => {
             <Grid container>
               <Grid
                 item
-                md={4.93}
+                md={5.3}
                 xs={12}
-                marginRight={{ md: "20px" }}
+                marginRight={{ md: 2 }}
                 marginBottom={{ md: "35px", xs: "20px" }}
               >
                 <TotalCard />
               </Grid>
               <Grid
                 item
-                md={6.79}
+                md={6.45}
                 xs={12}
                 marginBottom={{ md: "35px", xs: "20px" }}
               >
