@@ -46,7 +46,7 @@ function App() {
           <Route path="/admin/bdd" element={<Basededonnees/>}/>
           <Route path='/admin/bdd/modifier' element={<ModifierCollection/>}/>
           <Route path="/forgetpassword" element={<Forgetpassword />} />
-          <Route path="/verf" element={ <Verf />}/>
+          <Route path="/verf" element={<Verf />}/>
         </Routes>
       </QueryClientProvider>
       </BrowserRouter>

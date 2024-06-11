@@ -19,12 +19,12 @@ function Dropdown(props) {
   }
   return (
     <div className='relative w-full'>
-    <div className={`rounded-xl border border-solid border-[#0F172A] border-[2px] px-[25px] py-[3px] w-full flex justify-between items-center`}>
+    <div className={`rounded-xl border border-solid border-[#0F172A] border-[2px] px-[25px] py-[3px] w-full flex justify-between items-center cursor-pointer`} onClick={handleExpand}>
         <div className='flex flex-col justify-between'>
             <p className='text-[12px]'>{props.label}</p>
             <p>{choix}</p>
         </div>
-        <img src="../../../Public/expand.png" alt="Expand" className={`w-[14px] h-[6px] cursor-pointer rotate-${rotation}`} onClick={handleExpand}/>
+        <img src="../../../Public/expand.png" alt="Expand" className={`w-[14px] h-[6px] rotate-${rotation}`}/>
     </div>
     {open ?
       <div className='absolute bg-[#ffffff] z-10 w-full rounded-lg cursor-pointer'>
