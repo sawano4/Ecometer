@@ -45,6 +45,13 @@ function ModifierCollection(props) {
     setChoix(e.target.innerText)
   }
 
+  const supprimerFacteur = (index) => {
+    setFactors((prevFactors) =>
+      prevFactors.filter((_, i) => i !== index)
+    );
+    console.log("deleted");
+  };
+
   useEffect(() => {
     if (categorie) {
       axios.get('http://localhost:3000/api/admin/getfactors', {
@@ -97,7 +104,7 @@ function ModifierCollection(props) {
               <p>Actions</p>
             </div>
             {factors.map((factor, index) => (
-                <Element key={index} facteur={factor} showDetail={showPopupDetail} showMod={showPopupMod} modifySelected={setSelected} i={index}/>
+                <Element key={index} facteur={factor} showDetail={showPopupDetail} showMod={showPopupMod} modifySelected={setSelected} i={index} deleteFactor={supprimerFacteur}/>
               ))}
           </div>
         </div>
