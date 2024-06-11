@@ -1,4 +1,5 @@
 const Client = require("../Models/Client");
+const Admin = require("../Models/Admin");
 const VerificationToken = require("../Models/verificationToken");
 const ResetToken = require("../Models/resetToken");
 const crypto = require("crypto");
@@ -102,22 +103,40 @@ const registerClient = async (req, res) => {
 const loginClient = async (req, res) => {
   const { email, password } = req.body;
   try {
+    let isAdmin = false; // Initialize isAdmin flag
+
     if (!email.trim() || !password.trim()) {
       return res.status(400).json({ msg: "Email and password are required" });
     }
     console.log(email);
+ 
     const client = await Client.findOne({ email });
-    if (!client) {
-      return res.status(404).json({ msg: "User not found" });
+    if (client) {
+      // If the user exists in the Client collection, check password
+      const isMatched = await client.comparePassword(password);
+      if (!isMatched) {
+        return res.status(401).json({ msg: "Invalid Credentials" });
+      }
+    } else {
+      // If the user does not exist in the Client collection,
+      // check if the user exists in the Admin collection
+      const admin = await Admin.findOne({Email: email});
+      const admins = await Admin.find();
+      console.log(admins);
+      if (!admin) {
+        return res.status(404).json({ msg: "User not found" });
+      }
+    
+      if ( admin && admin.Password !== password ) {
+        return res.status(401).json({ msg: "Invalid Credentials" });
+      }
+      // If the password matches for admin, set isAdmin flag to true
+      isAdmin = true;
     }
 
-    const isMatched = await client.comparePassword(password);
-    if (!isMatched) {
-      return res.status(401).json({ msg: "Invalid Credentials" });
-    }
-
+    // If the user exists and the password matches or the user is an admin
     const token = jwt.sign(
-      { clientId: client._id, username: client.name },
+      { clientId: client ? client._id : null, username: client ? client.name : null },
       process.env.JWT_SECRET,
       {
         expiresIn: "30d",
@@ -127,6 +146,7 @@ const loginClient = async (req, res) => {
     res.status(200).json({
       msg: "Login successful",
       token: token,
+      isAdmin: isAdmin
     });
   } catch (error) {
     console.error("Error:", error);

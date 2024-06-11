@@ -15,8 +15,8 @@ function Sidebar(props) {
         <div className='flex px-2 mb-5 gap-5 cursor-pointer overflow-auto overflow-hidden'>
           <img src="../../../public/profilePhoto.svg" alt="Admin Photo" className='w-[46px] h-[46px]' />
           <div className='flex flex-col mb-5  '>
-            <h1 className='font-bold text-accentYellow'>Admin</h1>
-            <p className='text-[15px] text-specialGrey'>admin@gmail.com</p>
+            <h1 className='font-bold text-accentYellow'>Moussous Billel</h1>
+            <p className='text-[15px] text-specialGrey'>moussoubillel@gmail.com</p>
           </div>
         </div>
       </div>
@@ -33,9 +33,9 @@ function Sidebar(props) {
         <img src="../../../public/system.svg" alt="" className='h-[30px] w-[30px] ml-5' />
         <p className='text-[16px]'>Système</p>
       </div>
-      <div className={`flex gap-5 items-center pt-2 pb-2 text-white cursor-pointer mt-[30vh]`}>
+      <div className={`flex gap-5 items-center pt-2 pb-2 text-white cursor-pointer mt-[30vh]`} onClick={() => navigate('/')}>
         <img src="../../../public/logout.svg" alt="" className='h-[30px] w-[30px] ml-5' />
-        <p className='text-[16px]'>Se déconnecter</p>
+        <p className='text-[16px]'>Se déconnecter </p>
       </div>
     </div>
   )
