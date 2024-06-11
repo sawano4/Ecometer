@@ -1,3 +1,5 @@
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import {
   Typography,
   Grid,
@@ -11,16 +13,38 @@ import FirstCard from "../Components/FirstCard";
 import CustomBarChart from "../Components/CustomBarChart";
 import Legend from "../Components/Lengend";
 import ThirdCard from "../Components/ThirdCard";
-// Import Axios library
 import axios from "axios";
+
 function Acceuil() {
+  const navigate = useNavigate();
+  const [loading, setLoading] = useState(true);
   const token = localStorage.getItem("token");
+
+  useEffect(() => {
+    if (!token) {
+      navigate("/login");
+    } else {
+      fetchData();
+    }
+  }, [token, navigate]);
+
+  const fetchData = async () => {
+    try {
+      await fetchClientProfile();
+      await fetchClientObjectives();
+      await fetchClientBilans();
+      setLoading(false); // Set loading to false after fetching all data
+    } catch (error) {
+      console.error("Error fetching data:", error);
+      navigate("/login"); // Redirect to login on error
+    }
+  };
+
   const theme = useTheme();
-    const isSmallScreen = useMediaQuery(theme.breakpoints.down("md")); 
-  // Function to fetch client profile data
+  const isSmallScreen = useMediaQuery(theme.breakpoints.down("md"));
+
   const fetchClientProfile = async () => {
     try {
-      // Send a GET request to the backend endpoint
       const response = await axios.get(
         "http://localhost:3000/api/clients/profile",
         {
@@ -30,32 +54,25 @@ function Acceuil() {
         }
       );
 
-      // Log the response data to the console
-        console.log("Client Profile Data:", response.data);
-        // Store the client profile data in local storage
-        // remove if it have content
-        localStorage.removeItem("client");
-       localStorage.setItem("client", JSON.stringify(response.data));
-      // Return the response data if needed
+      console.log("Client Profile Data:", response.data);
+      localStorage.removeItem("client");
+      localStorage.setItem("client", JSON.stringify(response.data));
       return response.data;
     } catch (error) {
-      // Handle any errors
       console.error("Error fetching client profile:", error);
-      // Optionally, return an error message or throw the error
       throw error;
     }
   };
 
   const fetchClientObjectives = async () => {
-    const token = localStorage.getItem("token");
-    const headers = {
-      Authorization: `Bearer ${token}`,
-    };
-
     try {
       const response = await axios.get(
         "http://localhost:3000/api/objectifs/get",
-        { headers: headers }
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
       );
 
       console.log("Client Objectives Data:", response.data);
@@ -67,14 +84,13 @@ function Acceuil() {
   };
 
   const fetchClientBilans = async () => {
-    const token = localStorage.getItem("token");
-    const headers = {
-      Authorization: `Bearer ${token}`,
-    };
     try {
       const response = await axios.get("http://localhost:3000/api/bilans/all", {
-        headers: headers,
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
       });
+
       console.log("Client Bilans Data:", response.data);
       return response.data;
     } catch (error) {
@@ -83,10 +99,9 @@ function Acceuil() {
     }
   };
 
-  // Call the function to fetch client profile data
-  fetchClientProfile();
-  fetchClientObjectives();
-  fetchClientBilans();
+  if (loading) {
+    return null; // Or you can render a loading spinner or message
+  }
 
   return (
     <Grid container>

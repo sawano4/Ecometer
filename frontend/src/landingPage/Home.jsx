@@ -9,6 +9,10 @@ import Last from "./Last.jsx";
 import Foot from "./Foot.jsx";
 
 function Landing() {
+  localStorage.setItem("isConnected", JSON.stringify(false));
+localStorage.setItem("verifiedEmail", JSON.stringify(false));
+localStorage.removeItem("token");
+
   return (
     <section>
       <Navbar />

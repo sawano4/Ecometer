@@ -25,7 +25,12 @@ function Login() {
       localStorage.removeItem("token");
       localStorage.setItem("token", res.token);
       console.log(res);
+      const isAdmin = res.isAdmin;
       localStorage.setItem("isConnected", true);
+      if(isAdmin){
+        navigate("/admin/utilisateurs");
+        return;
+      }
       navigate("/acceuil");
     } catch (error) {
       if (

@@ -46,7 +46,13 @@ const AdminSchema = new Schema({
 });
 
 //create model
+const usersConnection = mongoose.createConnection(process.env.USERS_URL);
+// Add error handling
+usersConnection.on('error', console.error.bind(console, 'connection error:'));
+usersConnection.once('open', function() {
+  console.log("Connected to users database");
+});
 
-const Admin = mongoose.model("Admin", AdminSchema);
+const Admin = usersConnection.model('Admin', AdminSchema,'admins');
 
 module.exports = Admin;
