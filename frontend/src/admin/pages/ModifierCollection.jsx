@@ -1,5 +1,6 @@
 import React from 'react'
-import { useState, useEffect } from 'react'
+import { useEffect } from 'react';
+import { useState } from 'react';
 import Sidebar from '../components/Sidebar'
 import Topbar from '../components/Topbar'
 import Searchbar from '../components/Searchbar'
@@ -7,6 +8,7 @@ import Element from '../components/Element'
 import { useNavigate } from 'react-router-dom'
 import { useLocation } from 'react-router-dom';
 import axios from 'axios';
+import Afficher from '../popups/Afficher';
 
 function ModifierCollection(props) {
   const location = useLocation();
@@ -15,6 +17,23 @@ function ModifierCollection(props) {
   const [choix, setChoix] = useState("Tous");
   const [factors, setFactors] = useState([]);
   const [error, setError] = useState(null);
+  const [popupDetail, setPopupDetail] = useState(false);
+    const [popupMod, setPopupMod] = useState(false);
+    const [selected, setSelected] = useState(0);
+    
+    const showPopupDetail = () => {
+      setPopupDetail(true);
+    }
+    const hidePopupDetail = () => {
+      setPopupDetail(false);
+    }
+
+    const showPopupMod = () => {
+      setPopupMod(true);
+    }
+    const hidePopupMod = () => {
+      setPopupMod(false);
+    }
   // const categorie = "Achat de Biens";
   const { categorie, categorieName } = location.state || {};
   const handleExpand = () => {
@@ -78,18 +97,16 @@ function ModifierCollection(props) {
               <p>Actions</p>
             </div>
             {factors.map((factor, index) => (
-                <Element key={index} facteur={factor}/>
+                <Element key={index} facteur={factor} showDetail={showPopupDetail} showMod={showPopupMod} modifySelected={setSelected} i={index}/>
               ))}
-            {/* <Element name="Photocopieurs"/>
-            <Element name="Montant des achats"/>
-            <Element name="Home cinéma"/>
-            <Element name="Cadran photo, numérique"/>
-            <Element name="Appareil photo, Compact"/>
-            <Element name="Appareil photo, Hybride"/>
-            <Element name="Imprimante, Laser"/> */}
           </div>
         </div>
       </div>
+      {popupDetail && (
+        <div className='absolute flex items-center justify-center h-screen w-screen backdrop-blur-sm bg-gray-900 bg-opacity-50'>
+          <Afficher annuler={hidePopupDetail} facteur={factors[selected]}/>
+        </div>
+      )}
     </div>
   )
 }
