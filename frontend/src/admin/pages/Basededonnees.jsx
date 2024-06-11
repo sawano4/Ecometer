@@ -60,14 +60,17 @@ function Basededonnees() {
               <p>Collections</p>
               <p>Actions</p>
             </div>
-            <Facteur text="Achat de biens"/>
-            <Facteur text="Achat de services"/>
-            <Facteur text="Transport de marchandises"/>
-            <Facteur text="Transport de personnes"/>
-            <Facteur text="Process et émissions fugitives"/>
-            <Facteur text="Traitement des déchets"/>
-            <Facteur text="Électricité"/>
-            <Facteur text="UTCF"/>
+            <Facteur text="Combustibles" id="Combustibles"/>
+            <Facteur text="Achats de biens" id="AchatsDeBiens"/>
+            <Facteur text="Achats de services" id ="AchatsDeServices"/>
+            <Facteur text="Transport de marchandises" id="TransportDeMarchandises"/>
+            <Facteur text="Reseaux de chaleur et froid" id="ReseauxDeChaleurEtFroid"/>
+            <Facteur text="Transport de personnes" id="TransportDePersonnes"/>
+            <Facteur text="Process et émissions fugitives" id="ProcessEtEmissionFugitives"/>
+            <Facteur text="Traitement des déchets" id="TraitementDesDechets"/>
+            <Facteur text="Électricité" id="Electricite"/>
+            <Facteur text="Statistiques territoriales" id="StatistiquesTerritoriales"/>
+            <Facteur text="UTCF" id="UTCF"/>
           </div>
         </div>
       </div>

@@ -1,14 +1,22 @@
 import React from 'react'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Sidebar from '../components/Sidebar'
 import Topbar from '../components/Topbar'
 import Searchbar from '../components/Searchbar'
 import Element from '../components/Element'
+import { useNavigate } from 'react-router-dom'
+import { useLocation } from 'react-router-dom';
+import axios from 'axios';
 
-function ModifierCollection() {
+function ModifierCollection(props) {
+  const location = useLocation();
+  const navigate = useNavigate();
   const [open, setOpen] = useState(false);
   const [choix, setChoix] = useState("Tous");
-  const categorie = "Achat de Biens";
+  const [factors, setFactors] = useState([]);
+  const [error, setError] = useState(null);
+  // const categorie = "Achat de Biens";
+  const { categorie, categorieName } = location.state || {};
   const handleExpand = () => {
     open ? setOpen(false) : setOpen(true);
   }
@@ -17,6 +25,22 @@ function ModifierCollection() {
     setOpen(false);
     setChoix(e.target.innerText)
   }
+
+  useEffect(() => {
+    if (categorie) {
+      axios.get('http://localhost:3000/api/admin/getfactors', {
+        params: { selectedCategorie: categorie }
+      })
+        .then(response => {
+          setFactors(response.data.factors);
+          // console.log(response);  
+        })
+        .catch(error => {
+          setError(error.response ? error.response.data.error : 'An error occurred');
+        });
+    }
+  }, [categorie]);
+
   return (
     <div className='flex h-screen bg-[#404040]'>
       <Sidebar selected="2" className="fixed"/>
@@ -28,10 +52,10 @@ function ModifierCollection() {
         <div className='flex mt-5 flex-col items-center gap-3'>
           <div className='flex justify-between w-[70%] items-center'>
               <div className='flex justify-center items-center gap-3'>
-                <div className='bg-white p-2 rounded-lg border border-[2px] border-solid border-primaryBlue pr-2 pl-2 cursor-pointer'>
+                <div className='bg-white p-2 rounded-lg border border-[2px] border-solid border-primaryBlue pr-2 pl-2 cursor-pointer' onClick={() => {navigate('/admin/bdd')}}>
                   <img src="../../../public/Return.svg" alt="Revenir" className='w-[9px] h-[14px]' />
                 </div>
-                <p className='text-primaryBlue font-bold text-[20px]'>{categorie}</p>
+                <p className='text-primaryBlue font-bold text-[20px]'>{categorieName}</p>
               </div>
               <div className='flex gap-2'>
                   <p>Filtre: <span className='text-accentOrange'>{choix}</span></p>
@@ -53,14 +77,16 @@ function ModifierCollection() {
               <p>Élement</p>
               <p>Actions</p>
             </div>
-            {/* something here */}
-            <Element name="Photocopieurs"/>
+            {factors.map((factor, index) => (
+                <Element key={index} facteur={factor}/>
+              ))}
+            {/* <Element name="Photocopieurs"/>
             <Element name="Montant des achats"/>
             <Element name="Home cinéma"/>
             <Element name="Cadran photo, numérique"/>
             <Element name="Appareil photo, Compact"/>
             <Element name="Appareil photo, Hybride"/>
-            <Element name="Imprimante, Laser"/>
+            <Element name="Imprimante, Laser"/> */}
           </div>
         </div>
       </div>

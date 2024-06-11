@@ -21,6 +21,7 @@ import Verf from "./logIn/Verf.jsx";
 import "./App.css";
 import Utilisateurs from "./admin/pages/Utilisateurs.jsx";
 import Basededonnees from "./admin/pages/Basededonnees.jsx";
+import ModifierCollection from "./admin/pages/ModifierCollection.jsx";
 
 function App() {
   const isConnected = localStorage.getItem("isConnected"); // Gérer l'état de connexion ici
@@ -41,6 +42,7 @@ function App() {
   return (
     <>
       <BrowserRouter>
+
         <QueryClientProvider client={queryClient}>
           <ThemeProvider theme={theme}>
             <Routes>
@@ -55,6 +57,7 @@ function App() {
               <Route path="/rapport" element={<Rapport />} />
               <Route path="/admin/utilisateurs" element={<Utilisateurs />} />
               <Route path="/admin/bdd" element={<Basededonnees />} />
+              <Route path='/admin/bdd/modifier' element={<ModifierCollection/>}/>
               <Route path="/forgetpassword" element={<Forgetpassword />} />
               <Route path="/verf" element={<Verf />} />
             </Routes>
