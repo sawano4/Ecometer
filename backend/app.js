@@ -25,9 +25,9 @@ app.use(errorHandler);
 app.use("/api/admin/", adminRoutes);
 app.use("/api/Emission/", categoryRoutes);
 app.use("/api/categories/", categoryRoutes);
-app.use("/api/clients/",clientRouter);
-app.use("/api/bilans/",verifyClientToken, bilanRoutes);
-app.use("/api/objectifs/",verifyClientToken, objectifRoutes);
+app.use("/api/clients/", clientRouter);
+app.use("/api/bilans/", verifyClientToken, bilanRoutes);
+app.use("/api/objectifs/", verifyClientToken, objectifRoutes);
 
 // Start the server
 app.listen(serverConfig.port, () => {
