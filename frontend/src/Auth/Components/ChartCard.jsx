@@ -61,12 +61,13 @@ const ChartCard = () => {
               md={(scope1 / total) * 10}
               sx={{ backgroundColor: "#D62828" }}
             ></Grid>
-            <Grid item>
+            <Grid item md={12 - (scope1 / total) * 10}>
               <Typography
                 sx={{
                   fontFamily: "Inter , sans-serif",
                   fontWeight: "700",
-                  fontSize: "16px",
+                  fontSize: "2.8vh",
+                  textAlign: "right",
                 }}
               >
                 {((scope1 / total) * 100).toFixed(2)}%{" "}
@@ -81,12 +82,13 @@ const ChartCard = () => {
               md={(scope2 / total) * 10}
               sx={{ backgroundColor: "#F77F00" }}
             ></Grid>
-            <Grid item>
+            <Grid item md={12 - (scope2 / total) * 10}>
               <Typography
                 sx={{
                   fontFamily: "Inter , sans-serif",
                   fontWeight: "700",
-                  fontSize: "16px",
+                  fontSize: "2.8vh",
+                  textAlign: "right",
                 }}
               >
                 {((scope2 / total) * 100).toFixed(2)}%{" "}
@@ -101,12 +103,14 @@ const ChartCard = () => {
               md={(scope3 / total) * 10}
               sx={{ backgroundColor: "#FCBF49" }}
             ></Grid>
-            <Grid item>
+            <Grid item md={12 - (scope3 / total) * 10}>
               <Typography
                 sx={{
                   fontFamily: "Inter , sans-serif",
                   fontWeight: "700",
-                  fontSize: "16px",
+
+                  fontSize: "2.8vh",
+                  textAlign: "right",
                 }}
               >
                 {((scope3 / total) * 100).toFixed(2)}%{" "}

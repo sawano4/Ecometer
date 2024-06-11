@@ -2,13 +2,6 @@ import React, { useState, useEffect } from "react";
 import { Paper, Grid, Typography, Stack } from "@mui/material";
 import Drop from "./Drop";
 
-const circleStyle = {
-  width: "26px",
-  height: "26px",
-  borderRadius: "50%",
-  backgroundColor: "#003049",
-};
-
 const textTitre = {
   fontFamily: "Eudoxus , sans-serif",
   fontWeight: "700",
@@ -98,11 +91,18 @@ const EnergieCard = () => {
         <Grid item md={6} xs={12}>
           <Grid container>
             <Grid item md={1} xs={2}>
-              <div style={circleStyle}></div>
+              <div className="bg-[#003049] h-[5vh] w-[5vh] flex justify-center items-center rounded-full">
+                <img
+                  src="Battery.svg"
+                  alt="SVG Image"
+                  className="pl-[0.3vh] h-[3vh]"
+                ></img>
+              </div>
             </Grid>
             <Grid item md={11} xs={10}>
               <Typography style={textTitre}>
-                Total Emissions indirectes (Énergie)
+                &nbsp;&nbsp;Total Emissions indirectes
+                &nbsp;&nbsp;&nbsp;(Énergie)
               </Typography>
             </Grid>
           </Grid>
