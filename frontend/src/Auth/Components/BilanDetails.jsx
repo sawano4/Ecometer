@@ -1,4 +1,4 @@
-import { Paper, Grid } from "@mui/material";
+import { Paper, Grid ,Typography} from "@mui/material";
 import TotalCard from "./TotalCard";
 import ChartCard from "./ChartCard";
 import ScopesCard from "./ScopesCard";
