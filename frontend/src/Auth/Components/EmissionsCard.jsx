@@ -1,5 +1,5 @@
 import { Grid, Paper, Typography } from "@mui/material";
-import { BarChart } from "@mui/x-charts";
+// import { BarChart } from "@mui/x-charts";
 import { useEffect, useState } from "react";
 
 const EmissionsCard = () => {
