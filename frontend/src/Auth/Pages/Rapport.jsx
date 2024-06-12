@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Box, Grid, Paper, Typography } from "@mui/material";
-import { PieChart } from "@mui/x-charts/PieChart";
+// import { PieChart } from "@mui/x-charts/PieChart";
 import AppBarComponent from "../Components/AppBarComponent";
 import SideBar from "../Components/SideBar";
 import BilanDetails from "../Components/BilanDetails";
