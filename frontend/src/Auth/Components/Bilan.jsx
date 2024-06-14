@@ -80,7 +80,7 @@ const Styles = {
 function Bilan({ showBilan, setShowBilan }) {
   const data = {
     year: 2024,
-    clientId: "6666cb3cdcd1561334ffd601", //localStorage.getItem("clientId"),
+    clientId: "66661fd621a877d16ef65508", //localStorage.getItem("clientId"),
     selectedCategoryElements: [
       [],
       [],

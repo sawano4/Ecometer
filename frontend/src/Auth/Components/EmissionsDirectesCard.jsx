@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { Paper, Grid, Typography, Stack } from "@mui/material";
 import Drop from "./Drop";
 
-
 const textTitre = {
   fontFamily: "Eudoxus , sans-serif",
   fontWeight: "700",
